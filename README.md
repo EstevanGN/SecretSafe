@@ -1,1 +1,1 @@
-# crypto-app
+# SecretSafe
