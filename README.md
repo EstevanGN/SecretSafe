@@ -1,3 +1,13 @@
 # SecretSafe
+Esta es una aplicación de criptografía para el curso de *Introducción a la Criptografía*.
 
-Vuelvo a actualizar el repo
+**Autores**
+* Daniel Estevan Garcia Niño.
+* 
+* 
+* 
+
+
+Universidad Nacional de Colombia.
+Departamento de Matemáticas 
+2023
