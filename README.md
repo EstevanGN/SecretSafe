@@ -3,9 +3,9 @@ Esta es una aplicación de criptografía para el curso de *Introducción a la Cr
 
 **Autores**
 * Daniel Estevan Garcia Niño.
-* 
-* 
-* 
+* Anderson Andres Llanos Quintero
+* Santiago Tovar Mosquera
+* Juliana Alejandra Nieto
 
 
 Universidad Nacional de Colombia.
