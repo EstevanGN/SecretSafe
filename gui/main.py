@@ -120,7 +120,8 @@ class MainWindow(QMainWindow):
             widgets.stackedWidget.setCurrentWidget(widgets.home)
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
-            self.ui.btn_encrypt.clicked.connect(self.shift_encrypt_text)
+            self.ui.classical_btn_encrypt.clicked.connect(self.shift_encrypt_text)
+            self.ui.classical_btn_decrypt.clicked.connect(self.shift_decrypt_text)
         # SHOW WIDGETS PAGE
         if btnName == "btn_block":
             widgets.stackedWidget.setCurrentWidget(widgets.widgets)
@@ -159,9 +160,18 @@ class MainWindow(QMainWindow):
             print('Mouse click: RIGHT CLICK')
             
     def shift_encrypt_text(self):
-        input_text = self.ui.input.toPlainText()
-        output_text = shift.cifrar_desplazamiento(input_text)[0]
-        self.ui.output.setPlainText(output_text)
+        input_text = self.ui.classical_encrypt_input.toPlainText()
+        shift_encrypt_return = shift.cifrar_desplazamiento(input_text)
+        output_text = shift_encrypt_return[0]
+        generated_key = shift_encrypt_return[1]
+        self.ui.classical_generated_key_output.setPlainText(str(generated_key))
+        self.ui.classical_encrypt_output.setPlainText(str(output_text))
+    
+    def shift_decrypt_text(self):
+        input_text = self.ui.classical_decrypt_input.toPlainText()
+        key = self.ui.classical_key_input.toPlainText()
+        output_text = shift.descifrar_desplazamiento(input_text, key)
+        self.ui.classical_decrypt_output.setPlainText(output_text)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
