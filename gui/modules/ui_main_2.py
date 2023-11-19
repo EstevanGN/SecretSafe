@@ -1154,7 +1154,7 @@ class Ui_MainWindow(object):
         self.classical_decrypt_input.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
 "border: 2px solid violet;\n"
 "border-radius: 10px;")
-        self.classical_decrypt_input.setReadOnly(False)
+        self.classical_decrypt_input.setReadOnly(True)
 
         self.verticalLayout_18.addWidget(self.classical_decrypt_input)
 

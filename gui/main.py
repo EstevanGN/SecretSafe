@@ -169,7 +169,7 @@ class MainWindow(QMainWindow):
     
     def shift_decrypt_text(self):
         input_text = self.ui.classical_decrypt_input.toPlainText()
-        key = self.ui.classical_key_input.toPlainText()
+        key = int(self.ui.classical_key_input.toPlainText())
         output_text = shift.descifrar_desplazamiento(input_text, key)
         self.ui.classical_decrypt_output.setPlainText(output_text)
 
