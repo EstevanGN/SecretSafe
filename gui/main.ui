@@ -2077,7 +2077,7 @@ border: 2px solid violet;
 border-radius: 10px;</string>
                             </property>
                             <property name="readOnly">
-                             <bool>true</bool>
+                             <bool>false</bool>
                             </property>
                             <property name="html">
                              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
