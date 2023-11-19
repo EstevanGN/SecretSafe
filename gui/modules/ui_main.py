@@ -1024,58 +1024,212 @@ class Ui_MainWindow(object):
         self.classical_input_widget.setObjectName(u"classical_input_widget")
         self.verticalLayout_15 = QVBoxLayout(self.classical_input_widget)
         self.verticalLayout_15.setObjectName(u"verticalLayout_15")
-        self.input = QTextEdit(self.classical_input_widget)
-        self.input.setObjectName(u"input")
-        self.input.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
+        self.classical_encrypt_process = QLineEdit(self.classical_input_widget)
+        self.classical_encrypt_process.setObjectName(u"classical_encrypt_process")
+        self.classical_encrypt_process.setStyleSheet(u"background-color: transparent;\n"
+"border: none;")
+        self.classical_encrypt_process.setAlignment(Qt.AlignCenter)
+        self.classical_encrypt_process.setReadOnly(True)
+
+        self.verticalLayout_15.addWidget(self.classical_encrypt_process)
+
+        self.classical_encrypt_input = QTextEdit(self.classical_input_widget)
+        self.classical_encrypt_input.setObjectName(u"classical_encrypt_input")
+        self.classical_encrypt_input.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
 "border: 2px solid violet;\n"
 "border-radius: 10px;")
 
-        self.verticalLayout_15.addWidget(self.input)
+        self.verticalLayout_15.addWidget(self.classical_encrypt_input)
 
-        self.btn_encrypt = QPushButton(self.classical_input_widget)
-        self.btn_encrypt.setObjectName(u"btn_encrypt")
+        self.classical_generated_key_widget = QWidget(self.classical_input_widget)
+        self.classical_generated_key_widget.setObjectName(u"classical_generated_key_widget")
+        sizePolicy.setHeightForWidth(self.classical_generated_key_widget.sizePolicy().hasHeightForWidth())
+        self.classical_generated_key_widget.setSizePolicy(sizePolicy)
+        self.classical_generated_key_widget.setMinimumSize(QSize(0, 40))
+        self.classical_generated_key_widget.setMaximumSize(QSize(16777215, 40))
+        self.horizontalLayout_11 = QHBoxLayout(self.classical_generated_key_widget)
+        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
+        self.classical_generated_key_icon = QPushButton(self.classical_generated_key_widget)
+        self.classical_generated_key_icon.setObjectName(u"classical_generated_key_icon")
+        self.classical_generated_key_icon.setEnabled(False)
+        self.classical_generated_key_icon.setStyleSheet(u"border: none;")
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/images/icons/cil-caret-right.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.classical_generated_key_icon.setIcon(icon3)
+
+        self.horizontalLayout_11.addWidget(self.classical_generated_key_icon)
+
+        self.classica_generated_key_line = QLineEdit(self.classical_generated_key_widget)
+        self.classica_generated_key_line.setObjectName(u"classica_generated_key_line")
+        sizePolicy.setHeightForWidth(self.classica_generated_key_line.sizePolicy().hasHeightForWidth())
+        self.classica_generated_key_line.setSizePolicy(sizePolicy)
+        self.classica_generated_key_line.setMinimumSize(QSize(120, 30))
+        self.classica_generated_key_line.setMaximumSize(QSize(120, 30))
+        font4 = QFont()
+        font4.setFamily(u"Segoe UI")
+        font4.setPointSize(10)
+        font4.setBold(False)
+        font4.setItalic(False)
+        font4.setKerning(True)
+        self.classica_generated_key_line.setFont(font4)
+        self.classica_generated_key_line.setAutoFillBackground(False)
+        self.classica_generated_key_line.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
+"border: 2px solid violet;\n"
+"border-radius: 10px;")
+        self.classica_generated_key_line.setAlignment(Qt.AlignCenter)
+        self.classica_generated_key_line.setReadOnly(True)
+
+        self.horizontalLayout_11.addWidget(self.classica_generated_key_line)
+
+        self.classical_generated_key_output = QTextEdit(self.classical_generated_key_widget)
+        self.classical_generated_key_output.setObjectName(u"classical_generated_key_output")
+        self.classical_generated_key_output.setMinimumSize(QSize(0, 30))
+        self.classical_generated_key_output.setMaximumSize(QSize(16777215, 30))
+        self.classical_generated_key_output.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
+"border: 2px solid violet;\n"
+"border-radius: 10px;")
+        self.classical_generated_key_output.setReadOnly(True)
+
+        self.horizontalLayout_11.addWidget(self.classical_generated_key_output)
+
+
+        self.verticalLayout_15.addWidget(self.classical_generated_key_widget)
+
+        self.classical_btn_encrypt = QPushButton(self.classical_input_widget)
+        self.classical_btn_encrypt.setObjectName(u"classical_btn_encrypt")
         sizePolicy4 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
         sizePolicy4.setHorizontalStretch(0)
         sizePolicy4.setVerticalStretch(0)
-        sizePolicy4.setHeightForWidth(self.btn_encrypt.sizePolicy().hasHeightForWidth())
-        self.btn_encrypt.setSizePolicy(sizePolicy4)
-        self.btn_encrypt.setMinimumSize(QSize(100, 0))
-        self.btn_encrypt.setMaximumSize(QSize(500, 40))
-        self.btn_encrypt.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-        icon3 = QIcon()
-        icon3.addFile(u":/icons/images/icons/cil-lock-locked.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_encrypt.setIcon(icon3)
+        sizePolicy4.setHeightForWidth(self.classical_btn_encrypt.sizePolicy().hasHeightForWidth())
+        self.classical_btn_encrypt.setSizePolicy(sizePolicy4)
+        self.classical_btn_encrypt.setMinimumSize(QSize(100, 0))
+        self.classical_btn_encrypt.setMaximumSize(QSize(500, 40))
+        self.classical_btn_encrypt.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+        icon4 = QIcon()
+        icon4.addFile(u":/icons/images/icons/cil-lock-locked.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.classical_btn_encrypt.setIcon(icon4)
 
-        self.verticalLayout_15.addWidget(self.btn_encrypt, 0, Qt.AlignHCenter)
+        self.verticalLayout_15.addWidget(self.classical_btn_encrypt, 0, Qt.AlignHCenter)
+
+        self.classical_encrypt_output = QTextEdit(self.classical_input_widget)
+        self.classical_encrypt_output.setObjectName(u"classical_encrypt_output")
+        self.classical_encrypt_output.setMinimumSize(QSize(0, 0))
+        self.classical_encrypt_output.setMaximumSize(QSize(16777215, 100))
+        self.classical_encrypt_output.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
+"border: 2px solid black;\n"
+"border-radius: 10px;")
+        self.classical_encrypt_output.setReadOnly(True)
+
+        self.verticalLayout_15.addWidget(self.classical_encrypt_output)
 
 
         self.horizontalLayout_7.addWidget(self.classical_input_widget)
+
+        self.classical_vertical_line = QFrame(self.home)
+        self.classical_vertical_line.setObjectName(u"classical_vertical_line")
+        self.classical_vertical_line.setStyleSheet(u"border-width: 5px;\n"
+" border-style: solid; \n"
+"border-color: violet;")
+        self.classical_vertical_line.setFrameShape(QFrame.VLine)
+        self.classical_vertical_line.setFrameShadow(QFrame.Raised)
+
+        self.horizontalLayout_7.addWidget(self.classical_vertical_line)
 
         self.classical_output_widget = QWidget(self.home)
         self.classical_output_widget.setObjectName(u"classical_output_widget")
         self.verticalLayout_18 = QVBoxLayout(self.classical_output_widget)
         self.verticalLayout_18.setObjectName(u"verticalLayout_18")
-        self.output = QTextEdit(self.classical_output_widget)
-        self.output.setObjectName(u"output")
-        self.output.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
+        self.classical_decrypt_process = QLineEdit(self.classical_output_widget)
+        self.classical_decrypt_process.setObjectName(u"classical_decrypt_process")
+        self.classical_decrypt_process.setStyleSheet(u"background-color: transparent;\n"
+"border: none;")
+        self.classical_decrypt_process.setAlignment(Qt.AlignCenter)
+        self.classical_decrypt_process.setReadOnly(True)
+
+        self.verticalLayout_18.addWidget(self.classical_decrypt_process)
+
+        self.classical_decrypt_input = QTextEdit(self.classical_output_widget)
+        self.classical_decrypt_input.setObjectName(u"classical_decrypt_input")
+        self.classical_decrypt_input.setMinimumSize(QSize(0, 0))
+        self.classical_decrypt_input.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
 "border: 2px solid violet;\n"
 "border-radius: 10px;")
-        self.output.setReadOnly(True)
+        self.classical_decrypt_input.setReadOnly(True)
 
-        self.verticalLayout_18.addWidget(self.output)
+        self.verticalLayout_18.addWidget(self.classical_decrypt_input)
 
-        self.btn_decrypt = QPushButton(self.classical_output_widget)
-        self.btn_decrypt.setObjectName(u"btn_decrypt")
-        sizePolicy4.setHeightForWidth(self.btn_decrypt.sizePolicy().hasHeightForWidth())
-        self.btn_decrypt.setSizePolicy(sizePolicy4)
-        self.btn_decrypt.setMinimumSize(QSize(100, 0))
-        self.btn_decrypt.setMaximumSize(QSize(500, 40))
-        self.btn_decrypt.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-        icon4 = QIcon()
-        icon4.addFile(u":/icons/images/icons/cil-lock-unlocked.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_decrypt.setIcon(icon4)
+        self.classical_key_widget = QWidget(self.classical_output_widget)
+        self.classical_key_widget.setObjectName(u"classical_key_widget")
+        sizePolicy.setHeightForWidth(self.classical_key_widget.sizePolicy().hasHeightForWidth())
+        self.classical_key_widget.setSizePolicy(sizePolicy)
+        self.classical_key_widget.setMinimumSize(QSize(0, 40))
+        self.classical_key_widget.setMaximumSize(QSize(16777215, 40))
+        self.horizontalLayout_10 = QHBoxLayout(self.classical_key_widget)
+        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
+        self.classical_key_icon = QPushButton(self.classical_key_widget)
+        self.classical_key_icon.setObjectName(u"classical_key_icon")
+        self.classical_key_icon.setEnabled(False)
+        sizePolicy4.setHeightForWidth(self.classical_key_icon.sizePolicy().hasHeightForWidth())
+        self.classical_key_icon.setSizePolicy(sizePolicy4)
+        self.classical_key_icon.setMinimumSize(QSize(0, 30))
+        self.classical_key_icon.setMaximumSize(QSize(16777215, 30))
+        self.classical_key_icon.setFocusPolicy(Qt.WheelFocus)
+        self.classical_key_icon.setStyleSheet(u"border: none;")
+        icon5 = QIcon()
+        icon5.addFile(u":/icons/images/icons/public_key_2.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.classical_key_icon.setIcon(icon5)
 
-        self.verticalLayout_18.addWidget(self.btn_decrypt, 0, Qt.AlignHCenter)
+        self.horizontalLayout_10.addWidget(self.classical_key_icon)
+
+        self.classical_key_line = QLineEdit(self.classical_key_widget)
+        self.classical_key_line.setObjectName(u"classical_key_line")
+        sizePolicy.setHeightForWidth(self.classical_key_line.sizePolicy().hasHeightForWidth())
+        self.classical_key_line.setSizePolicy(sizePolicy)
+        self.classical_key_line.setMinimumSize(QSize(70, 30))
+        self.classical_key_line.setMaximumSize(QSize(70, 30))
+        self.classical_key_line.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
+"border: 2px solid violet;\n"
+"border-radius: 10px;")
+        self.classical_key_line.setAlignment(Qt.AlignCenter)
+        self.classical_key_line.setReadOnly(True)
+
+        self.horizontalLayout_10.addWidget(self.classical_key_line)
+
+        self.classical_key_input = QTextEdit(self.classical_key_widget)
+        self.classical_key_input.setObjectName(u"classical_key_input")
+        self.classical_key_input.setMinimumSize(QSize(0, 30))
+        self.classical_key_input.setMaximumSize(QSize(16777215, 30))
+        self.classical_key_input.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
+"border: 2px solid violet;\n"
+"border-radius: 10px;")
+
+        self.horizontalLayout_10.addWidget(self.classical_key_input)
+
+
+        self.verticalLayout_18.addWidget(self.classical_key_widget)
+
+        self.classical_btn_decrypt = QPushButton(self.classical_output_widget)
+        self.classical_btn_decrypt.setObjectName(u"classical_btn_decrypt")
+        sizePolicy4.setHeightForWidth(self.classical_btn_decrypt.sizePolicy().hasHeightForWidth())
+        self.classical_btn_decrypt.setSizePolicy(sizePolicy4)
+        self.classical_btn_decrypt.setMinimumSize(QSize(100, 0))
+        self.classical_btn_decrypt.setMaximumSize(QSize(500, 40))
+        self.classical_btn_decrypt.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+        icon6 = QIcon()
+        icon6.addFile(u":/icons/images/icons/cil-lock-unlocked.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.classical_btn_decrypt.setIcon(icon6)
+
+        self.verticalLayout_18.addWidget(self.classical_btn_decrypt, 0, Qt.AlignHCenter)
+
+        self.classical_decrypt_output = QTextEdit(self.classical_output_widget)
+        self.classical_decrypt_output.setObjectName(u"classical_decrypt_output")
+        self.classical_decrypt_output.setMaximumSize(QSize(16777215, 100))
+        self.classical_decrypt_output.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
+"border: 2px solid black;\n"
+"border-radius: 10px;")
+        self.classical_decrypt_output.setReadOnly(True)
+
+        self.verticalLayout_18.addWidget(self.classical_decrypt_output)
 
 
         self.horizontalLayout_7.addWidget(self.classical_output_widget)
@@ -1128,9 +1282,9 @@ class Ui_MainWindow(object):
         self.pushButton.setFont(font)
         self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
         self.pushButton.setStyleSheet(u"background-color: rgb(52, 59, 72);")
-        icon5 = QIcon()
-        icon5.addFile(u":/icons/images/icons/cil-folder-open.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton.setIcon(icon5)
+        icon7 = QIcon()
+        icon7.addFile(u":/icons/images/icons/cil-folder-open.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton.setIcon(icon7)
 
         self.gridLayout.addWidget(self.pushButton, 0, 1, 1, 1)
 
@@ -1193,7 +1347,7 @@ class Ui_MainWindow(object):
         self.pushButton_2.setMinimumSize(QSize(100, 0))
         self.pushButton_2.setMaximumSize(QSize(500, 40))
         self.pushButton_2.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-        self.pushButton_2.setIcon(icon3)
+        self.pushButton_2.setIcon(icon4)
 
         self.verticalLayout_19.addWidget(self.pushButton_2, 0, Qt.AlignHCenter)
 
@@ -1220,7 +1374,7 @@ class Ui_MainWindow(object):
         self.pushButton_3.setMinimumSize(QSize(100, 0))
         self.pushButton_3.setMaximumSize(QSize(500, 40))
         self.pushButton_3.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-        self.pushButton_3.setIcon(icon4)
+        self.pushButton_3.setIcon(icon6)
 
         self.verticalLayout_20.addWidget(self.pushButton_3, 0, Qt.AlignHCenter)
 
@@ -1329,11 +1483,11 @@ class Ui_MainWindow(object):
         self.creditsLabel = QLabel(self.bottomBar)
         self.creditsLabel.setObjectName(u"creditsLabel")
         self.creditsLabel.setMaximumSize(QSize(16777215, 16))
-        font4 = QFont()
-        font4.setFamily(u"Segoe UI")
-        font4.setBold(False)
-        font4.setItalic(False)
-        self.creditsLabel.setFont(font4)
+        font5 = QFont()
+        font5.setFamily(u"Segoe UI")
+        font5.setBold(False)
+        font5.setItalic(False)
+        self.creditsLabel.setFont(font5)
         self.creditsLabel.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
 
         self.horizontalLayout_5.addWidget(self.creditsLabel)
@@ -1419,13 +1573,19 @@ class Ui_MainWindow(object):
         self.classical_list.setItemText(3, QCoreApplication.translate("MainWindow", u"Affine", None))
         self.classical_list.setItemText(4, QCoreApplication.translate("MainWindow", u"Hill", None))
 
-        self.btn_encrypt.setText(QCoreApplication.translate("MainWindow", u"Encrypt", None))
-        self.output.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.classical_encrypt_process.setText(QCoreApplication.translate("MainWindow", u"ENCRYPT PROCESS", None))
+        self.classical_generated_key_icon.setText("")
+        self.classica_generated_key_line.setText(QCoreApplication.translate("MainWindow", u"Generated Key", None))
+        self.classical_btn_encrypt.setText(QCoreApplication.translate("MainWindow", u"Encrypt", None))
+        self.classical_decrypt_process.setText(QCoreApplication.translate("MainWindow", u"DECRYPT PROCESS", None))
+        self.classical_decrypt_input.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-        self.btn_decrypt.setText(QCoreApplication.translate("MainWindow", u"Decrypt", None))
+        self.classical_key_icon.setText("")
+        self.classical_key_line.setText(QCoreApplication.translate("MainWindow", u"Key", None))
+        self.classical_btn_decrypt.setText(QCoreApplication.translate("MainWindow", u"Decrypt", None))
         self.lineEdit.setText("")
         self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Type here", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Open", None))
