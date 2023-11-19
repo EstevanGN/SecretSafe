@@ -22,7 +22,7 @@ import platform
 # ///////////////////////////////////////////////////////////////
 from modules import *
 from widgets import *
-from cryptosystems import shift
+from cryptosystems import shift, afin, vigenere
 os.environ["QT_FONT_DPI"] = "96" # FIX Problem for High DPI and Scale above 100%
 
 # SET AS GLOBAL WIDGETS
@@ -120,8 +120,7 @@ class MainWindow(QMainWindow):
             widgets.stackedWidget.setCurrentWidget(widgets.home)
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
-            self.ui.classical_btn_encrypt.clicked.connect(self.shift_encrypt_text)
-            self.ui.classical_btn_decrypt.clicked.connect(self.shift_decrypt_text)
+            self.ui.classical_list.currentIndexChanged.connect(self.classical_encryption_choice_action)
         # SHOW WIDGETS PAGE
         if btnName == "btn_block":
             widgets.stackedWidget.setCurrentWidget(widgets.widgets)
@@ -172,7 +171,32 @@ class MainWindow(QMainWindow):
         key = int(self.ui.classical_key_input.toPlainText())
         output_text = shift.descifrar_desplazamiento(input_text, key)
         self.ui.classical_decrypt_output.setPlainText(output_text)
-
+        
+    def affine_encrypt_text(self):
+        input_text = self.ui.classical_encrypt_input.toPlainText()
+        affine_encrypt_return = afin.cifrar_afin(input_text)
+        output_text = affine_encrypt_return[0]
+        generated_key_1 = affine_encrypt_return[1]
+        generated_key_2 = affine_encrypt_return[2]
+        self.ui.classical_generated_key_output.setPlainText("(" + str(generated_key_1) + ", " + str(generated_key_2) + ")")
+        self.ui.classical_encrypt_output.setPlainText(str(output_text))
+        
+    def affine_decrypt_text(self):
+        input_text = self.ui.classical_decrypt_input.toPlainText()
+        t = eval(self.ui.classical_key_input.toPlainText())
+        key_1, key_2 = t
+        output_text = afin.descifrar_afin(input_text, key_1, key_2)
+        self.ui.classical_decrypt_output.setPlainText(output_text)
+        
+    def classical_encryption_choice_action(self):
+        index = self.ui.classical_list.currentIndex()
+        if index == 0:
+            self.ui.classical_btn_encrypt.clicked.connect(self.shift_encrypt_text)
+            self.ui.classical_btn_decrypt.clicked.connect(self.shift_decrypt_text)
+        elif index == 3:
+            self.ui.classical_btn_encrypt.clicked.connect(self.affine_encrypt_text)
+            self.ui.classical_btn_decrypt.clicked.connect(self.affine_decrypt_text)
+    
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon("icon.ico"))
