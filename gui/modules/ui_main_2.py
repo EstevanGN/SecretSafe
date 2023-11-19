@@ -627,7 +627,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.toggleButton = QPushButton(self.toggleBox)
         self.toggleButton.setObjectName(u"toggleButton")
-        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toggleButton.sizePolicy().hasHeightForWidth())
@@ -655,7 +655,7 @@ class Ui_MainWindow(object):
         self.btn_classical.setObjectName(u"btn_classical")
         sizePolicy.setHeightForWidth(self.btn_classical.sizePolicy().hasHeightForWidth())
         self.btn_classical.setSizePolicy(sizePolicy)
-        self.btn_classical.setMinimumSize(QSize(0, 70))
+        self.btn_classical.setMinimumSize(QSize(0, 45))
         self.btn_classical.setFont(font)
         self.btn_classical.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_classical.setLayoutDirection(Qt.LeftToRight)
@@ -666,12 +666,9 @@ class Ui_MainWindow(object):
 
         self.btn_block = QPushButton(self.topMenu)
         self.btn_block.setObjectName(u"btn_block")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.btn_block.sizePolicy().hasHeightForWidth())
-        self.btn_block.setSizePolicy(sizePolicy1)
-        self.btn_block.setMinimumSize(QSize(0, 70))
+        sizePolicy.setHeightForWidth(self.btn_block.sizePolicy().hasHeightForWidth())
+        self.btn_block.setSizePolicy(sizePolicy)
+        self.btn_block.setMinimumSize(QSize(0, 45))
         self.btn_block.setFont(font)
         self.btn_block.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_block.setLayoutDirection(Qt.LeftToRight)
@@ -683,7 +680,7 @@ class Ui_MainWindow(object):
         self.btn_public_key.setObjectName(u"btn_public_key")
         sizePolicy.setHeightForWidth(self.btn_public_key.sizePolicy().hasHeightForWidth())
         self.btn_public_key.setSizePolicy(sizePolicy)
-        self.btn_public_key.setMinimumSize(QSize(0, 70))
+        self.btn_public_key.setMinimumSize(QSize(0, 45))
         self.btn_public_key.setFont(font)
         self.btn_public_key.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_public_key.setLayoutDirection(Qt.LeftToRight)
@@ -695,7 +692,7 @@ class Ui_MainWindow(object):
         self.btn_analysis.setObjectName(u"btn_analysis")
         sizePolicy.setHeightForWidth(self.btn_analysis.sizePolicy().hasHeightForWidth())
         self.btn_analysis.setSizePolicy(sizePolicy)
-        self.btn_analysis.setMinimumSize(QSize(0, 70))
+        self.btn_analysis.setMinimumSize(QSize(0, 45))
         self.btn_analysis.setFont(font)
         self.btn_analysis.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_analysis.setLayoutDirection(Qt.LeftToRight)
@@ -799,8 +796,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_11.setContentsMargins(0, 0, 0, 0)
         self.btn_share = QPushButton(self.extraTopMenu)
         self.btn_share.setObjectName(u"btn_share")
-        sizePolicy1.setHeightForWidth(self.btn_share.sizePolicy().hasHeightForWidth())
-        self.btn_share.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.btn_share.sizePolicy().hasHeightForWidth())
+        self.btn_share.setSizePolicy(sizePolicy)
         self.btn_share.setMinimumSize(QSize(0, 45))
         self.btn_share.setFont(font)
         self.btn_share.setCursor(QCursor(Qt.PointingHandCursor))
@@ -811,8 +808,8 @@ class Ui_MainWindow(object):
 
         self.btn_adjustments = QPushButton(self.extraTopMenu)
         self.btn_adjustments.setObjectName(u"btn_adjustments")
-        sizePolicy1.setHeightForWidth(self.btn_adjustments.sizePolicy().hasHeightForWidth())
-        self.btn_adjustments.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.btn_adjustments.sizePolicy().hasHeightForWidth())
+        self.btn_adjustments.setSizePolicy(sizePolicy)
         self.btn_adjustments.setMinimumSize(QSize(0, 45))
         self.btn_adjustments.setFont(font)
         self.btn_adjustments.setCursor(QCursor(Qt.PointingHandCursor))
@@ -823,8 +820,8 @@ class Ui_MainWindow(object):
 
         self.btn_more = QPushButton(self.extraTopMenu)
         self.btn_more.setObjectName(u"btn_more")
-        sizePolicy1.setHeightForWidth(self.btn_more.sizePolicy().hasHeightForWidth())
-        self.btn_more.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.btn_more.sizePolicy().hasHeightForWidth())
+        self.btn_more.setSizePolicy(sizePolicy)
         self.btn_more.setMinimumSize(QSize(0, 45))
         self.btn_more.setFont(font)
         self.btn_more.setCursor(QCursor(Qt.PointingHandCursor))
@@ -887,11 +884,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setContentsMargins(0, 0, 10, 0)
         self.leftBox = QFrame(self.contentTopBg)
         self.leftBox.setObjectName(u"leftBox")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.leftBox.sizePolicy().hasHeightForWidth())
-        self.leftBox.setSizePolicy(sizePolicy2)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.leftBox.sizePolicy().hasHeightForWidth())
+        self.leftBox.setSizePolicy(sizePolicy1)
         self.leftBox.setFrameShape(QFrame.NoFrame)
         self.leftBox.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_3 = QHBoxLayout(self.leftBox)
@@ -900,11 +897,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.titleRightInfo = QLabel(self.leftBox)
         self.titleRightInfo.setObjectName(u"titleRightInfo")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.titleRightInfo.sizePolicy().hasHeightForWidth())
-        self.titleRightInfo.setSizePolicy(sizePolicy3)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.titleRightInfo.sizePolicy().hasHeightForWidth())
+        self.titleRightInfo.setSizePolicy(sizePolicy2)
         self.titleRightInfo.setMaximumSize(QSize(16777215, 45))
         self.titleRightInfo.setFont(font)
         self.titleRightInfo.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
@@ -1014,9 +1011,7 @@ class Ui_MainWindow(object):
         self.classical_list.setObjectName(u"classical_list")
         self.classical_list.setMinimumSize(QSize(0, 0))
         self.classical_list.setMaximumSize(QSize(167, 32))
-        self.classical_list.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
-"border: 2px solid violet;\n"
-"border-radius: 10px;")
+        self.classical_list.setStyleSheet(u"background-color: rgb(33, 37, 43);")
 
         self.horizontalLayout_7.addWidget(self.classical_list, 0, Qt.AlignHCenter|Qt.AlignTop)
 
@@ -1026,19 +1021,17 @@ class Ui_MainWindow(object):
         self.verticalLayout_15.setObjectName(u"verticalLayout_15")
         self.input = QTextEdit(self.classical_input_widget)
         self.input.setObjectName(u"input")
-        self.input.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
-"border: 2px solid violet;\n"
-"border-radius: 10px;")
+        self.input.setStyleSheet(u"background-color: rgb(33, 37, 43);")
 
         self.verticalLayout_15.addWidget(self.input)
 
         self.btn_encrypt = QPushButton(self.classical_input_widget)
         self.btn_encrypt.setObjectName(u"btn_encrypt")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
-        sizePolicy4.setHorizontalStretch(0)
-        sizePolicy4.setVerticalStretch(0)
-        sizePolicy4.setHeightForWidth(self.btn_encrypt.sizePolicy().hasHeightForWidth())
-        self.btn_encrypt.setSizePolicy(sizePolicy4)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.btn_encrypt.sizePolicy().hasHeightForWidth())
+        self.btn_encrypt.setSizePolicy(sizePolicy3)
         self.btn_encrypt.setMinimumSize(QSize(100, 0))
         self.btn_encrypt.setMaximumSize(QSize(500, 40))
         self.btn_encrypt.setStyleSheet(u"background-color: rgb(33, 37, 43);")
@@ -1057,17 +1050,14 @@ class Ui_MainWindow(object):
         self.verticalLayout_18.setObjectName(u"verticalLayout_18")
         self.output = QTextEdit(self.classical_output_widget)
         self.output.setObjectName(u"output")
-        self.output.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
-"border: 2px solid violet;\n"
-"border-radius: 10px;")
-        self.output.setReadOnly(True)
+        self.output.setStyleSheet(u"background-color: rgb(33, 37, 43);")
 
         self.verticalLayout_18.addWidget(self.output)
 
         self.btn_decrypt = QPushButton(self.classical_output_widget)
         self.btn_decrypt.setObjectName(u"btn_decrypt")
-        sizePolicy4.setHeightForWidth(self.btn_decrypt.sizePolicy().hasHeightForWidth())
-        self.btn_decrypt.setSizePolicy(sizePolicy4)
+        sizePolicy3.setHeightForWidth(self.btn_decrypt.sizePolicy().hasHeightForWidth())
+        self.btn_decrypt.setSizePolicy(sizePolicy3)
         self.btn_decrypt.setMinimumSize(QSize(100, 0))
         self.btn_decrypt.setMaximumSize(QSize(500, 40))
         self.btn_decrypt.setStyleSheet(u"background-color: rgb(33, 37, 43);")
@@ -1164,12 +1154,10 @@ class Ui_MainWindow(object):
         self.comboBox.addItem("")
         self.comboBox.addItem("")
         self.comboBox.setObjectName(u"comboBox")
-        sizePolicy4.setHeightForWidth(self.comboBox.sizePolicy().hasHeightForWidth())
-        self.comboBox.setSizePolicy(sizePolicy4)
+        sizePolicy3.setHeightForWidth(self.comboBox.sizePolicy().hasHeightForWidth())
+        self.comboBox.setSizePolicy(sizePolicy3)
         self.comboBox.setMaximumSize(QSize(167, 32))
-        self.comboBox.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
-"border: 2px solid violet;\n"
-"border-radius: 10px;")
+        self.comboBox.setStyleSheet(u"background-color: rgb(33, 37, 43);")
 
         self.horizontalLayout_8.addWidget(self.comboBox, 0, Qt.AlignTop)
 
@@ -1179,17 +1167,14 @@ class Ui_MainWindow(object):
         self.verticalLayout_19.setObjectName(u"verticalLayout_19")
         self.textEdit_2 = QTextEdit(self.public_input_widget)
         self.textEdit_2.setObjectName(u"textEdit_2")
-        self.textEdit_2.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
-"\n"
-"border: 2px solid violet;\n"
-"border-radius: 10px;")
+        self.textEdit_2.setStyleSheet(u"background-color: rgb(33, 37, 43);")
 
         self.verticalLayout_19.addWidget(self.textEdit_2)
 
         self.pushButton_2 = QPushButton(self.public_input_widget)
         self.pushButton_2.setObjectName(u"pushButton_2")
-        sizePolicy4.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
-        self.pushButton_2.setSizePolicy(sizePolicy4)
+        sizePolicy3.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
+        self.pushButton_2.setSizePolicy(sizePolicy3)
         self.pushButton_2.setMinimumSize(QSize(100, 0))
         self.pushButton_2.setMaximumSize(QSize(500, 40))
         self.pushButton_2.setStyleSheet(u"background-color: rgb(33, 37, 43);")
@@ -1206,17 +1191,14 @@ class Ui_MainWindow(object):
         self.verticalLayout_20.setObjectName(u"verticalLayout_20")
         self.textEdit_3 = QTextEdit(self.public_output_widget)
         self.textEdit_3.setObjectName(u"textEdit_3")
-        self.textEdit_3.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
-"border: 2px solid violet;\n"
-"border-radius: 10px;")
-        self.textEdit_3.setReadOnly(True)
+        self.textEdit_3.setStyleSheet(u"background-color: rgb(33, 37, 43);")
 
         self.verticalLayout_20.addWidget(self.textEdit_3)
 
         self.pushButton_3 = QPushButton(self.public_output_widget)
         self.pushButton_3.setObjectName(u"pushButton_3")
-        sizePolicy4.setHeightForWidth(self.pushButton_3.sizePolicy().hasHeightForWidth())
-        self.pushButton_3.setSizePolicy(sizePolicy4)
+        sizePolicy3.setHeightForWidth(self.pushButton_3.sizePolicy().hasHeightForWidth())
+        self.pushButton_3.setSizePolicy(sizePolicy3)
         self.pushButton_3.setMinimumSize(QSize(100, 0))
         self.pushButton_3.setMaximumSize(QSize(500, 40))
         self.pushButton_3.setStyleSheet(u"background-color: rgb(33, 37, 43);")
@@ -1270,8 +1252,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_14.setContentsMargins(0, 0, 0, 0)
         self.btn_message = QPushButton(self.topMenus)
         self.btn_message.setObjectName(u"btn_message")
-        sizePolicy1.setHeightForWidth(self.btn_message.sizePolicy().hasHeightForWidth())
-        self.btn_message.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.btn_message.sizePolicy().hasHeightForWidth())
+        self.btn_message.setSizePolicy(sizePolicy)
         self.btn_message.setMinimumSize(QSize(0, 45))
         self.btn_message.setFont(font)
         self.btn_message.setCursor(QCursor(Qt.PointingHandCursor))
@@ -1282,8 +1264,8 @@ class Ui_MainWindow(object):
 
         self.btn_print = QPushButton(self.topMenus)
         self.btn_print.setObjectName(u"btn_print")
-        sizePolicy1.setHeightForWidth(self.btn_print.sizePolicy().hasHeightForWidth())
-        self.btn_print.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.btn_print.sizePolicy().hasHeightForWidth())
+        self.btn_print.setSizePolicy(sizePolicy)
         self.btn_print.setMinimumSize(QSize(0, 45))
         self.btn_print.setFont(font)
         self.btn_print.setCursor(QCursor(Qt.PointingHandCursor))
@@ -1294,8 +1276,8 @@ class Ui_MainWindow(object):
 
         self.btn_logout = QPushButton(self.topMenus)
         self.btn_logout.setObjectName(u"btn_logout")
-        sizePolicy1.setHeightForWidth(self.btn_logout.sizePolicy().hasHeightForWidth())
-        self.btn_logout.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.btn_logout.sizePolicy().hasHeightForWidth())
+        self.btn_logout.setSizePolicy(sizePolicy)
         self.btn_logout.setMinimumSize(QSize(0, 45))
         self.btn_logout.setFont(font)
         self.btn_logout.setCursor(QCursor(Qt.PointingHandCursor))
@@ -1363,7 +1345,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1420,11 +1402,6 @@ class Ui_MainWindow(object):
         self.classical_list.setItemText(4, QCoreApplication.translate("MainWindow", u"Hill", None))
 
         self.btn_encrypt.setText(QCoreApplication.translate("MainWindow", u"Encrypt", None))
-        self.output.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
         self.btn_decrypt.setText(QCoreApplication.translate("MainWindow", u"Decrypt", None))
         self.lineEdit.setText("")
         self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Type here", None))
