@@ -22,6 +22,7 @@ import platform
 # ///////////////////////////////////////////////////////////////
 from modules import *
 from widgets import *
+from cryptosystems import shift
 os.environ["QT_FONT_DPI"] = "96" # FIX Problem for High DPI and Scale above 100%
 
 # SET AS GLOBAL WIDGETS
@@ -119,7 +120,7 @@ class MainWindow(QMainWindow):
             widgets.stackedWidget.setCurrentWidget(widgets.home)
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
-
+            self.ui.btn_encrypt.clicked.connect(self.shift_encrypt_text)
         # SHOW WIDGETS PAGE
         if btnName == "btn_block":
             widgets.stackedWidget.setCurrentWidget(widgets.widgets)
@@ -156,6 +157,11 @@ class MainWindow(QMainWindow):
             print('Mouse click: LEFT CLICK')
         if event.buttons() == Qt.RightButton:
             print('Mouse click: RIGHT CLICK')
+            
+    def shift_encrypt_text(self):
+        input_text = self.ui.input.toPlainText()
+        output_text = shift.cifrar_desplazamiento(input_text)[0]
+        self.ui.output.setPlainText(output_text)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
