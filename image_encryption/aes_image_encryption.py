@@ -1,5 +1,6 @@
 from PIL import Image
 from Crypto.Cipher import AES
+from Crypto.Util import Counter
 from Crypto.Random import get_random_bytes
 import numpy as np
 
