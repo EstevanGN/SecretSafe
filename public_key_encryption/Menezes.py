@@ -3,8 +3,7 @@ from Crypto.Util import number
 
 # Función para generar un número primo aleatorio grande
 def generate_prime():
-    return number.getPrime(1024)
-
+    return number.getPrime(5)
 
 def suma_elip(p,q,a,P):
     if (p!=q and q[0]!=p[0]):
