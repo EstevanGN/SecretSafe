@@ -16,17 +16,22 @@ def generar_primo_rabin(bits=30):
     return random_prime
 
 def generar_claves():
-  p = generar_primo_rabin()
-  q = generar_primo_rabin()
-  while(p == q):
+    p = generar_primo_rabin()
     q = generar_primo_rabin()
-  clave_publica = p*q
-  clave_privada = (p,q)
-  return clave_publica, clave_privada
+    while p == q:
+        q = generar_primo_rabin()
+    n = p * q
+    b = random.randint(0, n - 1)
+    b =0
+    clave_publica = (n, b)
+    clave_privada = (p, q)
+    return clave_publica, clave_privada
 
 def cifrar(mensaje, clave):
+  n, b = clave
   mensaje_ascii = bytes_to_long(mensaje.encode('ascii'))
-  return pow(mensaje_ascii,2, clave)
+  return (pow(mensaje_ascii,2) + b) % n;
+
 
 def decodificar_utf(r1,r2,r3,r4):
     try:
@@ -50,24 +55,34 @@ def decodificar_utf(r1,r2,r3,r4):
       pass
     return r1,r2,r3,r4
 
-def descifrar(mensaje, clave):
+def descifrar(mensaje, clave, b):
   p,q = clave
   n = p*q
-  c = mensaje
-  # Calcular raices de p
+  # inverso de 2 
+  two_inv = (int(gcdex(2,n)[0])+n)%n
+  # inverso de 4 
+  four_inv = (int(gcdex(4,n)[0])+n)%n
+  c = (mensaje + (b*b*four_inv)) % n
+  h = (b*two_inv) % n
+  # Calcular raices de sqrt(*)
   m_p = pow(c, (p + 1) // 4, p)
   m_q = pow(c, (q + 1) // 4, q)
-  # Algoritmo Extendido de Euclides
-  yp, yq, gcd = gcdex(p, q)
-  y_p = int(yp)
-  y_q = int(yq)
   # Teorema Chino del Residuo
-  # Cuatro posibles mensajes
-  r1 = (y_p * p * m_q + y_q * q * m_p) % n
-  r2 = n - r1
-  r3 = (y_p * p * m_q - y_q * q * m_p) % n
-  r4 = n - r3
+  # b1: inverso de q mod p
+  b1 = (int(gcdex(q,p)[0])+p)%p
+  # b2: inverso de p mod q
+  b2 = (int(gcdex(p,q)[0])+q)%q
+  # ambos son positivos  
+  r1 = ((q*m_p*b1 + p*m_q*b2)-h) % n
+  # mp positivo mq negativo
+  r2 = ((q*m_p*b1 - p*m_q*b2)-h) % n
+  # mp negativo mq positivo
+  r3 = (((-1)*q*m_p*b1 + p*m_q*b2)-h) % n
+  # ambos negativos
+  r4 = (((-1)*q*m_p*b1 - p*m_q*b2) - h) % n
+
   return decodificar_utf(r1,r2,r3,r4)
+
 
 # Solicitar al usuario que ingrese un mensaje
 mensaje_original = input("Ingrese el mensaje que desea cifrar: ")
@@ -88,6 +103,6 @@ mensaje_cifrado = cifrar(mensaje_original, clave_publica)
 print("Mensaje cifrado:", mensaje_cifrado)
 
 # Descifrar el mensaje cifrado
-mensaje_descifrado = descifrar(mensaje_cifrado, clave_privada)
+mensaje_descifrado = descifrar(mensaje_cifrado, clave_privada, clave_publica[1])
 print("Mensaje descifrado:", mensaje_descifrado)
 
