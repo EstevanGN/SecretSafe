@@ -22,7 +22,7 @@ import platform
 # ///////////////////////////////////////////////////////////////
 from modules import *
 from widgets import *
-from cryptosystems import shift, afin, vigenere
+from cryptosystems import shift, afin, vigenere #, Menezes
 os.environ["QT_FONT_DPI"] = "96" # FIX Problem for High DPI and Scale above 100%
 
 # SET AS GLOBAL WIDGETS
@@ -132,6 +132,8 @@ class MainWindow(QMainWindow):
             widgets.stackedWidget.setCurrentWidget(widgets.new_page) # SET PAGE
             UIFunctions.resetStyle(self, btnName) # RESET ANOTHERS BUTTONS SELECTED
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet())) # SELECT MENU
+            # AQUI
+            self.ui.comboBox.currentIndexChanged.connect()
 
         if btnName == "btn_analysis":
             print("Save BTN clicked!")
@@ -196,6 +198,9 @@ class MainWindow(QMainWindow):
         elif index == 3:
             self.ui.classical_btn_encrypt.clicked.connect(self.affine_encrypt_text)
             self.ui.classical_btn_decrypt.clicked.connect(self.affine_decrypt_text)
+            
+    def public_key_encryption_choice_action(self):
+        print("Public key")
     
 if __name__ == "__main__":
     app = QApplication(sys.argv)
