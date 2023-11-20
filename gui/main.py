@@ -126,6 +126,7 @@ class MainWindow(QMainWindow):
             widgets.stackedWidget.setCurrentWidget(widgets.widgets)
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
+            self.ui.pushButton.clicked.connect(self.open_file)
 
         # SHOW NEW PAGE
         if btnName == "btn_public_key":
@@ -201,6 +202,11 @@ class MainWindow(QMainWindow):
             
     def public_key_encryption_choice_action(self):
         print("Public key")
+        
+    def open_file(self):
+        file_name, _ = QFileDialog.getOpenFileName(self, "Abrir archivo", "", "Todos los archivos (*)")
+        if file_name:
+            os.startfile(file_name)
     
 if __name__ == "__main__":
     app = QApplication(sys.argv)
