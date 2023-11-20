@@ -1,5 +1,3 @@
-! pip install pycryptodome
-
 import random
 from sympy import nextprime
 from sympy import isprime, gcd

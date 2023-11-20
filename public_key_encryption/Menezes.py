@@ -1,4 +1,11 @@
 import random
+from Crypto.Util import number
+
+# Función para generar un número primo aleatorio grande
+def generate_prime():
+    return number.getPrime(1024)
+
+
 def suma_elip(p,q,a,P):
     if (p!=q and q[0]!=p[0]):
         s=(q[1]-p[1])%P*pow(q[0]-p[0],-1,P)
@@ -58,8 +65,16 @@ def encontrar_gen(conjunto,a,P):
     return None
 
 
-def Encriptar(a,P,x,alpha,beta):
-    k=int(input("Ingrese su k"))
+def Encriptar(x):
+    P=generate_prime()
+    a=random.randint(0,P-1)
+    b=random.randint(0,P-1)
+    d=random.randint(0,P-1)
+    k=random.randint(0,P-1)
+    alpha=encontrar_gen(puntos_elipse(a,b,P),a,P)
+    beta=alpha
+    for i in range(d-1):
+        beta=suma_elip(beta,alpha,a,P)
     y0=alpha
     for i in range(k-1):
         y0=suma_elip(y0,alpha,a,P)
@@ -68,7 +83,9 @@ def Encriptar(a,P,x,alpha,beta):
         y=suma_elip(y,beta,a,P)
     y1=y[0]*x[0]%P
     y2=y[1]*x[1]%P
-    return ((y0,y1,y2))
+    #e[0] es el encriptado, e[1] es el a de la eliptica, P,alpha y beta son la clave publica, d es la privada
+    e=((y0,y1,y2),a,P,alpha,beta,d)
+    return e
 
 def Desncriptar(a,P,d,y):
     c=y[0]
@@ -82,24 +99,16 @@ def Desncriptar(a,P,d,y):
     return x
 
             
-a=int(input("Ingrese el valor de a en la curva elíptica y^2=x^3+ax+b: "))
-b=int(input("Ingrese el valor de b en la curva elíptica y^2=x^3+ax+b: "))
-P=int(input("Ingrese su número primo: "))
-d=random.randint(0,P-1)
+
 x1=int(input("Ingresa la primera componente de tu mensaje: "))
 x2=int(input("Ingresa la segunda componente de tu mensaje: "))
 x=(x1,x2)
-alpha=encontrar_gen(puntos_elipse(a,b,P),a,P)
-alpha=(0,3)
-beta=alpha
-for i in range(d-1):
-    beta=suma_elip(beta,alpha,a,P)
-e=Encriptar(a,P,x,alpha,beta)
-y=Desncriptar(a,P,d,e)
+
+e=Encriptar(x)
+y=Desncriptar(e[1],e[2],e[5],e)
 print("----------------------------------------------------------------------------------------------------------")
-print("La ecuacion elíptica es: y^3=x^2+",a,"x+",b)
-print("La clave publica es: (P=",P,", alpha=",alpha,", beta=",beta,")")
-print("La clave privada es:",d)
+print("La clave publica es: (P=",e[2],", alpha=",e[3],", beta=",e[4],")")
+print("La clave privada es:",e[5])
 print("El texto claro es ",x)
-print("El mensaje cifrado es ",e)
+print("El mensaje cifrado es ",e[0])
 print("El mensaje descifrado es ",y)
