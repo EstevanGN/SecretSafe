@@ -2,8 +2,12 @@ import random
 from Crypto.Util import number
 
 # Función para generar un número primo aleatorio grande
-def generate_prime():
-    return number.getPrime(5)
+def generate_prime(x):
+    p=number.getPrime(5)
+    while(x[0]>p or x[1]>p):
+        p=number.getPrime(8)
+    return p
+
 
 def suma_elip(p,q,a,P):
     if (p!=q and q[0]!=p[0]):
@@ -65,12 +69,14 @@ def encontrar_gen(conjunto,a,P):
 
 
 def Encriptar(x):
-    P=generate_prime()
-    a=random.randint(0,P-1)
-    b=random.randint(0,P-1)
-    d=random.randint(0,P-1)
-    k=random.randint(0,P-1)
-    alpha=encontrar_gen(puntos_elipse(a,b,P),a,P)
+    alpha=None
+    while(alpha==None):
+        P=generate_prime(x)
+        a=random.randint(1,P-1)
+        b=random.randint(1,P-1)
+        d=random.randint(0,P-1)
+        k=random.randint(0,P-1)
+        alpha=encontrar_gen(puntos_elipse(a,b,P),a,P)
     beta=alpha
     for i in range(d-1):
         beta=suma_elip(beta,alpha,a,P)
@@ -83,7 +89,7 @@ def Encriptar(x):
     y1=y[0]*x[0]%P
     y2=y[1]*x[1]%P
     #e[0] es el encriptado, e[1] es el a de la eliptica, P,alpha y beta son la clave publica, d es la privada
-    e=((y0,y1,y2),a,P,alpha,beta,d)
+    e=(a,P,d,(y0,y1,y2),alpha,beta)
     return e
 
 def Desncriptar(a,P,d,y):
@@ -104,10 +110,10 @@ x2=int(input("Ingresa la segunda componente de tu mensaje: "))
 x=(x1,x2)
 
 e=Encriptar(x)
-y=Desncriptar(e[1],e[2],e[5],e)
+y=Desncriptar(e[0],e[1],e[2],e[3])
 print("----------------------------------------------------------------------------------------------------------")
-print("La clave publica es: (P=",e[2],", alpha=",e[3],", beta=",e[4],")")
-print("La clave privada es:",e[5])
+print("La clave publica es: (P=",e[1],", alpha=",e[4],", beta=",e[5],")")
+print("La clave privada es:",e[2])
 print("El texto claro es ",x)
-print("El mensaje cifrado es ",e[0])
+print("El mensaje cifrado es ",e[3])
 print("El mensaje descifrado es ",y)
