@@ -1771,7 +1771,7 @@ p, li { white-space: pre-wrap; }
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>1</number>
+                      <number>3</number>
                      </property>
                      <widget class="QWidget" name="home">
                       <property name="styleSheet">
@@ -2465,6 +2465,9 @@ border-radius: 10px;</string>
                            <height>16777215</height>
                           </size>
                          </property>
+                         <property name="layoutDirection">
+                          <enum>Qt::LeftToRight</enum>
+                         </property>
                          <layout class="QVBoxLayout" name="verticalLayout_21">
                           <item alignment="Qt::AlignTop">
                            <widget class="QComboBox" name="public_key_list">
@@ -2480,10 +2483,16 @@ border-radius: 10px;</string>
                               <height>32</height>
                              </size>
                             </property>
+                            <property name="layoutDirection">
+                             <enum>Qt::LeftToRight</enum>
+                            </property>
                             <property name="styleSheet">
                              <string notr="true">background-color: rgb(33, 37, 43);
 border: 2px solid violet;
 border-radius: 10px;</string>
+                            </property>
+                            <property name="sizeAdjustPolicy">
+                             <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
                             </property>
                             <item>
                              <property name="text">
@@ -2492,12 +2501,17 @@ border-radius: 10px;</string>
                             </item>
                             <item>
                              <property name="text">
-                              <string>Menezes-Vanstone</string>
+                              <string>Rabin</string>
                              </property>
                             </item>
                             <item>
                              <property name="text">
-                              <string>Rabin</string>
+                              <string>ElGamal</string>
+                             </property>
+                            </item>
+                            <item>
+                             <property name="text">
+                              <string>Menezes-Vanstone</string>
                              </property>
                             </item>
                            </widget>

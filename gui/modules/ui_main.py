@@ -1323,9 +1323,11 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.public_key_combo.sizePolicy().hasHeightForWidth())
         self.public_key_combo.setSizePolicy(sizePolicy)
         self.public_key_combo.setMaximumSize(QSize(170, 16777215))
+        self.public_key_combo.setLayoutDirection(Qt.LeftToRight)
         self.verticalLayout_21 = QVBoxLayout(self.public_key_combo)
         self.verticalLayout_21.setObjectName(u"verticalLayout_21")
         self.public_key_list = QComboBox(self.public_key_combo)
+        self.public_key_list.addItem("")
         self.public_key_list.addItem("")
         self.public_key_list.addItem("")
         self.public_key_list.addItem("")
@@ -1333,9 +1335,11 @@ class Ui_MainWindow(object):
         sizePolicy4.setHeightForWidth(self.public_key_list.sizePolicy().hasHeightForWidth())
         self.public_key_list.setSizePolicy(sizePolicy4)
         self.public_key_list.setMaximumSize(QSize(167, 32))
+        self.public_key_list.setLayoutDirection(Qt.LeftToRight)
         self.public_key_list.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
 "border: 2px solid violet;\n"
 "border-radius: 10px;")
+        self.public_key_list.setSizeAdjustPolicy(QComboBox.AdjustToContentsOnFirstShow)
 
         self.verticalLayout_21.addWidget(self.public_key_list, 0, Qt.AlignTop)
 
@@ -1767,8 +1771,9 @@ class Ui_MainWindow(object):
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Open", None))
         self.labelVersion_3.setText(QCoreApplication.translate("MainWindow", u"Label description", None))
         self.public_key_list.setItemText(0, QCoreApplication.translate("MainWindow", u"RSA", None))
-        self.public_key_list.setItemText(1, QCoreApplication.translate("MainWindow", u"Menezes-Vanstone", None))
-        self.public_key_list.setItemText(2, QCoreApplication.translate("MainWindow", u"Rabin", None))
+        self.public_key_list.setItemText(1, QCoreApplication.translate("MainWindow", u"Rabin", None))
+        self.public_key_list.setItemText(2, QCoreApplication.translate("MainWindow", u"ElGamal", None))
+        self.public_key_list.setItemText(3, QCoreApplication.translate("MainWindow", u"Menezes-Vanstone", None))
 
         self.public_key_generate_settings.setText(QCoreApplication.translate("MainWindow", u"Generate Setting", None))
         self.public_encrypt_process.setText(QCoreApplication.translate("MainWindow", u"ENCRYPT PROCESS", None))
