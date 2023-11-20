@@ -1771,7 +1771,7 @@ p, li { white-space: pre-wrap; }
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>2</number>
+                      <number>1</number>
                      </property>
                      <widget class="QWidget" name="home">
                       <property name="styleSheet">
@@ -2274,6 +2274,7 @@ border-radius: 10px;</string>
                        </item>
                       </layout>
                      </widget>
+                     <widget class="QWidget" name="welcome_page"/>
                      <widget class="QWidget" name="widgets">
                       <property name="styleSheet">
                        <string notr="true">b</string>
@@ -2451,7 +2452,7 @@ border-radius: 10px;</string>
                      <widget class="QWidget" name="new_page">
                       <layout class="QHBoxLayout" name="horizontalLayout_8">
                        <item>
-                        <widget class="QWidget" name="widget_3" native="true">
+                        <widget class="QWidget" name="public_key_combo" native="true">
                          <property name="sizePolicy">
                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                            <horstretch>0</horstretch>
@@ -2466,7 +2467,7 @@ border-radius: 10px;</string>
                          </property>
                          <layout class="QVBoxLayout" name="verticalLayout_21">
                           <item alignment="Qt::AlignTop">
-                           <widget class="QComboBox" name="comboBox">
+                           <widget class="QComboBox" name="public_key_list">
                             <property name="sizePolicy">
                              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
                               <horstretch>0</horstretch>
@@ -2502,7 +2503,7 @@ border-radius: 10px;</string>
                            </widget>
                           </item>
                           <item alignment="Qt::AlignBottom">
-                           <widget class="QPushButton" name="pushButton_6">
+                           <widget class="QPushButton" name="public_key_generate_settings">
                             <property name="sizePolicy">
                              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
                               <horstretch>0</horstretch>
@@ -2526,7 +2527,7 @@ border-radius: 10px;</string>
 border: 2px solid violet;</string>
                             </property>
                             <property name="text">
-                             <string>Generate Primes</string>
+                             <string>Generate Setting</string>
                             </property>
                             <property name="icon">
                              <iconset resource="resources.qrc">
@@ -2535,7 +2536,7 @@ border: 2px solid violet;</string>
                            </widget>
                           </item>
                           <item>
-                           <widget class="QTextEdit" name="textEdit_8">
+                           <widget class="QTextEdit" name="public_key_settings_output">
                             <property name="minimumSize">
                              <size>
                               <width>160</width>
@@ -2553,6 +2554,9 @@ border: 2px solid violet;</string>
 border: 2px solid black;
 border-radius: 10px;</string>
                             </property>
+                            <property name="readOnly">
+                             <bool>true</bool>
+                            </property>
                            </widget>
                           </item>
                          </layout>
@@ -2562,7 +2566,7 @@ border-radius: 10px;</string>
                         <widget class="QWidget" name="public_input_widget" native="true">
                          <layout class="QVBoxLayout" name="verticalLayout_19">
                           <item>
-                           <widget class="QLineEdit" name="lineEdit_2">
+                           <widget class="QLineEdit" name="public_encrypt_process">
                             <property name="styleSheet">
                              <string notr="true">background-color: transparent;
 border: none;</string>
@@ -2573,10 +2577,13 @@ border: none;</string>
                             <property name="alignment">
                              <set>Qt::AlignCenter</set>
                             </property>
+                            <property name="readOnly">
+                             <bool>true</bool>
+                            </property>
                            </widget>
                           </item>
                           <item>
-                           <widget class="QTextEdit" name="textEdit_2">
+                           <widget class="QTextEdit" name="public_encrypt_input">
                             <property name="styleSheet">
                              <string notr="true">background-color: rgb(33, 37, 43);
 
@@ -2586,7 +2593,7 @@ border-radius: 10px;</string>
                            </widget>
                           </item>
                           <item>
-                           <widget class="QWidget" name="widget" native="true">
+                           <widget class="QWidget" name="public_public_key_widget" native="true">
                             <property name="minimumSize">
                              <size>
                               <width>0</width>
@@ -2601,7 +2608,10 @@ border-radius: 10px;</string>
                             </property>
                             <layout class="QHBoxLayout" name="horizontalLayout_12">
                              <item>
-                              <widget class="QPushButton" name="pushButton_4">
+                              <widget class="QPushButton" name="public_key_icon">
+                               <property name="enabled">
+                                <bool>false</bool>
+                               </property>
                                <property name="minimumSize">
                                 <size>
                                  <width>0</width>
@@ -2627,7 +2637,7 @@ border-radius: 10px;</string>
                               </widget>
                              </item>
                              <item>
-                              <widget class="QLineEdit" name="lineEdit_4">
+                              <widget class="QLineEdit" name="public_key_line">
                                <property name="sizePolicy">
                                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                                  <horstretch>0</horstretch>
@@ -2657,10 +2667,13 @@ border-radius: 10px;</string>
                                <property name="alignment">
                                 <set>Qt::AlignCenter</set>
                                </property>
+                               <property name="readOnly">
+                                <bool>true</bool>
+                               </property>
                               </widget>
                              </item>
                              <item>
-                              <widget class="QTextEdit" name="textEdit_6">
+                              <widget class="QTextEdit" name="public_key_input">
                                <property name="minimumSize">
                                 <size>
                                  <width>0</width>
@@ -2684,7 +2697,7 @@ border-radius: 10px;</string>
                            </widget>
                           </item>
                           <item alignment="Qt::AlignHCenter">
-                           <widget class="QPushButton" name="pushButton_2">
+                           <widget class="QPushButton" name="public_btn_encrypt">
                             <property name="sizePolicy">
                              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
                               <horstretch>0</horstretch>
@@ -2716,7 +2729,7 @@ border-radius: 10px;</string>
                            </widget>
                           </item>
                           <item>
-                           <widget class="QTextEdit" name="textEdit_4">
+                           <widget class="QTextEdit" name="public_encrypt_output">
                             <property name="maximumSize">
                              <size>
                               <width>16777215</width>
@@ -2728,13 +2741,16 @@ border-radius: 10px;</string>
 border: 2px solid black;
 border-radius: 10px;</string>
                             </property>
+                            <property name="readOnly">
+                             <bool>true</bool>
+                            </property>
                            </widget>
                           </item>
                          </layout>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QFrame" name="frame">
+                        <widget class="QFrame" name="public_vertical_line">
                          <property name="styleSheet">
                           <string notr="true">border-width: 5px;
  border-style: solid; 
@@ -2752,7 +2768,7 @@ border-color: violet;</string>
                         <widget class="QWidget" name="public_output_widget" native="true">
                          <layout class="QVBoxLayout" name="verticalLayout_20">
                           <item>
-                           <widget class="QLineEdit" name="lineEdit_3">
+                           <widget class="QLineEdit" name="public_decrypt_process">
                             <property name="styleSheet">
                              <string notr="true">background-color: transparent;
 border: none;</string>
@@ -2763,22 +2779,25 @@ border: none;</string>
                             <property name="alignment">
                              <set>Qt::AlignCenter</set>
                             </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QTextEdit" name="textEdit_3">
-                            <property name="styleSheet">
-                             <string notr="true">background-color: rgb(33, 37, 43);
-border: 2px solid violet;
-border-radius: 10px;</string>
-                            </property>
                             <property name="readOnly">
                              <bool>true</bool>
                             </property>
                            </widget>
                           </item>
                           <item>
-                           <widget class="QWidget" name="widget_2" native="true">
+                           <widget class="QTextEdit" name="public_decrypt_input">
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(33, 37, 43);
+border: 2px solid violet;
+border-radius: 10px;</string>
+                            </property>
+                            <property name="readOnly">
+                             <bool>false</bool>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QWidget" name="public_private_key_widget" native="true">
                             <property name="minimumSize">
                              <size>
                               <width>0</width>
@@ -2793,7 +2812,10 @@ border-radius: 10px;</string>
                             </property>
                             <layout class="QHBoxLayout" name="horizontalLayout_13">
                              <item>
-                              <widget class="QPushButton" name="pushButton_5">
+                              <widget class="QPushButton" name="private_key_icon">
+                               <property name="enabled">
+                                <bool>false</bool>
+                               </property>
                                <property name="minimumSize">
                                 <size>
                                  <width>0</width>
@@ -2819,7 +2841,7 @@ border-radius: 10px;</string>
                               </widget>
                              </item>
                              <item>
-                              <widget class="QLineEdit" name="lineEdit_5">
+                              <widget class="QLineEdit" name="private_key_line">
                                <property name="sizePolicy">
                                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                                  <horstretch>0</horstretch>
@@ -2849,10 +2871,13 @@ border-radius: 10px;</string>
                                <property name="alignment">
                                 <set>Qt::AlignCenter</set>
                                </property>
+                               <property name="readOnly">
+                                <bool>true</bool>
+                               </property>
                               </widget>
                              </item>
                              <item>
-                              <widget class="QTextEdit" name="textEdit_7">
+                              <widget class="QTextEdit" name="private_key_input">
                                <property name="minimumSize">
                                 <size>
                                  <width>0</width>
@@ -2876,7 +2901,7 @@ border-radius: 10px;</string>
                            </widget>
                           </item>
                           <item alignment="Qt::AlignHCenter">
-                           <widget class="QPushButton" name="pushButton_3">
+                           <widget class="QPushButton" name="public_btn_decrypt">
                             <property name="sizePolicy">
                              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
                               <horstretch>0</horstretch>
@@ -2908,7 +2933,7 @@ border-radius: 10px;</string>
                            </widget>
                           </item>
                           <item>
-                           <widget class="QTextEdit" name="textEdit_5">
+                           <widget class="QTextEdit" name="public_decrypt_output">
                             <property name="maximumSize">
                              <size>
                               <width>16777215</width>
@@ -2919,6 +2944,9 @@ border-radius: 10px;</string>
                              <string notr="true">background-color: rgb(33, 37, 43);
 border: 2px solid black;
 border-radius: 10px;</string>
+                            </property>
+                            <property name="readOnly">
+                             <bool>true</bool>
                             </property>
                            </widget>
                           </item>

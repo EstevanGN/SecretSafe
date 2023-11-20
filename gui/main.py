@@ -46,7 +46,7 @@ class MainWindow(QMainWindow):
 
         # APP NAME
         # ///////////////////////////////////////////////////////////////
-        title = "PyDracula - Modern GUI"
+        title = "SECRET SAFE"
         description = "SECRET SAFE"
         # APPLY TEXTS
         self.setWindowTitle(title)
@@ -103,7 +103,7 @@ class MainWindow(QMainWindow):
 
         # SET HOME PAGE AND SELECT MENU
         # ///////////////////////////////////////////////////////////////
-        widgets.stackedWidget.setCurrentWidget(widgets.home)
+        widgets.stackedWidget.setCurrentWidget(widgets.welcome_page)
         widgets.btn_classical.setStyleSheet(UIFunctions.selectMenu(widgets.btn_classical.styleSheet()))
 
 
@@ -133,7 +133,7 @@ class MainWindow(QMainWindow):
             UIFunctions.resetStyle(self, btnName) # RESET ANOTHERS BUTTONS SELECTED
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet())) # SELECT MENU
             # AQUI
-            self.ui.comboBox.currentIndexChanged.connect()
+            self.ui.public_key_list.currentIndexChanged.connect(self.public_key_encryption_choice_action)
 
         if btnName == "btn_analysis":
             print("Save BTN clicked!")
