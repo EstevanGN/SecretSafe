@@ -17,12 +17,13 @@
 import sys
 import os
 import platform
+import ast
 
 # IMPORT / GUI AND MODULES AND WIDGETS
 # ///////////////////////////////////////////////////////////////
 from modules import *
 from widgets import *
-from cryptosystems import shift, afin, vigenere #, Menezes
+from cryptosystems import shift, afin, vigenere, sust_permu, hill, Menezes
 os.environ["QT_FONT_DPI"] = "96" # FIX Problem for High DPI and Scale above 100%
 
 # SET AS GLOBAL WIDGETS
@@ -191,14 +192,48 @@ class MainWindow(QMainWindow):
         output_text = afin.descifrar_afin(input_text, key_1, key_2)
         self.ui.classical_decrypt_output.setPlainText(output_text)
         
+    def sustitution_permutation_encrypt_text(self):
+        input_text = self.ui.classical_encrypt_input.toPlainText()
+        sust_permu_return = sust_permu.cifrar_sustPermu(input_text)
+        output_text = sust_permu_return[0]
+        key_blocks = sust_permu_return[1]
+        final_permutation = sust_permu_return[2]
+        self.ui.classical_generated_key_output.setPlainText("Blocks : " + str(key_blocks) + " - Permutation : " + str(final_permutation))
+        self.ui.classical_encrypt_output.setPlainText(str(output_text))
+        
+    def sustitution_permutation_decrypt_text(self):
+        input_text = self.ui.classical_decrypt_input.toPlainText()
+        key_inputs = self.ui.classical_key_input.toPlainText().split(" - ")
+        key_blocks = ast.literal_eval(key_inputs[0].split(" : ")[1])
+        final_permutation = ast.literal_eval(key_inputs[1].split(" : ")[1])
+        output_text = sust_permu.descifrar_sustPermu(input_text, key_blocks, final_permutation)
+        self.ui.classical_decrypt_output.setPlainText(output_text)
+        
+    def hill_encrypt_text(self):
+        input_text = self.ui.classical_encrypt_input.toPlainText()
+        hill_return = hill.cifrar_hill(input_text)
+        output_text = hill_return[0]
+        matrix_key = hill_return[1]
+        self.ui.classical_generated_key_output.setPlainText(str(matrix_key))
+        self.ui.classical_encrypt_output.setPlainText(str(output_text))
+        
+    def hill_decrypt_text(self):
+        input_text = self.ui.classical_decrypt_input.toPlainText()
+        
     def classical_encryption_choice_action(self):
         index = self.ui.classical_list.currentIndex()
         if index == 0:
             self.ui.classical_btn_encrypt.clicked.connect(self.shift_encrypt_text)
             self.ui.classical_btn_decrypt.clicked.connect(self.shift_decrypt_text)
+        elif index == 1:
+            self.ui.classical_btn_encrypt.clicked.connect(self.sustitution_permutation_encrypt_text)
+            self.ui.classical_btn_decrypt.clicked.connect(self.sustitution_permutation_decrypt_text)
         elif index == 3:
             self.ui.classical_btn_encrypt.clicked.connect(self.affine_encrypt_text)
             self.ui.classical_btn_decrypt.clicked.connect(self.affine_decrypt_text)
+        elif index == 4:
+            self.ui.classical_btn_encrypt.clicked.connect(self.hill_encrypt_text)
+            self.ui.classical_btn_decrypt.clicked.connect(self.hill_decrypt_text)
             
     def public_key_encryption_choice_action(self):
         print("Public key")

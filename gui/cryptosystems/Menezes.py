@@ -80,26 +80,3 @@ def Desncriptar(a,P,d,y):
     x2=y[2]*c2%P
     x=(x1,x2)
     return x
-
-            
-a=int(input("Ingrese el valor de a en la curva elíptica y^2=x^3+ax+b: "))
-b=int(input("Ingrese el valor de b en la curva elíptica y^2=x^3+ax+b: "))
-P=int(input("Ingrese su número primo: "))
-d=random.randint(0,P-1)
-x1=int(input("Ingresa la primera componente de tu mensaje: "))
-x2=int(input("Ingresa la segunda componente de tu mensaje: "))
-x=(x1,x2)
-alpha=encontrar_gen(puntos_elipse(a,b,P),a,P)
-alpha=(0,3)
-beta=alpha
-for i in range(d-1):
-    beta=suma_elip(beta,alpha,a,P)
-e=Encriptar(a,P,x,alpha,beta)
-y=Desncriptar(a,P,d,e)
-print("----------------------------------------------------------------------------------------------------------")
-print("La ecuacion elíptica es: y^3=x^2+",a,"x+",b)
-print("La clave publica es: (P=",P,", alpha=",alpha,", beta=",beta,")")
-print("La clave privada es:",d)
-print("El texto claro es ",x)
-print("El mensaje cifrado es ",e)
-print("El mensaje descifrado es ",y)
