@@ -1,20 +1,14 @@
 import random
+from Crypto.Util import number
+# Función para verificar si un número es primofrom Crypto.Util import number
 
-# Función para verificar si un número es primo
-def es_primo(numero):
-    if numero < 2:
-        return False
-    for i in range(2, int(numero**0.5) + 1):
-        if numero % i == 0:
-            return False
-    return True
+# Función para generar un número primo aleatorio grande
+def generar_primo():
+    p=number.getPrime(8)
+    return p
 
 # Función para generar un número primo en el rango de caracteres imprimibles ASCII
-def generar_primo():
-    primo = random.randint(33, 126)
-    while not es_primo(primo):
-        primo = random.randint(33, 126)
-    return primo
+
 
 # Función para calcular el máximo común divisor (MCD)
 def mcd(a, b):

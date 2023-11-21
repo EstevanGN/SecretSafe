@@ -4,7 +4,7 @@ from sympy import isprime, gcd
 from Crypto.Util.number import bytes_to_long, long_to_bytes
 from sympy import gcdex
 
-def generar_primo_rabin(bits=30):
+def generar_primo_rabin(bits=1000):
     lower_bound = 2**(bits - 1)
     upper_bound = 2**bits - 1
 
@@ -53,6 +53,10 @@ def decodificar_utf(r1,r2,r3,r4):
         r4 = long_to_bytes(r4).decode('ascii')
     except Exception as e:
       pass
+    if isinstance(r1,str): return r1
+    if isinstance(r2,str): return r2
+    if isinstance(r3,str): return r3
+    if isinstance(r4,str): return r4
     return r1,r2,r3,r4
 
 def descifrar(mensaje, clave, b):
@@ -105,4 +109,3 @@ print("Mensaje cifrado:", mensaje_cifrado)
 # Descifrar el mensaje cifrado
 mensaje_descifrado = descifrar(mensaje_cifrado, clave_privada, clave_publica[1])
 print("Mensaje descifrado:", mensaje_descifrado)
-

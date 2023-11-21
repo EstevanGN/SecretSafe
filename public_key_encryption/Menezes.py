@@ -2,9 +2,9 @@ import random
 from Crypto.Util import number
 
 # Función para generar un número primo aleatorio grande
-def generate_prime(x):
-    p=number.getPrime(5)
-    while(x[0]>p or x[1]>p):
+def generate_prime():
+    p=number.getPrime(8)
+    while(p<126):
         p=number.getPrime(8)
     return p
 
@@ -68,15 +68,16 @@ def encontrar_gen(conjunto,a,P):
     return None
 
 
-def Encriptar(x):
+def Encriptar(mensaje):
+    chars=[char for char in mensaje]
     alpha=None
     while(alpha==None):
-        P=generate_prime(x)
-        a=random.randint(1,P-1)
-        b=random.randint(1,P-1)
-        d=random.randint(0,P-1)
-        k=random.randint(0,P-1)
-        alpha=encontrar_gen(puntos_elipse(a,b,P),a,P)
+            P=generate_prime()
+            a=random.randint(1,P-1)
+            b=random.randint(1,P-1)
+            d=random.randint(0,P-1)
+            k=random.randint(0,P-1)
+            alpha=encontrar_gen(puntos_elipse(a,b,P),a,P)
     beta=alpha
     for i in range(d-1):
         beta=suma_elip(beta,alpha,a,P)
@@ -86,34 +87,39 @@ def Encriptar(x):
     y=beta
     for i in range(k-1):
         y=suma_elip(y,beta,a,P)
-    y1=y[0]*x[0]%P
-    y2=y[1]*x[1]%P
-    #e[0] es el encriptado, e[1] es el a de la eliptica, P,alpha y beta son la clave publica, d es la privada
-    e=(a,P,d,(y0,y1,y2),alpha,beta)
+    encrypt=[]
+    for i in chars:
+        x=(ord(i),ord(i))
+        y1=y[0]*x[0]%P
+        y2=y[1]*x[1]%P
+        #e[0] es el encriptado, e[1] es el a de la eliptica, P,alpha y beta son la clave publica, d es la privada
+        encrypt.append((y1,y2))
+    e=(a,P,d,y0,encrypt,alpha,beta)
     return e
 
-def Desncriptar(a,P,d,y):
-    c=y[0]
+def Desncriptar(a,P,d,y,encrypt):
+    c=y
     for i in range(d-1):
-        c=suma_elip(c,y[0],a,P)
+        c=suma_elip(c,y,a,P)
     c1=pow(c[0],-1,P)
     c2=pow(c[1],-1,P)
-    x1=y[1]*c1%P
-    x2=y[2]*c2%P
-    x=(x1,x2)
+    x=""
+    for i in encrypt:
+        x1=i[0]*c1%P
+        x2=i[1]*c2%P
+        ch=chr(x1)
+        x=x+ch
     return x
 
             
 
-x1=int(input("Ingresa la primera componente de tu mensaje: "))
-x2=int(input("Ingresa la segunda componente de tu mensaje: "))
-x=(x1,x2)
+x1=str(input("Ingresa el mensaje"))
 
-e=Encriptar(x)
-y=Desncriptar(e[0],e[1],e[2],e[3])
+e=Encriptar(x1)
+y=Desncriptar(e[0],e[1],e[2],e[3],e[4])
 print("----------------------------------------------------------------------------------------------------------")
 print("La clave publica es: (P=",e[1],", alpha=",e[4],", beta=",e[5],")")
 print("La clave privada es:",e[2])
-print("El texto claro es ",x)
-print("El mensaje cifrado es ",e[3])
+print("El texto claro es ",x1)
+print("El mensaje cifrado es ",e[3],e[4])
 print("El mensaje descifrado es ",y)

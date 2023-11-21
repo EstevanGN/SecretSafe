@@ -2,7 +2,7 @@ from Crypto.Util import number
 
 # Función para generar un número primo aleatorio grande
 def generate_prime():
-    return number.getPrime(1024)
+    return number.getPrime(2048)
 
 # Función para generar un número aleatorio entre 0 y p-1
 def generate_k(p):
