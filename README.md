@@ -5,7 +5,7 @@ Esta es una aplicación de criptografía para el curso de *Introducción a la Cr
 * Daniel Estevan Garcia Niño.
 * Anderson Andres Llanos Quintero
 * Santiago Tovar Mosquera
-* Juliana Alejandra Nieto
+* Juliana Alejandra Nieto Cardenas
 
 
 Universidad Nacional de Colombia.
