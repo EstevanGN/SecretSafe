@@ -19,12 +19,13 @@ import os
 import platform
 import ast
 import numpy as np
+import struct
 
 # IMPORT / GUI AND MODULES AND WIDGETS
 # ///////////////////////////////////////////////////////////////
 from modules import *
 from widgets import *
-from cryptosystems import shift, afin, vigenere, sust_permu, hill, Menezes
+from cryptosystems import shift, afin, vigenere, sust_permu, hill, Menezes, aes_image_encryption
 os.environ["QT_FONT_DPI"] = "96" # FIX Problem for High DPI and Scale above 100%
 
 # SET AS GLOBAL WIDGETS
@@ -134,6 +135,8 @@ class MainWindow(QMainWindow):
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
             self.ui.block_encrypt_filepath_btn.clicked.connect(self.open_file)
+            self.ui.block_generate_key_btn.clicked.connect(self.aes_generate_key)
+            self.ui.block_encrypt_btn.clicked.connect(self.aes_encrypt_image)
 
         # SHOW NEW PAGE
         if btnName == "btn_public_key":
@@ -167,7 +170,9 @@ class MainWindow(QMainWindow):
             print('Mouse click: LEFT CLICK')
         if event.buttons() == Qt.RightButton:
             print('Mouse click: RIGHT CLICK')
-            
+    
+    ##########################################################################################################################################################################
+    
     def shift_generate_key(self):
         generated_key = shift.generar_clave_desplazamiento()
         self.ui.classical_generated_key_output.setPlainText(str(generated_key))
@@ -313,14 +318,32 @@ class MainWindow(QMainWindow):
         self.ui.classical_generated_key_icon.clicked.connect(self.current_generate_key_function)
         self.ui.classical_btn_encrypt.clicked.connect(self.current_encrypt_function)
         self.ui.classical_btn_decrypt.clicked.connect(self.current_decrypt_function)
-            
+    
+    ##########################################################################################################################################################################
+    
     def public_key_encryption_choice_action(self):
         print("Public key")
         
+    ##########################################################################################################################################################################
+    
+    def aes_generate_key(self):
+        generated_key = aes_image_encryption.aes_generate_key()
+        self.ui.block_generate_key_output.setPlainText(str(generated_key))
+        
+    def aes_encrypt_image(self):
+        image_path = self.ui.block_encrypt_filepath.text()
+        if self.ui.block_generate_key_output.toPlainText():
+            aes_key = ast.literal_eval(self.ui.block_generate_key_output.toPlainText())
+            key = struct.pack('16B', *aes_key)
+            encrypted_image_path = aes_image_encryption.cifrar_imagen(image_path, key)
+            pixmap = QPixmap(encrypted_image_path)
+            self.ui.block_encrypt_output.setPixmap(pixmap)
+        
     def open_file(self):
-        file_name, _ = QFileDialog.getOpenFileName(self, "Abrir archivo", "", "Todos los archivos (*)")
-        if file_name:
-            os.startfile(file_name)
+        file_path, _ = QFileDialog.getOpenFileName(self, "Abrir archivo", "", "Todos los archivos (*)")
+        if file_path:
+            self.ui.block_encrypt_filepath.setText(str(file_path))
+            #os.startfile(file_path)
     
 if __name__ == "__main__":
     app = QApplication(sys.argv)

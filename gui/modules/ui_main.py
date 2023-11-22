@@ -1054,7 +1054,7 @@ class Ui_MainWindow(object):
         self.classical_generated_key_icon.setEnabled(True)
         self.classical_generated_key_icon.setMinimumSize(QSize(0, 30))
         self.classical_generated_key_icon.setMaximumSize(QSize(16777215, 30))
-        self.classical_generated_key_icon.setStyleSheet(u"border: none;")
+        self.classical_generated_key_icon.setStyleSheet(u"")
         icon3 = QIcon()
         icon3.addFile(u":/icons/images/icons/cil-caret-right.png", QSize(), QIcon.Normal, QIcon.Off)
         self.classical_generated_key_icon.setIcon(icon3)
@@ -1345,9 +1345,9 @@ class Ui_MainWindow(object):
         self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
         self.block_encrypt_filepath = QLineEdit(self.block_encrypt_filesearch_widget)
         self.block_encrypt_filepath.setObjectName(u"block_encrypt_filepath")
-        self.block_encrypt_filepath.setEnabled(False)
+        self.block_encrypt_filepath.setEnabled(True)
         self.block_encrypt_filepath.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-        self.block_encrypt_filepath.setReadOnly(True)
+        self.block_encrypt_filepath.setReadOnly(False)
 
         self.horizontalLayout_18.addWidget(self.block_encrypt_filepath)
 
@@ -1367,17 +1367,82 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_16.addWidget(self.block_encrypt_filesearch_widget)
 
-        self.block_encrypt_output = QTextEdit(self.block_input_widget)
-        self.block_encrypt_output.setObjectName(u"block_encrypt_output")
-        self.block_encrypt_output.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
+        self.block_generate_key_widget = QWidget(self.block_input_widget)
+        self.block_generate_key_widget.setObjectName(u"block_generate_key_widget")
+        self.block_generate_key_widget.setMinimumSize(QSize(0, 33))
+        self.block_generate_key_widget.setMaximumSize(QSize(16777215, 33))
+        self.horizontalLayout_14 = QHBoxLayout(self.block_generate_key_widget)
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.block_generate_key_btn = QPushButton(self.block_generate_key_widget)
+        self.block_generate_key_btn.setObjectName(u"block_generate_key_btn")
+        self.block_generate_key_btn.setMinimumSize(QSize(0, 25))
+        self.block_generate_key_btn.setMaximumSize(QSize(16777215, 25))
+        self.block_generate_key_btn.setIcon(icon3)
+
+        self.horizontalLayout_14.addWidget(self.block_generate_key_btn)
+
+        self.block_geenerate_key_message = QLineEdit(self.block_generate_key_widget)
+        self.block_geenerate_key_message.setObjectName(u"block_geenerate_key_message")
+        self.block_geenerate_key_message.setEnabled(False)
+        self.block_geenerate_key_message.setMinimumSize(QSize(100, 25))
+        self.block_geenerate_key_message.setMaximumSize(QSize(100, 25))
+        self.block_geenerate_key_message.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
 "border: 2px solid violet;\n"
 "border-radius: 10px;")
-        self.block_encrypt_output.setReadOnly(True)
+        self.block_geenerate_key_message.setAlignment(Qt.AlignCenter)
+        self.block_geenerate_key_message.setReadOnly(True)
+
+        self.horizontalLayout_14.addWidget(self.block_geenerate_key_message)
+
+        self.block_generate_key_output = QTextEdit(self.block_generate_key_widget)
+        self.block_generate_key_output.setObjectName(u"block_generate_key_output")
+        self.block_generate_key_output.setMinimumSize(QSize(0, 25))
+        self.block_generate_key_output.setMaximumSize(QSize(16777215, 25))
+        self.block_generate_key_output.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
+"border: 2px solid violet;\n"
+"border-radius: 10px;")
+
+        self.horizontalLayout_14.addWidget(self.block_generate_key_output)
+
+
+        self.verticalLayout_16.addWidget(self.block_generate_key_widget)
+
+        self.block_encrypt_btn = QPushButton(self.block_input_widget)
+        self.block_encrypt_btn.setObjectName(u"block_encrypt_btn")
+        sizePolicy5 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.block_encrypt_btn.sizePolicy().hasHeightForWidth())
+        self.block_encrypt_btn.setSizePolicy(sizePolicy5)
+        self.block_encrypt_btn.setMinimumSize(QSize(100, 0))
+        self.block_encrypt_btn.setMaximumSize(QSize(500, 40))
+        self.block_encrypt_btn.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+        self.block_encrypt_btn.setIcon(icon4)
+
+        self.verticalLayout_16.addWidget(self.block_encrypt_btn, 0, Qt.AlignHCenter)
+
+        self.block_encrypt_output = QLabel(self.block_input_widget)
+        self.block_encrypt_output.setObjectName(u"block_encrypt_output")
+        sizePolicy.setHeightForWidth(self.block_encrypt_output.sizePolicy().hasHeightForWidth())
+        self.block_encrypt_output.setSizePolicy(sizePolicy)
+        self.block_encrypt_output.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
+"border: 2px solid violet;\n"
+"")
 
         self.verticalLayout_16.addWidget(self.block_encrypt_output)
 
 
         self.block_horizontal_layout.addWidget(self.block_input_widget)
+
+        self.block_vertical_line = QFrame(self.widgets)
+        self.block_vertical_line.setObjectName(u"block_vertical_line")
+        self.block_vertical_line.setStyleSheet(u"border-width: 5px;\n"
+" border-style: solid; \n"
+"border-color: violet;")
+        self.block_vertical_line.setFrameShape(QFrame.VLine)
+        self.block_vertical_line.setFrameShadow(QFrame.Raised)
+
+        self.block_horizontal_layout.addWidget(self.block_vertical_line)
 
         self.block_output_widget = QWidget(self.widgets)
         self.block_output_widget.setObjectName(u"block_output_widget")
@@ -1399,9 +1464,9 @@ class Ui_MainWindow(object):
         self.horizontalLayout_19.setObjectName(u"horizontalLayout_19")
         self.block_decrypt_filepath = QLineEdit(self.block_decrypt_search_widget)
         self.block_decrypt_filepath.setObjectName(u"block_decrypt_filepath")
-        self.block_decrypt_filepath.setEnabled(False)
+        self.block_decrypt_filepath.setEnabled(True)
         self.block_decrypt_filepath.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-        self.block_decrypt_filepath.setReadOnly(True)
+        self.block_decrypt_filepath.setReadOnly(False)
 
         self.horizontalLayout_19.addWidget(self.block_decrypt_filepath)
 
@@ -1418,12 +1483,65 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.block_decrypt_search_widget)
 
-        self.block_decrypt_output = QTextEdit(self.block_output_widget)
-        self.block_decrypt_output.setObjectName(u"block_decrypt_output")
-        self.block_decrypt_output.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
+        self.block_key_widget = QWidget(self.block_output_widget)
+        self.block_key_widget.setObjectName(u"block_key_widget")
+        self.block_key_widget.setMinimumSize(QSize(0, 33))
+        self.block_key_widget.setMaximumSize(QSize(16777215, 33))
+        self.horizontalLayout_16 = QHBoxLayout(self.block_key_widget)
+        self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
+        self.block_key_icon = QPushButton(self.block_key_widget)
+        self.block_key_icon.setObjectName(u"block_key_icon")
+        self.block_key_icon.setEnabled(False)
+        self.block_key_icon.setMinimumSize(QSize(0, 25))
+        self.block_key_icon.setMaximumSize(QSize(16777215, 25))
+        self.block_key_icon.setStyleSheet(u"border: none;")
+        self.block_key_icon.setIcon(icon5)
+
+        self.horizontalLayout_16.addWidget(self.block_key_icon)
+
+        self.block_key_message = QLineEdit(self.block_key_widget)
+        self.block_key_message.setObjectName(u"block_key_message")
+        self.block_key_message.setEnabled(False)
+        self.block_key_message.setMinimumSize(QSize(60, 25))
+        self.block_key_message.setMaximumSize(QSize(60, 25))
+        self.block_key_message.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
 "border: 2px solid violet;\n"
 "border-radius: 10px;")
-        self.block_decrypt_output.setReadOnly(True)
+        self.block_key_message.setAlignment(Qt.AlignCenter)
+
+        self.horizontalLayout_16.addWidget(self.block_key_message)
+
+        self.block_key_output = QTextEdit(self.block_key_widget)
+        self.block_key_output.setObjectName(u"block_key_output")
+        self.block_key_output.setMinimumSize(QSize(0, 25))
+        self.block_key_output.setMaximumSize(QSize(16777215, 25))
+        self.block_key_output.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
+"border: 2px solid violet;\n"
+"border-radius: 10px;")
+
+        self.horizontalLayout_16.addWidget(self.block_key_output)
+
+
+        self.verticalLayout.addWidget(self.block_key_widget)
+
+        self.block_decrypt_btn = QPushButton(self.block_output_widget)
+        self.block_decrypt_btn.setObjectName(u"block_decrypt_btn")
+        sizePolicy5.setHeightForWidth(self.block_decrypt_btn.sizePolicy().hasHeightForWidth())
+        self.block_decrypt_btn.setSizePolicy(sizePolicy5)
+        self.block_decrypt_btn.setMinimumSize(QSize(100, 0))
+        self.block_decrypt_btn.setMaximumSize(QSize(500, 40))
+        self.block_decrypt_btn.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+        self.block_decrypt_btn.setIcon(icon4)
+
+        self.verticalLayout.addWidget(self.block_decrypt_btn, 0, Qt.AlignHCenter)
+
+        self.block_decrypt_output = QLabel(self.block_output_widget)
+        self.block_decrypt_output.setObjectName(u"block_decrypt_output")
+        sizePolicy.setHeightForWidth(self.block_decrypt_output.sizePolicy().hasHeightForWidth())
+        self.block_decrypt_output.setSizePolicy(sizePolicy)
+        self.block_decrypt_output.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
+"border: 2px solid violet;\n"
+"")
 
         self.verticalLayout.addWidget(self.block_decrypt_output)
 
@@ -1817,7 +1935,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1909,8 +2027,16 @@ class Ui_MainWindow(object):
 
         self.block_encrypt_process.setText(QCoreApplication.translate("MainWindow", u"ENCRYPT PROCESS", None))
         self.block_encrypt_filepath_btn.setText("")
+        self.block_generate_key_btn.setText("")
+        self.block_geenerate_key_message.setText(QCoreApplication.translate("MainWindow", u"Generate Key", None))
+        self.block_encrypt_btn.setText(QCoreApplication.translate("MainWindow", u"Encrypt", None))
+        self.block_encrypt_output.setText("")
         self.block_decrypt_process.setText(QCoreApplication.translate("MainWindow", u"DECRYPT PROCESS", None))
         self.block_decrypt_filepath_btn.setText("")
+        self.block_key_icon.setText("")
+        self.block_key_message.setText(QCoreApplication.translate("MainWindow", u"Key", None))
+        self.block_decrypt_btn.setText(QCoreApplication.translate("MainWindow", u"Decrypt", None))
+        self.block_decrypt_output.setText("")
         self.public_key_list.setItemText(0, QCoreApplication.translate("MainWindow", u"RSA", None))
         self.public_key_list.setItemText(1, QCoreApplication.translate("MainWindow", u"Rabin", None))
         self.public_key_list.setItemText(2, QCoreApplication.translate("MainWindow", u"ElGamal", None))

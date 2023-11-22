@@ -1771,7 +1771,7 @@ p, li { white-space: pre-wrap; }
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>0</number>
+                      <number>2</number>
                      </property>
                      <widget class="QWidget" name="home">
                       <property name="styleSheet">
@@ -2460,13 +2460,13 @@ border: none;</string>
                                <item>
                                 <widget class="QLineEdit" name="block_encrypt_filepath">
                                  <property name="enabled">
-                                  <bool>false</bool>
+                                  <bool>true</bool>
                                  </property>
                                  <property name="styleSheet">
                                   <string notr="true">background-color: rgb(33, 37, 43);</string>
                                  </property>
                                  <property name="readOnly">
-                                  <bool>true</bool>
+                                  <bool>false</bool>
                                  </property>
                                 </widget>
                                </item>
@@ -2502,18 +2502,166 @@ border: 2px solid violet;
                              </widget>
                             </item>
                             <item>
-                             <widget class="QTextEdit" name="block_encrypt_output">
+                             <widget class="QWidget" name="block_generate_key_widget" native="true">
+                              <property name="minimumSize">
+                               <size>
+                                <width>0</width>
+                                <height>33</height>
+                               </size>
+                              </property>
+                              <property name="maximumSize">
+                               <size>
+                                <width>16777215</width>
+                                <height>33</height>
+                               </size>
+                              </property>
+                              <layout class="QHBoxLayout" name="horizontalLayout_14">
+                               <item>
+                                <widget class="QPushButton" name="block_generate_key_btn">
+                                 <property name="minimumSize">
+                                  <size>
+                                   <width>0</width>
+                                   <height>25</height>
+                                  </size>
+                                 </property>
+                                 <property name="maximumSize">
+                                  <size>
+                                   <width>16777215</width>
+                                   <height>25</height>
+                                  </size>
+                                 </property>
+                                 <property name="text">
+                                  <string/>
+                                 </property>
+                                 <property name="icon">
+                                  <iconset resource="resources.qrc">
+                                   <normaloff>:/icons/images/icons/cil-caret-right.png</normaloff>:/icons/images/icons/cil-caret-right.png</iconset>
+                                 </property>
+                                </widget>
+                               </item>
+                               <item>
+                                <widget class="QLineEdit" name="block_geenerate_key_message">
+                                 <property name="enabled">
+                                  <bool>false</bool>
+                                 </property>
+                                 <property name="minimumSize">
+                                  <size>
+                                   <width>100</width>
+                                   <height>25</height>
+                                  </size>
+                                 </property>
+                                 <property name="maximumSize">
+                                  <size>
+                                   <width>100</width>
+                                   <height>25</height>
+                                  </size>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">background-color: rgb(33, 37, 43);
+border: 2px solid violet;
+border-radius: 10px;</string>
+                                 </property>
+                                 <property name="text">
+                                  <string>Generate Key</string>
+                                 </property>
+                                 <property name="alignment">
+                                  <set>Qt::AlignCenter</set>
+                                 </property>
+                                 <property name="readOnly">
+                                  <bool>true</bool>
+                                 </property>
+                                </widget>
+                               </item>
+                               <item>
+                                <widget class="QTextEdit" name="block_generate_key_output">
+                                 <property name="minimumSize">
+                                  <size>
+                                   <width>0</width>
+                                   <height>25</height>
+                                  </size>
+                                 </property>
+                                 <property name="maximumSize">
+                                  <size>
+                                   <width>16777215</width>
+                                   <height>25</height>
+                                  </size>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">background-color: rgb(33, 37, 43);
+border: 2px solid violet;
+border-radius: 10px;</string>
+                                 </property>
+                                </widget>
+                               </item>
+                              </layout>
+                             </widget>
+                            </item>
+                            <item alignment="Qt::AlignHCenter">
+                             <widget class="QPushButton" name="block_encrypt_btn">
+                              <property name="sizePolicy">
+                               <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                               </sizepolicy>
+                              </property>
+                              <property name="minimumSize">
+                               <size>
+                                <width>100</width>
+                                <height>0</height>
+                               </size>
+                              </property>
+                              <property name="maximumSize">
+                               <size>
+                                <width>500</width>
+                                <height>40</height>
+                               </size>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">background-color: rgb(33, 37, 43);</string>
+                              </property>
+                              <property name="text">
+                               <string>Encrypt</string>
+                              </property>
+                              <property name="icon">
+                               <iconset resource="resources.qrc">
+                                <normaloff>:/icons/images/icons/cil-lock-locked.png</normaloff>:/icons/images/icons/cil-lock-locked.png</iconset>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QLabel" name="block_encrypt_output">
+                              <property name="sizePolicy">
+                               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                               </sizepolicy>
+                              </property>
                               <property name="styleSheet">
                                <string notr="true">background-color: rgb(33, 37, 43);
 border: 2px solid violet;
-border-radius: 10px;</string>
+</string>
                               </property>
-                              <property name="readOnly">
-                               <bool>true</bool>
+                              <property name="text">
+                               <string/>
                               </property>
                              </widget>
                             </item>
                            </layout>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QFrame" name="block_vertical_line">
+                           <property name="styleSheet">
+                            <string notr="true">border-width: 5px;
+ border-style: solid; 
+border-color: violet;</string>
+                           </property>
+                           <property name="frameShape">
+                            <enum>QFrame::VLine</enum>
+                           </property>
+                           <property name="frameShadow">
+                            <enum>QFrame::Raised</enum>
+                           </property>
                           </widget>
                          </item>
                          <item>
@@ -2545,13 +2693,13 @@ border: none;</string>
                                <item>
                                 <widget class="QLineEdit" name="block_decrypt_filepath">
                                  <property name="enabled">
-                                  <bool>false</bool>
+                                  <bool>true</bool>
                                  </property>
                                  <property name="styleSheet">
                                   <string notr="true">background-color: rgb(33, 37, 43);</string>
                                  </property>
                                  <property name="readOnly">
-                                  <bool>true</bool>
+                                  <bool>false</bool>
                                  </property>
                                 </widget>
                                </item>
@@ -2586,14 +2734,150 @@ border: 2px solid violet;</string>
                              </widget>
                             </item>
                             <item>
-                             <widget class="QTextEdit" name="block_decrypt_output">
+                             <widget class="QWidget" name="block_key_widget" native="true">
+                              <property name="minimumSize">
+                               <size>
+                                <width>0</width>
+                                <height>33</height>
+                               </size>
+                              </property>
+                              <property name="maximumSize">
+                               <size>
+                                <width>16777215</width>
+                                <height>33</height>
+                               </size>
+                              </property>
+                              <layout class="QHBoxLayout" name="horizontalLayout_16">
+                               <item>
+                                <widget class="QPushButton" name="block_key_icon">
+                                 <property name="enabled">
+                                  <bool>false</bool>
+                                 </property>
+                                 <property name="minimumSize">
+                                  <size>
+                                   <width>0</width>
+                                   <height>25</height>
+                                  </size>
+                                 </property>
+                                 <property name="maximumSize">
+                                  <size>
+                                   <width>16777215</width>
+                                   <height>25</height>
+                                  </size>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">border: none;</string>
+                                 </property>
+                                 <property name="text">
+                                  <string/>
+                                 </property>
+                                 <property name="icon">
+                                  <iconset resource="resources.qrc">
+                                   <normaloff>:/icons/images/icons/public_key_2.png</normaloff>:/icons/images/icons/public_key_2.png</iconset>
+                                 </property>
+                                </widget>
+                               </item>
+                               <item>
+                                <widget class="QLineEdit" name="block_key_message">
+                                 <property name="enabled">
+                                  <bool>false</bool>
+                                 </property>
+                                 <property name="minimumSize">
+                                  <size>
+                                   <width>60</width>
+                                   <height>25</height>
+                                  </size>
+                                 </property>
+                                 <property name="maximumSize">
+                                  <size>
+                                   <width>60</width>
+                                   <height>25</height>
+                                  </size>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">background-color: rgb(33, 37, 43);
+border: 2px solid violet;
+border-radius: 10px;</string>
+                                 </property>
+                                 <property name="text">
+                                  <string>Key</string>
+                                 </property>
+                                 <property name="alignment">
+                                  <set>Qt::AlignCenter</set>
+                                 </property>
+                                </widget>
+                               </item>
+                               <item>
+                                <widget class="QTextEdit" name="block_key_output">
+                                 <property name="minimumSize">
+                                  <size>
+                                   <width>0</width>
+                                   <height>25</height>
+                                  </size>
+                                 </property>
+                                 <property name="maximumSize">
+                                  <size>
+                                   <width>16777215</width>
+                                   <height>25</height>
+                                  </size>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">background-color: rgb(33, 37, 43);
+border: 2px solid violet;
+border-radius: 10px;</string>
+                                 </property>
+                                </widget>
+                               </item>
+                              </layout>
+                             </widget>
+                            </item>
+                            <item alignment="Qt::AlignHCenter">
+                             <widget class="QPushButton" name="block_decrypt_btn">
+                              <property name="sizePolicy">
+                               <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                               </sizepolicy>
+                              </property>
+                              <property name="minimumSize">
+                               <size>
+                                <width>100</width>
+                                <height>0</height>
+                               </size>
+                              </property>
+                              <property name="maximumSize">
+                               <size>
+                                <width>500</width>
+                                <height>40</height>
+                               </size>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">background-color: rgb(33, 37, 43);</string>
+                              </property>
+                              <property name="text">
+                               <string>Decrypt</string>
+                              </property>
+                              <property name="icon">
+                               <iconset resource="resources.qrc">
+                                <normaloff>:/icons/images/icons/cil-lock-locked.png</normaloff>:/icons/images/icons/cil-lock-locked.png</iconset>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QLabel" name="block_decrypt_output">
+                              <property name="sizePolicy">
+                               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                               </sizepolicy>
+                              </property>
                               <property name="styleSheet">
                                <string notr="true">background-color: rgb(33, 37, 43);
 border: 2px solid violet;
-border-radius: 10px;</string>
+</string>
                               </property>
-                              <property name="readOnly">
-                               <bool>true</bool>
+                              <property name="text">
+                               <string/>
                               </property>
                              </widget>
                             </item>
