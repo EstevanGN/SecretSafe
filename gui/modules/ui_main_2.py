@@ -1051,7 +1051,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
         self.classical_generated_key_icon = QPushButton(self.classical_generated_key_widget)
         self.classical_generated_key_icon.setObjectName(u"classical_generated_key_icon")
-        self.classical_generated_key_icon.setEnabled(True)
+        self.classical_generated_key_icon.setEnabled(False)
         self.classical_generated_key_icon.setMinimumSize(QSize(0, 30))
         self.classical_generated_key_icon.setMaximumSize(QSize(16777215, 30))
         self.classical_generated_key_icon.setStyleSheet(u"border: none;")
@@ -1063,7 +1063,6 @@ class Ui_MainWindow(object):
 
         self.classica_generated_key_line = QLineEdit(self.classical_generated_key_widget)
         self.classica_generated_key_line.setObjectName(u"classica_generated_key_line")
-        self.classica_generated_key_line.setEnabled(False)
         sizePolicy.setHeightForWidth(self.classica_generated_key_line.sizePolicy().hasHeightForWidth())
         self.classica_generated_key_line.setSizePolicy(sizePolicy)
         self.classica_generated_key_line.setMinimumSize(QSize(120, 30))

@@ -38,6 +38,9 @@ class MainWindow(QMainWindow):
         # ///////////////////////////////////////////////////////////////
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.current_generate_key_function = None
+        self.current_encrypt_function = None
+        self.current_decrypt_function = None
         global widgets
         widgets = self.ui
 
@@ -121,13 +124,16 @@ class MainWindow(QMainWindow):
             widgets.stackedWidget.setCurrentWidget(widgets.home)
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
+            #self.ui.classical_list.setCurrentIndex(0)
+            #self.classical_encryption_choice_action(self.ui.classical_list.currentIndex())
+            #self.ui.classical_list.currentIndexChanged.connect(self.classical_encryption_choice_action(self.ui.classical_list.currentIndex()))
             self.ui.classical_list.currentIndexChanged.connect(self.classical_encryption_choice_action)
         # SHOW WIDGETS PAGE
         if btnName == "btn_block":
             widgets.stackedWidget.setCurrentWidget(widgets.widgets)
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
-            self.ui.pushButton.clicked.connect(self.open_file)
+            self.ui.block_encrypt_filepath_btn.clicked.connect(self.open_file)
 
         # SHOW NEW PAGE
         if btnName == "btn_public_key":
@@ -162,18 +168,49 @@ class MainWindow(QMainWindow):
         if event.buttons() == Qt.RightButton:
             print('Mouse click: RIGHT CLICK')
             
+    def shift_generate_key(self):
+        generated_key = shift.generar_clave_desplazamiento()
+        self.ui.classical_generated_key_output.setPlainText(str(generated_key))
+        
+    def sustitution_permutation_generate_key(self):
+        if self.ui.classical_encrypt_input.toPlainText():
+            generated_key = sust_permu.generar_claves(self.ui.classical_encrypt_input.toPlainText())
+            blocks = generated_key[0]
+            final_permutation = generated_key[1]
+            block_length = generated_key[2]
+            self.ui.classical_generated_key_output.setPlainText("Blocks : " + str(blocks) + " - Permutation : " + str(final_permutation) + " - Block Lenght : " + str(block_length))
+            
+            
     def shift_encrypt_text(self):
         input_text = self.ui.classical_encrypt_input.toPlainText()
-        shift_encrypt_return = shift.cifrar_desplazamiento(input_text)
-        output_text = shift_encrypt_return[0]
-        generated_key = shift_encrypt_return[1]
-        self.ui.classical_generated_key_output.setPlainText(str(generated_key))
-        self.ui.classical_encrypt_output.setPlainText(str(output_text))
+        if self.ui.classical_generated_key_output.toPlainText():
+            generated_key = int(self.ui.classical_generated_key_output.toPlainText())
+            output_text = shift.cifrar_desplazamiento(input_text, generated_key)
+            self.ui.classical_encrypt_output.setPlainText(str(output_text))
     
     def shift_decrypt_text(self):
         input_text = self.ui.classical_decrypt_input.toPlainText()
         key = int(self.ui.classical_key_input.toPlainText())
         output_text = shift.descifrar_desplazamiento(input_text, key)
+        self.ui.classical_decrypt_output.setPlainText(output_text)
+        
+    def sustitution_permutation_encrypt_text(self):
+        input_text = self.ui.classical_encrypt_input.toPlainText()
+        if self.ui.classical_generated_key_output.toPlainText():
+            key_values = self.ui.classical_generated_key_output.toPlainText().split(" - ")
+            key_blocks = ast.literal_eval(key_values[0].split(" : ")[1])
+            final_permutation = ast.literal_eval(key_values[1].split(" : ")[1])
+            block_length = int(key_values[2].split(" : ")[1])
+            output_text = sust_permu.cifrar_sustPermu(input_text, block_length, key_blocks, final_permutation)
+            self.ui.classical_generated_key_output.setPlainText("Blocks : " + str(key_blocks) + " - Permutation : " + str(final_permutation) + " - Block Length : " + str(block_length))
+            self.ui.classical_encrypt_output.setPlainText(str(output_text))
+        
+    def sustitution_permutation_decrypt_text(self):
+        input_text = self.ui.classical_decrypt_input.toPlainText()
+        key_inputs = self.ui.classical_key_input.toPlainText().split(" - ")
+        key_blocks = ast.literal_eval(key_inputs[0].split(" : ")[1])
+        final_permutation = ast.literal_eval(key_inputs[1].split(" : ")[1])
+        output_text = sust_permu.descifrar_sustPermu(input_text, key_blocks, final_permutation)
         self.ui.classical_decrypt_output.setPlainText(output_text)
         
     def affine_encrypt_text(self):
@@ -192,23 +229,6 @@ class MainWindow(QMainWindow):
         output_text = afin.descifrar_afin(input_text, key_1, key_2)
         self.ui.classical_decrypt_output.setPlainText(output_text)
         
-    def sustitution_permutation_encrypt_text(self):
-        input_text = self.ui.classical_encrypt_input.toPlainText()
-        sust_permu_return = sust_permu.cifrar_sustPermu(input_text)
-        output_text = sust_permu_return[0]
-        key_blocks = sust_permu_return[1]
-        final_permutation = sust_permu_return[2]
-        self.ui.classical_generated_key_output.setPlainText("Blocks : " + str(key_blocks) + " - Permutation : " + str(final_permutation))
-        self.ui.classical_encrypt_output.setPlainText(str(output_text))
-        
-    def sustitution_permutation_decrypt_text(self):
-        input_text = self.ui.classical_decrypt_input.toPlainText()
-        key_inputs = self.ui.classical_key_input.toPlainText().split(" - ")
-        key_blocks = ast.literal_eval(key_inputs[0].split(" : ")[1])
-        final_permutation = ast.literal_eval(key_inputs[1].split(" : ")[1])
-        output_text = sust_permu.descifrar_sustPermu(input_text, key_blocks, final_permutation)
-        self.ui.classical_decrypt_output.setPlainText(output_text)
-        
     def hill_encrypt_text(self):
         input_text = self.ui.classical_encrypt_input.toPlainText()
         hill_return = hill.cifrar_hill(input_text)
@@ -222,18 +242,34 @@ class MainWindow(QMainWindow):
         
     def classical_encryption_choice_action(self):
         index = self.ui.classical_list.currentIndex()
+        if self.current_encrypt_function is not None:
+            self.ui.classical_btn_encrypt.clicked.disconnect(self.current_encrypt_function)
+        if self.current_decrypt_function is not None:
+            self.ui.classical_btn_decrypt.clicked.disconnect(self.current_decrypt_function)
+        if self.current_generate_key_function is not None:
+            self.ui.classical_generated_key_icon.clicked.disconnect(self.current_generate_key_function)
         if index == 0:
-            self.ui.classical_btn_encrypt.clicked.connect(self.shift_encrypt_text)
-            self.ui.classical_btn_decrypt.clicked.connect(self.shift_decrypt_text)
+            self.ui.classical_generated_key_output.setPlainText("")
+            self.ui.classical_key_input.setPlainText("")
+            self.current_generate_key_function = self.shift_generate_key
+            self.current_encrypt_function = self.shift_encrypt_text
+            self.current_decrypt_function = self.shift_decrypt_text
         elif index == 1:
-            self.ui.classical_btn_encrypt.clicked.connect(self.sustitution_permutation_encrypt_text)
-            self.ui.classical_btn_decrypt.clicked.connect(self.sustitution_permutation_decrypt_text)
+            self.ui.classical_generated_key_output.setPlainText("")
+            self.ui.classical_key_input.setPlainText("")
+            self.current_generate_key_function = self.sustitution_permutation_generate_key
+            self.current_encrypt_function = self.sustitution_permutation_encrypt_text
+            self.current_decrypt_function = self.sustitution_permutation_decrypt_text
         elif index == 3:
             self.ui.classical_btn_encrypt.clicked.connect(self.affine_encrypt_text)
             self.ui.classical_btn_decrypt.clicked.connect(self.affine_decrypt_text)
         elif index == 4:
             self.ui.classical_btn_encrypt.clicked.connect(self.hill_encrypt_text)
             self.ui.classical_btn_decrypt.clicked.connect(self.hill_decrypt_text)
+        # Set the specific slot for the given index
+        self.ui.classical_generated_key_icon.clicked.connect(self.current_generate_key_function)
+        self.ui.classical_btn_encrypt.clicked.connect(self.current_encrypt_function)
+        self.ui.classical_btn_decrypt.clicked.connect(self.current_decrypt_function)
             
     def public_key_encryption_choice_action(self):
         print("Public key")

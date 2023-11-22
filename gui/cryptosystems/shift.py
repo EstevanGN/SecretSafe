@@ -1,7 +1,6 @@
 import random
 
-def cifrar_desplazamiento(texto):
-    clave = generar_clave_desplazamiento()
+def cifrar_desplazamiento(texto, clave):
     texto_cifrado = ""
     for caracter in texto:
         if ' ' <= caracter <= '~':
@@ -12,7 +11,7 @@ def cifrar_desplazamiento(texto):
         else:
             texto_cifrado += caracter  # Mantener caracteres no imprimibles sin cambios
 
-    return texto_cifrado, clave
+    return texto_cifrado
 
 def descifrar_desplazamiento(texto_cifrado, clave):
     texto_descifrado = ""
