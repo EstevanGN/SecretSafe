@@ -24,7 +24,6 @@ def elegir_modo_cifrado():
 
 def cifrar_imagen(ruta_imagen, clave):
     # Cargar la imagen
-    #clave = aes_generate_key()
     modo = elegir_modo_cifrado()
     imagen = Image.open(ruta_imagen)
     modo_imagen = imagen.mode
@@ -49,13 +48,14 @@ def cifrar_imagen(ruta_imagen, clave):
     imagen_cifrada = bytes_a_imagen(datos_cifrados, modo_imagen, tamaño_imagen)
 
     # Guardar la imagen cifrada
-    ruta_imagen_cifrada = '/home/aeternal/Documents/SecretSafe/gui/cryptosystems/img_cifrada.png'
+    ruta_imagen_cifrada = '/home/aeternal/Documents/SecretSafe/gui/testing_images/encrypted/img_cifrada.png'
     imagen_cifrada.save(ruta_imagen_cifrada)
 
-    return ruta_imagen_cifrada
+    return ruta_imagen_cifrada, list(info)
 
-def descifrar_imagen(ruta_imagen_cifrada, clave, modo, info):
+def descifrar_imagen(ruta_imagen_cifrada, clave, info):
     # Cargar la imagen cifrada
+    modo = elegir_modo_cifrado()
     imagen_cifrada = Image.open(ruta_imagen_cifrada)
     datos_cifrados = imagen_a_bytes(imagen_cifrada)
 
@@ -75,7 +75,7 @@ def descifrar_imagen(ruta_imagen_cifrada, clave, modo, info):
     imagen_descifrada = bytes_a_imagen(datos_descifrados, imagen_cifrada.mode, imagen_cifrada.size)
 
     # Guardar la imagen descifrada
-    ruta_imagen_descifrada = 'img_descifrada.png'
+    ruta_imagen_descifrada = '/home/aeternal/Documents/SecretSafe/gui/testing_images/decrypted/img_descifrada.png'
     imagen_descifrada.save(ruta_imagen_descifrada)
 
     return ruta_imagen_descifrada

@@ -135,8 +135,10 @@ class MainWindow(QMainWindow):
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
             self.ui.block_encrypt_filepath_btn.clicked.connect(self.open_file)
+            self.ui.block_decrypt_filepath_btn.clicked.connect(self.open_file_decrypt)
             self.ui.block_generate_key_btn.clicked.connect(self.aes_generate_key)
             self.ui.block_encrypt_btn.clicked.connect(self.aes_encrypt_image)
+            self.ui.block_decrypt_btn.clicked.connect(self.aes_decrypt_image)
 
         # SHOW NEW PAGE
         if btnName == "btn_public_key":
@@ -335,14 +337,35 @@ class MainWindow(QMainWindow):
         if self.ui.block_generate_key_output.toPlainText():
             aes_key = ast.literal_eval(self.ui.block_generate_key_output.toPlainText())
             key = struct.pack('16B', *aes_key)
-            encrypted_image_path = aes_image_encryption.cifrar_imagen(image_path, key)
+            encrypt_image_return = aes_image_encryption.cifrar_imagen(image_path, key)
+            encrypted_image_path = encrypt_image_return[0]
+            mode = str(encrypt_image_return[1])
             pixmap = QPixmap(encrypted_image_path)
             self.ui.block_encrypt_output.setPixmap(pixmap)
+            self.ui.block_generate_key_output.setPlainText("Key : " + self.ui.block_generate_key_output.toPlainText() + " - Mode : " + mode)
+            
+    def aes_decrypt_image(self):
+        image_path = self.ui.block_decrypt_filepath.text()
+        all_key = self.ui.block_key_output.toPlainText().split(" - ")
+        aes_key = ast.literal_eval(all_key[0].split(" : ")[1])
+        aes_mode = ast.literal_eval(all_key[1].split(" : ")[1])
+        key = struct.pack('16B', *aes_key)
+        mode = struct.pack('16B', *aes_mode)
+        decrypted_image_path = aes_image_encryption.descifrar_imagen(image_path, key, mode)
+        pixmap = QPixmap(decrypted_image_path)
+        self.ui.block_decrypt_output.setPixmap(pixmap)
+        
         
     def open_file(self):
         file_path, _ = QFileDialog.getOpenFileName(self, "Abrir archivo", "", "Todos los archivos (*)")
         if file_path:
             self.ui.block_encrypt_filepath.setText(str(file_path))
+            #os.startfile(file_path)
+            
+    def open_file_decrypt(self):
+        file_path, _ = QFileDialog.getOpenFileName(self, "Abrir archivo", "", "Todos los archivos (*)")
+        if file_path:
+            self.ui.block_decrypt_filepath.setText(str(file_path))
             #os.startfile(file_path)
     
 if __name__ == "__main__":
