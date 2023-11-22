@@ -40,9 +40,14 @@ class MainWindow(QMainWindow):
         # ///////////////////////////////////////////////////////////////
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        # Classical Global Variables
         self.current_generate_key_function = None
         self.current_encrypt_function = None
         self.current_decrypt_function = None
+        # Block Global Variables
+        self.current_block_generate_key_function = None
+        self.current_block_encrypt_function = None
+        self.current_block_decrypt_function = None
         global widgets
         widgets = self.ui
 
@@ -136,9 +141,15 @@ class MainWindow(QMainWindow):
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
             self.ui.block_encrypt_filepath_btn.clicked.connect(self.open_file)
             self.ui.block_decrypt_filepath_btn.clicked.connect(self.open_file_decrypt)
-            self.ui.block_generate_key_btn.clicked.connect(self.aes_generate_key)
-            self.ui.block_encrypt_btn.clicked.connect(self.aes_encrypt_image)
-            self.ui.block_decrypt_btn.clicked.connect(self.aes_decrypt_image)
+            #self.ui.block_generate_key_btn.clicked.connect(self.aes_generate_key)
+            #self.ui.block_encrypt_btn.clicked.connect(self.aes_encrypt_image)
+            #self.ui.block_decrypt_btn.clicked.connect(self.aes_decrypt_image)
+            self.ui.block_list.currentIndexChanged.connect(self.block_encryption_choice_action)
+            self.ui.block_mode_list.currentIndexChanged.connect(self.block_encryption_choice_action)
+            self.ui.block_list.setCurrentIndex(1)
+            self.ui.block_list.setCurrentIndex(0)
+            self.ui.block_mode_list.setCurrentIndex(1)
+            self.ui.block_mode_list.setCurrentIndex(0)
 
         # SHOW NEW PAGE
         if btnName == "btn_public_key":
@@ -355,7 +366,76 @@ class MainWindow(QMainWindow):
         pixmap = QPixmap(decrypted_image_path)
         self.ui.block_decrypt_output.setPixmap(pixmap)
         
+    def aes_encrypt_image_ecb(self):
+        image_path = self.ui.block_encrypt_filepath.text()
+        if self.ui.block_generate_key_output.toPlainText():
+            aes_key = ast.literal_eval(self.ui.block_generate_key_output.toPlainText())
+            key = struct.pack('16B', *aes_key)
+            encrypted_image_path = aes_image_encryption.cifrar_imagen_ecb(image_path, key)
+            pixmap = QPixmap(encrypted_image_path)
+            self.ui.block_encrypt_output.setPixmap(pixmap)
+            self.ui.block_generate_key_output.setPlainText("Key : " + self.ui.block_generate_key_output.toPlainText())
         
+    def aes_encrypt_image_ctr(self):
+        image_path = self.ui.block_encrypt_filepath.text()
+        if self.ui.block_generate_key_output.toPlainText():
+            aes_key = ast.literal_eval(self.ui.block_generate_key_output.toPlainText())
+            key = struct.pack('16B', *aes_key)
+            encrypted_image_path = aes_image_encryption.cifrar_imagen_ctr(image_path, key)
+            pixmap = QPixmap(encrypted_image_path)
+            self.ui.block_encrypt_output.setPixmap(pixmap)
+            self.ui.block_generate_key_output.setPlainText("Key : " + self.ui.block_generate_key_output.toPlainText())
+        
+    def aes_decrypt_image_ecb(self):
+        image_path = self.ui.block_decrypt_filepath.text()
+        aes_key = ast.literal_eval(self.ui.block_key_output.toPlainText().split(" : ")[1])
+        key = struct.pack('16B', *aes_key)
+        decrypted_image_path = aes_image_encryption.descifrar_imagen_ecb(image_path, key)
+        pixmap = QPixmap(decrypted_image_path)
+        self.ui.block_decrypt_output.setPixmap(pixmap)
+        
+    def aes_decrypt_image_ctr(self):
+        image_path = self.ui.block_decrypt_filepath.text()
+        aes_key = ast.literal_eval(self.ui.block_key_output.toPlainText().split(" : ")[1])
+        key = struct.pack('16B', *aes_key)
+        decrypted_image_path = aes_image_encryption.descifrar_imagen_ctr(image_path, key)
+        pixmap = QPixmap(decrypted_image_path)
+        self.ui.block_decrypt_output.setPixmap(pixmap)
+        
+    def block_encryption_choice_action(self):
+        index = self.ui.block_list.currentIndex()
+        mode_index = self.ui.block_mode_list.currentIndex()
+        if self.current_block_encrypt_function is not None:
+            self.ui.block_encrypt_btn.clicked.disconnect(self.current_block_encrypt_function)
+        if self.current_block_decrypt_function is not None:
+            self.ui.block_decrypt_btn.clicked.disconnect(self.current_block_decrypt_function)
+        if self.current_block_generate_key_function is not None:
+            self.ui.block_generate_key_btn.clicked.disconnect(self.current_block_generate_key_function)
+        if index == 0:
+            if mode_index == 0 or mode_index == 3:
+                self.ui.block_encrypt_output.clear()
+                self.ui.block_generate_key_output.setPlainText("")
+                self.current_block_generate_key_function = self.aes_generate_key
+                self.current_block_encrypt_function = self.aes_encrypt_image
+                self.current_block_decrypt_function = self.aes_decrypt_image
+            elif mode_index == 1:
+                self.ui.block_encrypt_output.clear()
+                self.ui.block_generate_key_output.setPlainText("")
+                self.current_block_generate_key_function = self.aes_generate_key
+                self.current_block_encrypt_function = self.aes_encrypt_image_ctr
+                self.current_block_decrypt_function = self.aes_decrypt_image_ctr
+            elif mode_index == 2:
+                self.ui.block_encrypt_output.clear()
+                self.ui.block_generate_key_output.setPlainText("")
+                self.current_block_generate_key_function = self.aes_generate_key
+                self.current_block_encrypt_function = self.aes_encrypt_image_ecb
+                self.current_block_decrypt_function = self.aes_decrypt_image_ecb
+        
+        self.ui.block_generate_key_btn.clicked.connect(self.current_block_generate_key_function)
+        self.ui.block_encrypt_btn.clicked.connect(self.current_block_encrypt_function)
+        self.ui.block_decrypt_btn.clicked.connect(self.current_block_decrypt_function)
+
+    
     def open_file(self):
         file_path, _ = QFileDialog.getOpenFileName(self, "Abrir archivo", "", "Todos los archivos (*)")
         if file_path:
