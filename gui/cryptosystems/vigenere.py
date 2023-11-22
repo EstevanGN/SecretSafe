@@ -1,11 +1,11 @@
 import random
 
-def generar_clave_vigenere(longitud):
+def generar_clave_vigenere(texto):
+    longitud = random.randint(2, int(len(texto)/2))
     caracteres = ''.join([chr(i) for i in range(32, 127)])  # Caracteres ASCII imprimibles (32-126)
     return ''.join(random.choice(caracteres) for _ in range(longitud))
 
 def cifrar_vigenere(texto, clave):
-    clave = generar_clave_vigenere(10)
     texto_cifrado = ""
     clave_expandida = clave * (len(texto) // len(clave)) + clave[:len(texto) % len(clave)]
 
@@ -18,7 +18,7 @@ def cifrar_vigenere(texto, clave):
         else:
             texto_cifrado += texto[i]  # Mantener caracteres no imprimibles sin cambios
 
-    return texto_cifrado, clave
+    return texto_cifrado
 
 def descifrar_vigenere(texto_cifrado, clave):
     texto_descifrado = ""

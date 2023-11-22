@@ -1,8 +1,7 @@
 import random
 import math
 
-def cifrar_afin(texto):
-    a, b = generar_claves_afin()
+def cifrar_afin(texto, a, b):
     texto_cifrado = ""
     for caracter in texto:
         if ' ' <= caracter <= '~':
@@ -13,7 +12,7 @@ def cifrar_afin(texto):
         else:
             texto_cifrado += caracter  # Mantener caracteres no imprimibles sin cambios
 
-    return texto_cifrado, a, b
+    return texto_cifrado
 
 def descifrar_afin(texto_cifrado, a, b):
     texto_descifrado = ""
