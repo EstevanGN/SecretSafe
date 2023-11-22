@@ -1771,7 +1771,7 @@ p, li { white-space: pre-wrap; }
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>2</number>
+                      <number>0</number>
                      </property>
                      <widget class="QWidget" name="home">
                       <property name="styleSheet">
@@ -1780,7 +1780,7 @@ p, li { white-space: pre-wrap; }
 # background-repeat: no-repeat;</string>
                       </property>
                       <layout class="QHBoxLayout" name="horizontalLayout_7">
-                       <item alignment="Qt::AlignHCenter|Qt::AlignTop">
+                       <item alignment="Qt::AlignVCenter">
                         <widget class="QComboBox" name="classical_list">
                          <property name="minimumSize">
                           <size>
@@ -2274,7 +2274,55 @@ border-radius: 10px;</string>
                        </item>
                       </layout>
                      </widget>
-                     <widget class="QWidget" name="welcome_page"/>
+                     <widget class="QWidget" name="welcome_page">
+                      <widget class="QWidget" name="widget" native="true">
+                       <property name="geometry">
+                        <rect>
+                         <x>91</x>
+                         <y>50</y>
+                         <width>911</width>
+                         <height>501</height>
+                        </rect>
+                       </property>
+                       <layout class="QVBoxLayout" name="verticalLayout_23">
+                        <item>
+                         <widget class="QLineEdit" name="welcome_page_tittle">
+                          <property name="text">
+                           <string>WHAT DOES SECRETSAFE DO FOR YOU?</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QWidget" name="welcome_page_widget" native="true">
+                          <layout class="QHBoxLayout" name="horizontalLayout_9">
+                           <item>
+                            <widget class="QTextEdit" name="welcome_page_image">
+                             <property name="html">
+                              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;APPLICATION DESCRIPTION&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QTextEdit" name="welcome_page_description">
+                             <property name="html">
+                              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IMAGE&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </widget>
                      <widget class="QWidget" name="widgets">
                       <property name="styleSheet">
                        <string notr="true">b</string>
@@ -2296,42 +2344,154 @@ border-radius: 10px;</string>
                         <number>10</number>
                        </property>
                        <item>
-                        <layout class="QHBoxLayout" name="horizontalLayout_17">
+                        <layout class="QHBoxLayout" name="block_horizontal_layout">
                          <item>
-                          <widget class="QWidget" name="widget_5" native="true">
+                          <widget class="QWidget" name="block_combo_widget" native="true">
                            <layout class="QVBoxLayout" name="verticalLayout_17">
                             <item alignment="Qt::AlignTop">
-                             <widget class="QComboBox" name="comboBox"/>
+                             <widget class="QComboBox" name="block_list">
+                              <property name="styleSheet">
+                               <string notr="true">background-color: rgb(33, 37, 43);
+border: 2px solid violet;
+border-radius: 10px;</string>
+                              </property>
+                              <item>
+                               <property name="text">
+                                <string>AES</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>S-DES</string>
+                               </property>
+                              </item>
+                              <item>
+                               <property name="text">
+                                <string>T-DES</string>
+                               </property>
+                              </item>
+                             </widget>
                             </item>
                             <item alignment="Qt::AlignVCenter">
-                             <widget class="QComboBox" name="comboBox_2"/>
+                             <widget class="QWidget" name="block_mode_widget" native="true">
+                              <layout class="QVBoxLayout" name="verticalLayout_22">
+                               <item>
+                                <widget class="QPushButton" name="block_mode_btn">
+                                 <property name="enabled">
+                                  <bool>false</bool>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">background-color: rgb(33, 37, 43);
+border: none;</string>
+                                 </property>
+                                 <property name="text">
+                                  <string>MODE</string>
+                                 </property>
+                                 <property name="icon">
+                                  <iconset resource="resources.qrc">
+                                   <normaloff>:/icons/images/icons/icon_settings.png</normaloff>:/icons/images/icons/icon_settings.png</iconset>
+                                 </property>
+                                </widget>
+                               </item>
+                               <item>
+                                <widget class="QComboBox" name="block_mode_list">
+                                 <property name="styleSheet">
+                                  <string notr="true">background-color: rgb(33, 37, 43);
+border: 2px solid violet;
+border-radius: 10px;</string>
+                                 </property>
+                                 <item>
+                                  <property name="text">
+                                   <string>CBC</string>
+                                  </property>
+                                 </item>
+                                 <item>
+                                  <property name="text">
+                                   <string>CTR</string>
+                                  </property>
+                                 </item>
+                                 <item>
+                                  <property name="text">
+                                   <string>ECB</string>
+                                  </property>
+                                 </item>
+                                 <item>
+                                  <property name="text">
+                                   <string>OFB</string>
+                                  </property>
+                                 </item>
+                                </widget>
+                               </item>
+                              </layout>
+                             </widget>
                             </item>
                            </layout>
                           </widget>
                          </item>
                          <item>
-                          <widget class="QWidget" name="widget" native="true">
+                          <widget class="QWidget" name="block_input_widget" native="true">
                            <layout class="QVBoxLayout" name="verticalLayout_16">
                             <item>
-                             <widget class="QLineEdit" name="lineEdit_3">
+                             <widget class="QLineEdit" name="block_encrypt_process">
+                              <property name="enabled">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">background-color: transparent;
+border: none;</string>
+                              </property>
                               <property name="text">
                                <string>ENCRYPT PROCESS</string>
                               </property>
                               <property name="alignment">
                                <set>Qt::AlignCenter</set>
                               </property>
+                              <property name="readOnly">
+                               <bool>true</bool>
+                              </property>
                              </widget>
                             </item>
                             <item>
-                             <widget class="QWidget" name="widget_3" native="true">
+                             <widget class="QWidget" name="block_encrypt_filesearch_widget" native="true">
                               <layout class="QHBoxLayout" name="horizontalLayout_18">
                                <item>
-                                <widget class="QLineEdit" name="lineEdit"/>
+                                <widget class="QLineEdit" name="block_encrypt_filepath">
+                                 <property name="enabled">
+                                  <bool>false</bool>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">background-color: rgb(33, 37, 43);</string>
+                                 </property>
+                                 <property name="readOnly">
+                                  <bool>true</bool>
+                                 </property>
+                                </widget>
                                </item>
                                <item>
-                                <widget class="QPushButton" name="pushButton">
+                                <widget class="QPushButton" name="block_encrypt_filepath_btn">
+                                 <property name="minimumSize">
+                                  <size>
+                                   <width>50</width>
+                                   <height>0</height>
+                                  </size>
+                                 </property>
+                                 <property name="maximumSize">
+                                  <size>
+                                   <width>50</width>
+                                   <height>16777215</height>
+                                  </size>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">background-color: rgb(33, 37, 43);
+border: 2px solid violet;
+</string>
+                                 </property>
                                  <property name="text">
-                                  <string>PushButton</string>
+                                  <string/>
+                                 </property>
+                                 <property name="icon">
+                                  <iconset resource="resources.qrc">
+                                   <normaloff>:/icons/images/icons/cil-folder-open.png</normaloff>:/icons/images/icons/cil-folder-open.png</iconset>
                                  </property>
                                 </widget>
                                </item>
@@ -2339,34 +2499,83 @@ border-radius: 10px;</string>
                              </widget>
                             </item>
                             <item>
-                             <widget class="QTextEdit" name="textEdit_2"/>
+                             <widget class="QTextEdit" name="block_encrypt_output">
+                              <property name="styleSheet">
+                               <string notr="true">background-color: rgb(33, 37, 43);
+border: 2px solid violet;
+border-radius: 10px;</string>
+                              </property>
+                              <property name="readOnly">
+                               <bool>true</bool>
+                              </property>
+                             </widget>
                             </item>
                            </layout>
                           </widget>
                          </item>
                          <item>
-                          <widget class="QWidget" name="widget_2" native="true">
+                          <widget class="QWidget" name="block_output_widget" native="true">
                            <layout class="QVBoxLayout" name="verticalLayout">
                             <item>
-                             <widget class="QLineEdit" name="lineEdit_4">
+                             <widget class="QLineEdit" name="block_decrypt_process">
+                              <property name="enabled">
+                               <bool>false</bool>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">background-color: transparent;
+border: none;</string>
+                              </property>
                               <property name="text">
                                <string>DECRYPT PROCESS</string>
                               </property>
                               <property name="alignment">
                                <set>Qt::AlignCenter</set>
                               </property>
+                              <property name="readOnly">
+                               <bool>true</bool>
+                              </property>
                              </widget>
                             </item>
                             <item>
-                             <widget class="QWidget" name="widget_4" native="true">
+                             <widget class="QWidget" name="block_decrypt_search_widget" native="true">
                               <layout class="QHBoxLayout" name="horizontalLayout_19">
                                <item>
-                                <widget class="QLineEdit" name="lineEdit_2"/>
+                                <widget class="QLineEdit" name="block_decrypt_filepath">
+                                 <property name="enabled">
+                                  <bool>false</bool>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">background-color: rgb(33, 37, 43);</string>
+                                 </property>
+                                 <property name="readOnly">
+                                  <bool>true</bool>
+                                 </property>
+                                </widget>
                                </item>
                                <item>
-                                <widget class="QPushButton" name="pushButton_2">
+                                <widget class="QPushButton" name="block_decrypt_filepath_btn">
+                                 <property name="minimumSize">
+                                  <size>
+                                   <width>50</width>
+                                   <height>0</height>
+                                  </size>
+                                 </property>
+                                 <property name="maximumSize">
+                                  <size>
+                                   <width>50</width>
+                                   <height>16777215</height>
+                                  </size>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">background-color: rgb(33, 37, 43);
+border: 2px solid violet;</string>
+                                 </property>
                                  <property name="text">
-                                  <string>PushButton</string>
+                                  <string/>
+                                 </property>
+                                 <property name="icon">
+                                  <iconset resource="resources.qrc">
+                                   <normaloff>:/icons/images/icons/cil-folder-open.png</normaloff>:/icons/images/icons/cil-folder-open.png</iconset>
                                  </property>
                                 </widget>
                                </item>
@@ -2374,7 +2583,16 @@ border-radius: 10px;</string>
                              </widget>
                             </item>
                             <item>
-                             <widget class="QTextEdit" name="textEdit_3"/>
+                             <widget class="QTextEdit" name="block_decrypt_output">
+                              <property name="styleSheet">
+                               <string notr="true">background-color: rgb(33, 37, 43);
+border: 2px solid violet;
+border-radius: 10px;</string>
+                              </property>
+                              <property name="readOnly">
+                               <bool>true</bool>
+                              </property>
+                             </widget>
                             </item>
                            </layout>
                           </widget>
@@ -2403,7 +2621,7 @@ border-radius: 10px;</string>
                           <enum>Qt::LeftToRight</enum>
                          </property>
                          <layout class="QVBoxLayout" name="verticalLayout_21">
-                          <item alignment="Qt::AlignTop">
+                          <item alignment="Qt::AlignVCenter">
                            <widget class="QComboBox" name="public_key_list">
                             <property name="sizePolicy">
                              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
