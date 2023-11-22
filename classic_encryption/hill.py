@@ -37,18 +37,24 @@ def descifrar_hill(texto_cifrado, matriz_clave):
     descifrado_matriz = (texto_cifrado_matriz @ clave_inversa) % 95
     return matriz_a_texto(np.array(descifrado_matriz))
 
+# Ejemplo de uso
+mensaje = input("Ingrese el mensaje: ")
+
 # Genera una matriz clave aleatoria
 matriz_clave = generar_matriz_clave()
 print("Matriz clave:", matriz_clave)
-
-# Ejemplo de uso
-mensaje = "abcdefghij"
-print("Texto Original:", mensaje)
 
 # Cifrado
 texto_cifrado = cifrar_hill(mensaje, matriz_clave)
 print("Texto Cifrado:", texto_cifrado)
 
 # Descifrado
-texto_descifrado = descifrar_hill(texto_cifrado, matriz_clave)
+vector_clave = input("Ingrese los 16 números de la matriz clave separados por ',': ").split(",")
+vector_clave = list(map(int, vector_clave))
+matriz = []
+for i in range(0, len(vector_clave), 4):
+    matriz.append(vector_clave[i:i+4])
+
+
+texto_descifrado = descifrar_hill(texto_cifrado, matriz)
 print("Texto Descifrado:", texto_descifrado)
