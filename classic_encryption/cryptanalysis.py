@@ -15,7 +15,6 @@ scorer = NgramScorer(load_ngrams(1))
 
 print("Los posibles textos son: ")
 for i in scores:
-    print("Key: ",i)
     breaker = VigenereBreak(i, scorer)
     decryption, score, key = breaker.guess(text)[0]
     print("Vigenere decryption (key={}, score={}):\n---\n{}---\n"

@@ -20,6 +20,7 @@ import platform
 import ast
 import numpy as np
 import struct
+import cryptanalysis
 
 # IMPORT / GUI AND MODULES AND WIDGETS
 # ///////////////////////////////////////////////////////////////
@@ -165,7 +166,10 @@ class MainWindow(QMainWindow):
             self.ui.public_key_list.setCurrentIndex(0)
 
         if btnName == "btn_analysis":
-            print("Save BTN clicked!")
+            widgets.stackedWidget.setCurrentWidget(widgets.cryptoanalysis)
+            UIFunctions.resetStyle(self, btnName)
+            btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
+            self.ui.crypto_analysis_btn.clicked.connect(self.cryptoanalysis_vigenere)
 
         # PRINT BTN NAME
         print(f'Button "{btnName}" pressed!')
@@ -694,6 +698,15 @@ class MainWindow(QMainWindow):
         self.ui.block_encrypt_btn.clicked.connect(self.current_block_encrypt_function)
         self.ui.block_decrypt_btn.clicked.connect(self.current_block_decrypt_function)
 
+    
+    def cryptoanalysis_vigenere(self):
+        input_text = self.ui.crypto_analysis_input.toPlainText()
+        self.ui.crypto_analysis_output.setPlainText("")
+        if input_text:
+            results = cryptanalysis.cryptoanalyze(input_text)
+            for i in results:
+                self.ui.crypto_analysis_output.setPlainText(self.ui.crypto_analysis_output.toPlainText() + str(i))
+                self.ui.crypto_analysis_output.setPlainText(self.ui.crypto_analysis_output.toPlainText() + "\n\n")
     
     def open_file(self):
         file_path, _ = QFileDialog.getOpenFileName(self, "Abrir archivo", "", "Todos los archivos (*)")
