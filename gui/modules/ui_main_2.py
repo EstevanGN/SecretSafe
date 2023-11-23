@@ -71,7 +71,7 @@ class Ui_MainWindow(object):
 "}\n"
 "#topLogo {\n"
 "	background-color: rgb(33, 37, 43);\n"
-"	background-image: url(:/images/images/images/PyDracula.png);\n"
+"	background-image: url(:/images/images/images/logo.png);\n"
 "	background-position: centered;\n"
 "	background-repeat: no-repeat;\n"
 "}\n"
@@ -991,10 +991,10 @@ class Ui_MainWindow(object):
         self.pagesContainer.setStyleSheet(u"")
         self.pagesContainer.setFrameShape(QFrame.NoFrame)
         self.pagesContainer.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_6 = QHBoxLayout(self.pagesContainer)
-        self.horizontalLayout_6.setSpacing(0)
-        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
-        self.horizontalLayout_6.setContentsMargins(10, 10, 10, 10)
+        self.verticalLayout_26 = QVBoxLayout(self.pagesContainer)
+        self.verticalLayout_26.setSpacing(0)
+        self.verticalLayout_26.setObjectName(u"verticalLayout_26")
+        self.verticalLayout_26.setContentsMargins(10, 10, 10, 10)
         self.stackedWidget = QStackedWidget(self.pagesContainer)
         self.stackedWidget.setObjectName(u"stackedWidget")
         self.stackedWidget.setStyleSheet(u"background: transparent;")
@@ -1054,7 +1054,7 @@ class Ui_MainWindow(object):
         self.classical_generated_key_icon.setEnabled(True)
         self.classical_generated_key_icon.setMinimumSize(QSize(0, 30))
         self.classical_generated_key_icon.setMaximumSize(QSize(16777215, 30))
-        self.classical_generated_key_icon.setStyleSheet(u"")
+        self.classical_generated_key_icon.setStyleSheet(u"border: 2px solid violet;")
         icon3 = QIcon()
         icon3.addFile(u":/icons/images/icons/cil-caret-right.png", QSize(), QIcon.Normal, QIcon.Off)
         self.classical_generated_key_icon.setIcon(icon3)
@@ -1077,7 +1077,7 @@ class Ui_MainWindow(object):
         self.classica_generated_key_line.setFont(font4)
         self.classica_generated_key_line.setAutoFillBackground(False)
         self.classica_generated_key_line.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
-"border: 2px solid violet;\n"
+"border: none;\n"
 "border-radius: 10px;")
         self.classica_generated_key_line.setAlignment(Qt.AlignCenter)
         self.classica_generated_key_line.setReadOnly(True)
@@ -1191,7 +1191,7 @@ class Ui_MainWindow(object):
         self.classical_key_line.setMinimumSize(QSize(70, 30))
         self.classical_key_line.setMaximumSize(QSize(70, 30))
         self.classical_key_line.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
-"border: 2px solid violet;\n"
+"border: none;\n"
 "border-radius: 10px;")
         self.classical_key_line.setAlignment(Qt.AlignCenter)
         self.classical_key_line.setReadOnly(True)
@@ -1240,32 +1240,80 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.home)
         self.welcome_page = QWidget()
         self.welcome_page.setObjectName(u"welcome_page")
+        sizePolicy.setHeightForWidth(self.welcome_page.sizePolicy().hasHeightForWidth())
+        self.welcome_page.setSizePolicy(sizePolicy)
+        self.welcome_page.setLayoutDirection(Qt.LeftToRight)
+        self.horizontalLayout_6 = QHBoxLayout(self.welcome_page)
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
         self.widget = QWidget(self.welcome_page)
         self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(91, 50, 911, 501))
+        sizePolicy.setHeightForWidth(self.widget.sizePolicy().hasHeightForWidth())
+        self.widget.setSizePolicy(sizePolicy)
         self.verticalLayout_23 = QVBoxLayout(self.widget)
         self.verticalLayout_23.setObjectName(u"verticalLayout_23")
         self.welcome_page_tittle = QLineEdit(self.widget)
         self.welcome_page_tittle.setObjectName(u"welcome_page_tittle")
+        sizePolicy.setHeightForWidth(self.welcome_page_tittle.sizePolicy().hasHeightForWidth())
+        self.welcome_page_tittle.setSizePolicy(sizePolicy)
+        self.welcome_page_tittle.setMinimumSize(QSize(0, 60))
+        self.welcome_page_tittle.setMaximumSize(QSize(16777215, 60))
+        font5 = QFont()
+        font5.setFamily(u"Segoe UI")
+        font5.setPointSize(35)
+        font5.setBold(False)
+        font5.setItalic(False)
+        self.welcome_page_tittle.setFont(font5)
+        self.welcome_page_tittle.setStyleSheet(u"background-color: transparent;\n"
+"border: none;\n"
+"font-size: 35pt;\n"
+"color: rgb(212, 94, 234);")
+        self.welcome_page_tittle.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_23.addWidget(self.welcome_page_tittle)
 
         self.welcome_page_widget = QWidget(self.widget)
         self.welcome_page_widget.setObjectName(u"welcome_page_widget")
+        sizePolicy.setHeightForWidth(self.welcome_page_widget.sizePolicy().hasHeightForWidth())
+        self.welcome_page_widget.setSizePolicy(sizePolicy)
         self.horizontalLayout_9 = QHBoxLayout(self.welcome_page_widget)
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
-        self.welcome_page_image = QTextEdit(self.welcome_page_widget)
-        self.welcome_page_image.setObjectName(u"welcome_page_image")
-
-        self.horizontalLayout_9.addWidget(self.welcome_page_image)
-
         self.welcome_page_description = QTextEdit(self.welcome_page_widget)
         self.welcome_page_description.setObjectName(u"welcome_page_description")
+        self.welcome_page_description.setMinimumSize(QSize(500, 0))
+        font6 = QFont()
+        font6.setFamily(u"Segoe UI")
+        font6.setPointSize(30)
+        font6.setBold(False)
+        font6.setItalic(False)
+        font6.setKerning(True)
+        self.welcome_page_description.setFont(font6)
+        self.welcome_page_description.setStyleSheet(u"background-color: transparent;\n"
+"border: none;\n"
+"border-radius: 10px;\n"
+"font-size: 30pt;")
 
         self.horizontalLayout_9.addWidget(self.welcome_page_description)
 
+        self.welcome_page_image = QPushButton(self.welcome_page_widget)
+        self.welcome_page_image.setObjectName(u"welcome_page_image")
+        self.welcome_page_image.setEnabled(True)
+        sizePolicy.setHeightForWidth(self.welcome_page_image.sizePolicy().hasHeightForWidth())
+        self.welcome_page_image.setSizePolicy(sizePolicy)
+        self.welcome_page_image.setStyleSheet(u"background-color: transparent;\n"
+"border: none;\n"
+"border-radius: 50px;")
+        icon7 = QIcon()
+        icon7.addFile(u":/images/images/images/kawai.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.welcome_page_image.setIcon(icon7)
+        self.welcome_page_image.setIconSize(QSize(500, 500))
+
+        self.horizontalLayout_9.addWidget(self.welcome_page_image)
+
 
         self.verticalLayout_23.addWidget(self.welcome_page_widget)
+
+
+        self.horizontalLayout_6.addWidget(self.widget)
 
         self.stackedWidget.addWidget(self.welcome_page)
         self.widgets = QWidget()
@@ -1301,9 +1349,9 @@ class Ui_MainWindow(object):
         self.block_mode_btn.setEnabled(False)
         self.block_mode_btn.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
 "border: none;")
-        icon7 = QIcon()
-        icon7.addFile(u":/icons/images/icons/icon_settings.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.block_mode_btn.setIcon(icon7)
+        icon8 = QIcon()
+        icon8.addFile(u":/icons/images/icons/icon_settings.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.block_mode_btn.setIcon(icon8)
 
         self.verticalLayout_22.addWidget(self.block_mode_btn)
 
@@ -1358,25 +1406,58 @@ class Ui_MainWindow(object):
         self.block_encrypt_filepath_btn.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
 "border: 2px solid violet;\n"
 "")
-        icon8 = QIcon()
-        icon8.addFile(u":/icons/images/icons/cil-folder-open.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.block_encrypt_filepath_btn.setIcon(icon8)
+        icon9 = QIcon()
+        icon9.addFile(u":/icons/images/icons/cil-folder-open.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.block_encrypt_filepath_btn.setIcon(icon9)
 
         self.horizontalLayout_18.addWidget(self.block_encrypt_filepath_btn)
 
 
         self.verticalLayout_16.addWidget(self.block_encrypt_filesearch_widget)
 
+        self.block_encrypt_filename_widget = QWidget(self.block_input_widget)
+        self.block_encrypt_filename_widget.setObjectName(u"block_encrypt_filename_widget")
+        self.block_encrypt_filename_widget.setMinimumSize(QSize(0, 33))
+        self.block_encrypt_filename_widget.setMaximumSize(QSize(16777215, 33))
+        self.horizontalLayout_17 = QHBoxLayout(self.block_encrypt_filename_widget)
+        self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
+        self.block_encrypt_filename_tittle = QLineEdit(self.block_encrypt_filename_widget)
+        self.block_encrypt_filename_tittle.setObjectName(u"block_encrypt_filename_tittle")
+        sizePolicy5 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.block_encrypt_filename_tittle.sizePolicy().hasHeightForWidth())
+        self.block_encrypt_filename_tittle.setSizePolicy(sizePolicy5)
+        self.block_encrypt_filename_tittle.setMinimumSize(QSize(90, 25))
+        self.block_encrypt_filename_tittle.setMaximumSize(QSize(90, 25))
+        self.block_encrypt_filename_tittle.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
+"border: 2px solid violet;\n"
+"")
+
+        self.horizontalLayout_17.addWidget(self.block_encrypt_filename_tittle)
+
+        self.block_encrypt_filename = QTextEdit(self.block_encrypt_filename_widget)
+        self.block_encrypt_filename.setObjectName(u"block_encrypt_filename")
+        self.block_encrypt_filename.setMinimumSize(QSize(0, 25))
+        self.block_encrypt_filename.setMaximumSize(QSize(16777215, 25))
+        self.block_encrypt_filename.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.horizontalLayout_17.addWidget(self.block_encrypt_filename)
+
+
+        self.verticalLayout_16.addWidget(self.block_encrypt_filename_widget)
+
         self.block_generate_key_widget = QWidget(self.block_input_widget)
         self.block_generate_key_widget.setObjectName(u"block_generate_key_widget")
-        self.block_generate_key_widget.setMinimumSize(QSize(0, 33))
-        self.block_generate_key_widget.setMaximumSize(QSize(16777215, 33))
+        self.block_generate_key_widget.setMinimumSize(QSize(0, 60))
+        self.block_generate_key_widget.setMaximumSize(QSize(16777215, 60))
         self.horizontalLayout_14 = QHBoxLayout(self.block_generate_key_widget)
         self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
         self.block_generate_key_btn = QPushButton(self.block_generate_key_widget)
         self.block_generate_key_btn.setObjectName(u"block_generate_key_btn")
         self.block_generate_key_btn.setMinimumSize(QSize(0, 25))
         self.block_generate_key_btn.setMaximumSize(QSize(16777215, 25))
+        self.block_generate_key_btn.setStyleSheet(u"border: 2px solid violet;")
         self.block_generate_key_btn.setIcon(icon3)
 
         self.horizontalLayout_14.addWidget(self.block_generate_key_btn)
@@ -1387,7 +1468,7 @@ class Ui_MainWindow(object):
         self.block_geenerate_key_message.setMinimumSize(QSize(100, 25))
         self.block_geenerate_key_message.setMaximumSize(QSize(100, 25))
         self.block_geenerate_key_message.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
-"border: 2px solid violet;\n"
+"border: nonet;\n"
 "border-radius: 10px;")
         self.block_geenerate_key_message.setAlignment(Qt.AlignCenter)
         self.block_geenerate_key_message.setReadOnly(True)
@@ -1396,8 +1477,8 @@ class Ui_MainWindow(object):
 
         self.block_generate_key_output = QTextEdit(self.block_generate_key_widget)
         self.block_generate_key_output.setObjectName(u"block_generate_key_output")
-        self.block_generate_key_output.setMinimumSize(QSize(0, 25))
-        self.block_generate_key_output.setMaximumSize(QSize(16777215, 25))
+        self.block_generate_key_output.setMinimumSize(QSize(0, 50))
+        self.block_generate_key_output.setMaximumSize(QSize(16777215, 50))
         self.block_generate_key_output.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
 "border: 2px solid violet;\n"
 "border-radius: 10px;")
@@ -1409,11 +1490,11 @@ class Ui_MainWindow(object):
 
         self.block_encrypt_btn = QPushButton(self.block_input_widget)
         self.block_encrypt_btn.setObjectName(u"block_encrypt_btn")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding)
-        sizePolicy5.setHorizontalStretch(0)
-        sizePolicy5.setVerticalStretch(0)
-        sizePolicy5.setHeightForWidth(self.block_encrypt_btn.sizePolicy().hasHeightForWidth())
-        self.block_encrypt_btn.setSizePolicy(sizePolicy5)
+        sizePolicy6 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(0)
+        sizePolicy6.setHeightForWidth(self.block_encrypt_btn.sizePolicy().hasHeightForWidth())
+        self.block_encrypt_btn.setSizePolicy(sizePolicy6)
         self.block_encrypt_btn.setMinimumSize(QSize(100, 0))
         self.block_encrypt_btn.setMaximumSize(QSize(500, 40))
         self.block_encrypt_btn.setStyleSheet(u"background-color: rgb(33, 37, 43);")
@@ -1428,6 +1509,7 @@ class Ui_MainWindow(object):
         self.block_encrypt_output.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
 "border: 2px solid violet;\n"
 "")
+        self.block_encrypt_output.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_16.addWidget(self.block_encrypt_output)
 
@@ -1476,17 +1558,46 @@ class Ui_MainWindow(object):
         self.block_decrypt_filepath_btn.setMaximumSize(QSize(50, 16777215))
         self.block_decrypt_filepath_btn.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
 "border: 2px solid violet;")
-        self.block_decrypt_filepath_btn.setIcon(icon8)
+        self.block_decrypt_filepath_btn.setIcon(icon9)
 
         self.horizontalLayout_19.addWidget(self.block_decrypt_filepath_btn)
 
 
         self.verticalLayout.addWidget(self.block_decrypt_search_widget)
 
+        self.block_decrypt_filename_widget = QWidget(self.block_output_widget)
+        self.block_decrypt_filename_widget.setObjectName(u"block_decrypt_filename_widget")
+        self.block_decrypt_filename_widget.setMinimumSize(QSize(0, 33))
+        self.block_decrypt_filename_widget.setMaximumSize(QSize(16777215, 33))
+        self.horizontalLayout_20 = QHBoxLayout(self.block_decrypt_filename_widget)
+        self.horizontalLayout_20.setObjectName(u"horizontalLayout_20")
+        self.block_decrrypt_filename_tittle = QLineEdit(self.block_decrypt_filename_widget)
+        self.block_decrrypt_filename_tittle.setObjectName(u"block_decrrypt_filename_tittle")
+        sizePolicy5.setHeightForWidth(self.block_decrrypt_filename_tittle.sizePolicy().hasHeightForWidth())
+        self.block_decrrypt_filename_tittle.setSizePolicy(sizePolicy5)
+        self.block_decrrypt_filename_tittle.setMinimumSize(QSize(90, 25))
+        self.block_decrrypt_filename_tittle.setMaximumSize(QSize(90, 25))
+        self.block_decrrypt_filename_tittle.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
+"border: 2px solid violet;\n"
+"")
+
+        self.horizontalLayout_20.addWidget(self.block_decrrypt_filename_tittle)
+
+        self.block_decrypt_filename = QTextEdit(self.block_decrypt_filename_widget)
+        self.block_decrypt_filename.setObjectName(u"block_decrypt_filename")
+        self.block_decrypt_filename.setMinimumSize(QSize(0, 25))
+        self.block_decrypt_filename.setMaximumSize(QSize(16777215, 25))
+        self.block_decrypt_filename.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.horizontalLayout_20.addWidget(self.block_decrypt_filename)
+
+
+        self.verticalLayout.addWidget(self.block_decrypt_filename_widget)
+
         self.block_key_widget = QWidget(self.block_output_widget)
         self.block_key_widget.setObjectName(u"block_key_widget")
-        self.block_key_widget.setMinimumSize(QSize(0, 33))
-        self.block_key_widget.setMaximumSize(QSize(16777215, 33))
+        self.block_key_widget.setMinimumSize(QSize(0, 60))
+        self.block_key_widget.setMaximumSize(QSize(16777215, 60))
         self.horizontalLayout_16 = QHBoxLayout(self.block_key_widget)
         self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
         self.block_key_icon = QPushButton(self.block_key_widget)
@@ -1505,7 +1616,7 @@ class Ui_MainWindow(object):
         self.block_key_message.setMinimumSize(QSize(60, 25))
         self.block_key_message.setMaximumSize(QSize(60, 25))
         self.block_key_message.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
-"border: 2px solid violet;\n"
+"border: none;\n"
 "border-radius: 10px;")
         self.block_key_message.setAlignment(Qt.AlignCenter)
 
@@ -1513,8 +1624,8 @@ class Ui_MainWindow(object):
 
         self.block_key_output = QTextEdit(self.block_key_widget)
         self.block_key_output.setObjectName(u"block_key_output")
-        self.block_key_output.setMinimumSize(QSize(0, 25))
-        self.block_key_output.setMaximumSize(QSize(16777215, 25))
+        self.block_key_output.setMinimumSize(QSize(0, 50))
+        self.block_key_output.setMaximumSize(QSize(16777215, 50))
         self.block_key_output.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
 "border: 2px solid violet;\n"
 "border-radius: 10px;")
@@ -1526,8 +1637,8 @@ class Ui_MainWindow(object):
 
         self.block_decrypt_btn = QPushButton(self.block_output_widget)
         self.block_decrypt_btn.setObjectName(u"block_decrypt_btn")
-        sizePolicy5.setHeightForWidth(self.block_decrypt_btn.sizePolicy().hasHeightForWidth())
-        self.block_decrypt_btn.setSizePolicy(sizePolicy5)
+        sizePolicy6.setHeightForWidth(self.block_decrypt_btn.sizePolicy().hasHeightForWidth())
+        self.block_decrypt_btn.setSizePolicy(sizePolicy6)
         self.block_decrypt_btn.setMinimumSize(QSize(100, 0))
         self.block_decrypt_btn.setMaximumSize(QSize(500, 40))
         self.block_decrypt_btn.setStyleSheet(u"background-color: rgb(33, 37, 43);")
@@ -1542,6 +1653,7 @@ class Ui_MainWindow(object):
         self.block_decrypt_output.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
 "border: 2px solid violet;\n"
 "")
+        self.block_decrypt_output.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout.addWidget(self.block_decrypt_output)
 
@@ -1552,6 +1664,74 @@ class Ui_MainWindow(object):
         self.horizontalLayout_15.addLayout(self.block_horizontal_layout)
 
         self.stackedWidget.addWidget(self.widgets)
+        self.cryptoanalysis = QWidget()
+        self.cryptoanalysis.setObjectName(u"cryptoanalysis")
+        sizePolicy.setHeightForWidth(self.cryptoanalysis.sizePolicy().hasHeightForWidth())
+        self.cryptoanalysis.setSizePolicy(sizePolicy)
+        self.horizontalLayout_22 = QHBoxLayout(self.cryptoanalysis)
+        self.horizontalLayout_22.setObjectName(u"horizontalLayout_22")
+        self.cryptoanalysis_layout = QHBoxLayout()
+        self.cryptoanalysis_layout.setObjectName(u"cryptoanalysis_layout")
+        self.crypo_input_widget = QWidget(self.cryptoanalysis)
+        self.crypo_input_widget.setObjectName(u"crypo_input_widget")
+        sizePolicy.setHeightForWidth(self.crypo_input_widget.sizePolicy().hasHeightForWidth())
+        self.crypo_input_widget.setSizePolicy(sizePolicy)
+        self.verticalLayout_24 = QVBoxLayout(self.crypo_input_widget)
+        self.verticalLayout_24.setObjectName(u"verticalLayout_24")
+        self.crypto_tittle = QLineEdit(self.crypo_input_widget)
+        self.crypto_tittle.setObjectName(u"crypto_tittle")
+        self.crypto_tittle.setStyleSheet(u"background-color: transparent;\n"
+"border: none;")
+        self.crypto_tittle.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_24.addWidget(self.crypto_tittle)
+
+        self.crypto_analysis_input = QTextEdit(self.crypo_input_widget)
+        self.crypto_analysis_input.setObjectName(u"crypto_analysis_input")
+        self.crypto_analysis_input.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
+"border: 2px solid violet;\n"
+"border-radius: 10px;")
+
+        self.verticalLayout_24.addWidget(self.crypto_analysis_input)
+
+        self.crypto_analysis_btn = QPushButton(self.crypo_input_widget)
+        self.crypto_analysis_btn.setObjectName(u"crypto_analysis_btn")
+        sizePolicy5.setHeightForWidth(self.crypto_analysis_btn.sizePolicy().hasHeightForWidth())
+        self.crypto_analysis_btn.setSizePolicy(sizePolicy5)
+        self.crypto_analysis_btn.setMinimumSize(QSize(100, 40))
+        self.crypto_analysis_btn.setMaximumSize(QSize(100, 40))
+        self.crypto_analysis_btn.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+        icon10 = QIcon()
+        icon10.addFile(u":/icons/images/icons/analysis.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.crypto_analysis_btn.setIcon(icon10)
+
+        self.verticalLayout_24.addWidget(self.crypto_analysis_btn, 0, Qt.AlignHCenter|Qt.AlignVCenter)
+
+
+        self.cryptoanalysis_layout.addWidget(self.crypo_input_widget)
+
+        self.crypto_output_widget = QWidget(self.cryptoanalysis)
+        self.crypto_output_widget.setObjectName(u"crypto_output_widget")
+        sizePolicy.setHeightForWidth(self.crypto_output_widget.sizePolicy().hasHeightForWidth())
+        self.crypto_output_widget.setSizePolicy(sizePolicy)
+        self.verticalLayout_25 = QVBoxLayout(self.crypto_output_widget)
+        self.verticalLayout_25.setObjectName(u"verticalLayout_25")
+        self.crypto_analysis_output = QTextEdit(self.crypto_output_widget)
+        self.crypto_analysis_output.setObjectName(u"crypto_analysis_output")
+        self.crypto_analysis_output.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
+"border: 2px solid violet;\n"
+"border-radius: 10px;")
+        self.crypto_analysis_output.setReadOnly(True)
+
+        self.verticalLayout_25.addWidget(self.crypto_analysis_output)
+
+
+        self.cryptoanalysis_layout.addWidget(self.crypto_output_widget)
+
+
+        self.horizontalLayout_22.addLayout(self.cryptoanalysis_layout)
+
+        self.stackedWidget.addWidget(self.cryptoanalysis)
         self.new_page = QWidget()
         self.new_page.setObjectName(u"new_page")
         self.horizontalLayout_8 = QHBoxLayout(self.new_page)
@@ -1589,9 +1769,9 @@ class Ui_MainWindow(object):
         self.public_key_generate_settings.setMaximumSize(QSize(160, 30))
         self.public_key_generate_settings.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
 "border: 2px solid violet;")
-        icon9 = QIcon()
-        icon9.addFile(u":/icons/images/icons/cil-dialpad.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.public_key_generate_settings.setIcon(icon9)
+        icon11 = QIcon()
+        icon11.addFile(u":/icons/images/icons/cil-dialpad.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.public_key_generate_settings.setIcon(icon11)
 
         self.verticalLayout_21.addWidget(self.public_key_generate_settings, 0, Qt.AlignBottom)
 
@@ -1643,9 +1823,9 @@ class Ui_MainWindow(object):
         self.public_key_icon.setMinimumSize(QSize(0, 30))
         self.public_key_icon.setMaximumSize(QSize(16777215, 30))
         self.public_key_icon.setStyleSheet(u"border: none;")
-        icon10 = QIcon()
-        icon10.addFile(u":/icons/images/icons/cil-transfer.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.public_key_icon.setIcon(icon10)
+        icon12 = QIcon()
+        icon12.addFile(u":/icons/images/icons/cil-transfer.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.public_key_icon.setIcon(icon12)
 
         self.horizontalLayout_12.addWidget(self.public_key_icon)
 
@@ -1656,7 +1836,7 @@ class Ui_MainWindow(object):
         self.public_key_line.setMinimumSize(QSize(90, 30))
         self.public_key_line.setMaximumSize(QSize(90, 30))
         self.public_key_line.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
-"border: 2px solid violet;\n"
+"border: nonee;\n"
 "border-radius: 10px;")
         self.public_key_line.setAlignment(Qt.AlignCenter)
         self.public_key_line.setReadOnly(True)
@@ -1755,7 +1935,7 @@ class Ui_MainWindow(object):
         self.private_key_line.setMinimumSize(QSize(90, 30))
         self.private_key_line.setMaximumSize(QSize(90, 30))
         self.private_key_line.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
-"border: 2px solid violet;\n"
+"border: none;\n"
 "border-radius: 10px;")
         self.private_key_line.setAlignment(Qt.AlignCenter)
         self.private_key_line.setReadOnly(True)
@@ -1801,7 +1981,7 @@ class Ui_MainWindow(object):
 
         self.stackedWidget.addWidget(self.new_page)
 
-        self.horizontalLayout_6.addWidget(self.stackedWidget)
+        self.verticalLayout_26.addWidget(self.stackedWidget)
 
 
         self.horizontalLayout_4.addWidget(self.pagesContainer)
@@ -1901,11 +2081,11 @@ class Ui_MainWindow(object):
         self.creditsLabel = QLabel(self.bottomBar)
         self.creditsLabel.setObjectName(u"creditsLabel")
         self.creditsLabel.setMaximumSize(QSize(16777215, 16))
-        font5 = QFont()
-        font5.setFamily(u"Segoe UI")
-        font5.setBold(False)
-        font5.setItalic(False)
-        self.creditsLabel.setFont(font5)
+        font7 = QFont()
+        font7.setFamily(u"Segoe UI")
+        font7.setBold(False)
+        font7.setItalic(False)
+        self.creditsLabel.setFont(font7)
         self.creditsLabel.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
 
         self.horizontalLayout_5.addWidget(self.creditsLabel)
@@ -1935,7 +2115,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -2005,16 +2185,23 @@ class Ui_MainWindow(object):
         self.classical_key_line.setText(QCoreApplication.translate("MainWindow", u"Key", None))
         self.classical_btn_decrypt.setText(QCoreApplication.translate("MainWindow", u"Decrypt", None))
         self.welcome_page_tittle.setText(QCoreApplication.translate("MainWindow", u"WHAT DOES SECRETSAFE DO FOR YOU?", None))
-        self.welcome_page_image.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">APPLICATION DESCRIPTION</p></body></html>", None))
         self.welcome_page_description.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">IMAGE</p></body></html>", None))
+"</style></head><body style=\" font-family:'Segoe UI'; font-size:30pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:20pt;\">This is an application that addresses the need for privacy and security in a virtual world. Focusing on internet text messaging, Secret Safe allows the encryption of two key forms of information: text and images. Classic, block, and public key encryptions are employed to cater to different user preferences. Lastly, it provides a cryptanalysis tool to playfully demonstrate the vulnerabilities of classic ciphers.</span></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px;"
+                        " margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:20pt;\"><br /></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:20pt;\">We hope that Secret Safe proves valuable in your everyday life.</span></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:20pt;\"><br /></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:20pt;\">Best regards,</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:20pt;\">Development Team:</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-"
+                        "left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:20pt;\">- Santiago Tovar Mosquera</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:20pt;\">- Juliana Nieto C\u00e1rdenas</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:20pt;\">- Anderson Andr\u00e9s Llanos Quintero</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:20pt;\">- Daniel Estevan Garcia Ni\u00f1o</span></p></body></html>", None))
+        self.welcome_page_image.setText("")
         self.block_list.setItemText(0, QCoreApplication.translate("MainWindow", u"AES", None))
         self.block_list.setItemText(1, QCoreApplication.translate("MainWindow", u"S-DES", None))
         self.block_list.setItemText(2, QCoreApplication.translate("MainWindow", u"T-DES", None))
@@ -2027,16 +2214,20 @@ class Ui_MainWindow(object):
 
         self.block_encrypt_process.setText(QCoreApplication.translate("MainWindow", u"ENCRYPT PROCESS", None))
         self.block_encrypt_filepath_btn.setText("")
+        self.block_encrypt_filename_tittle.setText(QCoreApplication.translate("MainWindow", u"Filename", None))
         self.block_generate_key_btn.setText("")
         self.block_geenerate_key_message.setText(QCoreApplication.translate("MainWindow", u"Generate Key", None))
         self.block_encrypt_btn.setText(QCoreApplication.translate("MainWindow", u"Encrypt", None))
         self.block_encrypt_output.setText("")
         self.block_decrypt_process.setText(QCoreApplication.translate("MainWindow", u"DECRYPT PROCESS", None))
         self.block_decrypt_filepath_btn.setText("")
+        self.block_decrrypt_filename_tittle.setText(QCoreApplication.translate("MainWindow", u"Filename", None))
         self.block_key_icon.setText("")
         self.block_key_message.setText(QCoreApplication.translate("MainWindow", u"Key", None))
         self.block_decrypt_btn.setText(QCoreApplication.translate("MainWindow", u"Decrypt", None))
         self.block_decrypt_output.setText("")
+        self.crypto_tittle.setText(QCoreApplication.translate("MainWindow", u"CRYPTOANALYSIS", None))
+        self.crypto_analysis_btn.setText(QCoreApplication.translate("MainWindow", u"Analyze", None))
         self.public_key_list.setItemText(0, QCoreApplication.translate("MainWindow", u"RSA", None))
         self.public_key_list.setItemText(1, QCoreApplication.translate("MainWindow", u"Rabin", None))
         self.public_key_list.setItemText(2, QCoreApplication.translate("MainWindow", u"ElGamal", None))

@@ -1333,6 +1333,7 @@ class Ui_MainWindow(object):
         self.block_list.addItem("")
         self.block_list.addItem("")
         self.block_list.addItem("")
+        self.block_list.addItem("")
         self.block_list.setObjectName(u"block_list")
         self.block_list.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
 "border: 2px solid violet;\n"
@@ -2205,6 +2206,7 @@ class Ui_MainWindow(object):
         self.block_list.setItemText(0, QCoreApplication.translate("MainWindow", u"AES", None))
         self.block_list.setItemText(1, QCoreApplication.translate("MainWindow", u"S-DES", None))
         self.block_list.setItemText(2, QCoreApplication.translate("MainWindow", u"T-DES", None))
+        self.block_list.setItemText(3, QCoreApplication.translate("MainWindow", u"HILL", None))
 
         self.block_mode_btn.setText(QCoreApplication.translate("MainWindow", u"MODE", None))
         self.block_mode_list.setItemText(0, QCoreApplication.translate("MainWindow", u"CBC", None))

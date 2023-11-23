@@ -501,6 +501,12 @@ class MainWindow(QMainWindow):
         generated_key = triple_des.tdes_generate_key()
         self.ui.block_generate_key_output.setPlainText(str(generated_key))
         
+    '''def hill_generate_key_image(self):
+        generated_key = hill2.crear_clave_hill(3)
+        key = generated_key[0]
+        inv_key = generated_key[1]
+        self.ui.block_generate_key_output.setPlainText("Key : " + str(key) + " - Inv Key : " + str(inv_key))'''
+        
     def aes_encrypt_image(self):
         image_path = self.ui.block_encrypt_filepath.text()
         if self.ui.block_generate_key_output.toPlainText():
@@ -677,6 +683,28 @@ class MainWindow(QMainWindow):
         decrypted_image_path = triple_des.descifrar_imagen_ctr(image_path, key)
         pixmap = QPixmap(decrypted_image_path)
         self.ui.block_decrypt_output.setPixmap(pixmap)
+    
+    '''
+    def hill_encrypt_image(self):
+        image_path = self.ui.block_encrypt_filepath.text()
+        if self.ui.block_generate_key_output.toPlainText():
+            datos = hill2.cargar_imagen(image_path)
+            lista = np.matrix(self.ui.block_generate_key_output.toPlainText().split(" - ")[0].split(" : ")[1]).flatten()
+            key = hill.convert_numbers_to_matrix(",".join(map(str, lista)))
+            imagen_cifrada = hill2.aplicar_cifrado_hill(datos, key)
+            hill2.guardar_imagen(imagen_cifrada, '/testing_images/encrypted/encrypted_hill.png')
+            pixmap = QPixmap('/testing_images/encrypted/encrypted_hill.png')
+            self.ui.block_encrypt_output.setPixmap(pixmap)
+        
+    def hill_decrypt_image(self):
+        image_path = self.ui.block_decrypt_filepath.text()
+        datos = hill2.cargar_imagen(image_path)
+        key_inv = np.matrix(self.ui.block_key_output.toPlainText())
+        imagen_decifrada = hill2.aplicar_cifrado_hill(datos, key_inv)
+        hill2.guardar_imagen(imagen_decifrada, '/testing_images/decrypted/decrypted_hill.png')
+        pixmap = QPixmap('/testing_images/decrypted/decrypted_hill.png')
+        self.ui.block_decrypt_output.setPixmap(pixmap)
+    '''
         
     def block_encryption_choice_action(self):
         index = self.ui.block_list.currentIndex()
@@ -762,6 +790,14 @@ class MainWindow(QMainWindow):
                 self.current_block_generate_key_function = self.tdes_generate_key
                 self.current_block_encrypt_function = self.tdes_encrypt_image_ecb
                 self.current_block_decrypt_function = self.tdes_decrypt_image_ecb
+        '''elif index == 3:
+            self.ui.block_encrypt_output.clear()
+            self.ui.block_decrypt_output.clear()
+            self.ui.block_generate_key_output.setPlainText("")
+            self.ui.block_key_output.setPlainText("")
+            self.current_block_generate_key_function = self.hill_generate_key
+            self.current_block_encrypt_function = self.hill_encrypt_image
+            self.current_block_decrypt_function = self.hill_decrypt_image'''
         
         self.ui.block_generate_key_btn.clicked.connect(self.current_block_generate_key_function)
         self.ui.block_encrypt_btn.clicked.connect(self.current_block_encrypt_function)

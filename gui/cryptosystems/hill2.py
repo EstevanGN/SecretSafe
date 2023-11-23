@@ -33,17 +33,18 @@ def aplicar_cifrado_hill(datos, clave):
     return transformados.reshape(forma)
 
 # Cargar imagen
-ruta_imagen = '../testing_images/original/homero.jpg'
-datos_imagen = cargar_imagen(ruta_imagen)
+#ruta_imagen = '../testing_images/original/homero.jpg'
+
+#datos_imagen = cargar_imagen(ruta_imagen)
 
 # Crear clave de Hill
-tamano_clave = 3
-clave, clave_inv = crear_clave_hill(tamano_clave)
+#tamano_clave = 3
+#clave, clave_inv = crear_clave_hill(tamano_clave)
 
 # Cifrar imagen
-imagen_cifrada = aplicar_cifrado_hill(datos_imagen, clave)
-guardar_imagen(imagen_cifrada, '../testing_images/encrypted/homero_cifrado_hill.png')
+#imagen_cifrada = aplicar_cifrado_hill(datos_imagen, clave)
+#guardar_imagen(imagen_cifrada, '../testing_images/encrypted/homero_cifrado_hill.png')
 
 # Descifrar imagen
-imagen_descifrada = aplicar_cifrado_hill(imagen_cifrada, clave_inv)
-guardar_imagen(imagen_descifrada, '../testing_images/decrypted/homero_descifrado_hill.png')
+#imagen_descifrada = aplicar_cifrado_hill(imagen_cifrada, clave_inv)
+#guardar_imagen(imagen_descifrada, '../testing_images/decrypted/homero_descifrado_hill.png')
