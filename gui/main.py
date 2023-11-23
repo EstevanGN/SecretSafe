@@ -51,7 +51,7 @@ class MainWindow(QMainWindow):
         global widgets
         widgets = self.ui
         # Classical Global Variables
-        self.current_public_encrypt_function = None
+        self.current_public_generate_key_function = None
         self.current_public_encrypt_function = None
         self.current_public_decrypt_function = None
         # USE CUSTOM TITLE BAR | USE AS "False" FOR MAC OR LINUX
@@ -161,6 +161,8 @@ class MainWindow(QMainWindow):
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet())) # SELECT MENU
             # AQUI
             self.ui.public_key_list.currentIndexChanged.connect(self.public_key_encryption_choice_action)
+            self.ui.public_key_list.setCurrentIndex(1)
+            self.ui.public_key_list.setCurrentIndex(0)
 
         if btnName == "btn_analysis":
             print("Save BTN clicked!")
@@ -339,6 +341,9 @@ class MainWindow(QMainWindow):
     
     
     def RSA_generate_key(self):
+        self.ui.public_encrypt_output.setPlainText("")
+        self.ui.public_decrypt_input.setPlainText("")
+        self.ui.public_decrypt_output.setPlainText("")
         generated_key = RSA.generar_claves()
         self.ui.public_key_input.setPlainText(str(generated_key[0]))
         self.ui.private_key_input.setPlainText(str(generated_key[1]))
@@ -366,7 +371,7 @@ class MainWindow(QMainWindow):
         if self.current_public_decrypt_function is not None:
             self.ui.public_btn_encrypt.clicked.disconnect(self.current_public_decrypt_function)
         if self.current_public_generate_key_function is not None:
-            self.ui.public_btn_encrypt.clicked.disconnect(self.current_generacurrent_public_generate_key_functionte_key_function)
+            self.ui.public_btn_encrypt.clicked.disconnect(self.current_public_generate_key_function)
         if index == 0:
             self.ui.public_key_settings_output.setPlainText("")
             self.ui.private_key_input.setPlainText("")
