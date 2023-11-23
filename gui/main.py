@@ -25,7 +25,7 @@ import struct
 # ///////////////////////////////////////////////////////////////
 from modules import *
 from widgets import *
-from cryptosystems import shift, afin, vigenere, sust_permu, hill, Menezes, aes_image_encryption, SDES
+from cryptosystems import shift, afin, vigenere, sust_permu, hill, Menezes, aes_image_encryption, SDES, triple_des
 os.environ["QT_FONT_DPI"] = "96" # FIX Problem for High DPI and Scale above 100%
 
 # SET AS GLOBAL WIDGETS
@@ -347,6 +347,10 @@ class MainWindow(QMainWindow):
         generated_key = SDES.sdes_generate_key()
         self.ui.block_generate_key_output.setPlainText(str(generated_key))
         
+    def tdes_generate_key(self):
+        generated_key = triple_des.tdes_generate_key()
+        self.ui.block_generate_key_output.setPlainText(str(generated_key))
+        
     def aes_encrypt_image(self):
         image_path = self.ui.block_encrypt_filepath.text()
         if self.ui.block_generate_key_output.toPlainText():
@@ -465,6 +469,65 @@ class MainWindow(QMainWindow):
         pixmap = QPixmap(decrypted_image_path)
         self.ui.block_decrypt_output.setPixmap(pixmap)
         
+    def tdes_encrypt_image(self):
+        image_path = self.ui.block_encrypt_filepath.text()
+        if self.ui.block_generate_key_output.toPlainText():
+            aes_key = ast.literal_eval(self.ui.block_generate_key_output.toPlainText())
+            key = struct.pack('24B', *aes_key)
+            encrypt_image_return = triple_des.cifrar_imagen(image_path, key)
+            encrypted_image_path = encrypt_image_return[0]
+            mode = str(encrypt_image_return[1])
+            pixmap = QPixmap(encrypted_image_path)
+            self.ui.block_encrypt_output.setPixmap(pixmap)
+            self.ui.block_generate_key_output.setPlainText("Key : " + self.ui.block_generate_key_output.toPlainText() + " - Mode : " + mode)
+        
+    def tdes_encrypt_image_ecb(self):
+        image_path = self.ui.block_encrypt_filepath.text()
+        if self.ui.block_generate_key_output.toPlainText():
+            aes_key = ast.literal_eval(self.ui.block_generate_key_output.toPlainText())
+            key = struct.pack('24B', *aes_key)
+            encrypted_image_path = triple_des.cifrar_imagen_ecb(image_path, key)
+            pixmap = QPixmap(encrypted_image_path)
+            self.ui.block_encrypt_output.setPixmap(pixmap)
+            self.ui.block_generate_key_output.setPlainText("Key : " + self.ui.block_generate_key_output.toPlainText())
+        
+    def tdes_encrypt_image_ctr(self):
+        image_path = self.ui.block_encrypt_filepath.text()
+        if self.ui.block_generate_key_output.toPlainText():
+            aes_key = ast.literal_eval(self.ui.block_generate_key_output.toPlainText())
+            key = struct.pack('24B', *aes_key)
+            encrypted_image_path = triple_des.cifrar_imagen_ctr(image_path, key)
+            pixmap = QPixmap(encrypted_image_path)
+            self.ui.block_encrypt_output.setPixmap(pixmap)
+            self.ui.block_generate_key_output.setPlainText("Key : " + self.ui.block_generate_key_output.toPlainText())
+        
+    def tdes_decrypt_image(self):
+        image_path = self.ui.block_decrypt_filepath.text()
+        all_key = self.ui.block_key_output.toPlainText().split(" - ")
+        aes_key = ast.literal_eval(all_key[0].split(" : ")[1])
+        aes_mode = ast.literal_eval(all_key[1].split(" : ")[1])
+        key = struct.pack('24B', *aes_key)
+        mode = struct.pack('8B', *aes_mode)
+        decrypted_image_path = triple_des.descifrar_imagen(image_path, key, mode)
+        pixmap = QPixmap(decrypted_image_path)
+        self.ui.block_decrypt_output.setPixmap(pixmap)
+        
+    def tdes_decrypt_image_ecb(self):
+        image_path = self.ui.block_decrypt_filepath.text()
+        aes_key = ast.literal_eval(self.ui.block_key_output.toPlainText().split(" : ")[1])
+        key = struct.pack('24B', *aes_key)
+        decrypted_image_path = triple_des.descifrar_imagen_ecb(image_path, key)
+        pixmap = QPixmap(decrypted_image_path)
+        self.ui.block_decrypt_output.setPixmap(pixmap)
+        
+    def tdes_decrypt_image_ctr(self):
+        image_path = self.ui.block_decrypt_filepath.text()
+        aes_key = ast.literal_eval(self.ui.block_key_output.toPlainText().split(" : ")[1])
+        key = struct.pack('24B', *aes_key)
+        decrypted_image_path = triple_des.descifrar_imagen_ctr(image_path, key)
+        pixmap = QPixmap(decrypted_image_path)
+        self.ui.block_decrypt_output.setPixmap(pixmap)
+        
     def block_encryption_choice_action(self):
         index = self.ui.block_list.currentIndex()
         mode_index = self.ui.block_mode_list.currentIndex()
@@ -477,41 +540,78 @@ class MainWindow(QMainWindow):
         if index == 0:
             if mode_index == 0 or mode_index == 3:
                 self.ui.block_encrypt_output.clear()
+                self.ui.block_decrypt_output.clear()
                 self.ui.block_generate_key_output.setPlainText("")
+                self.ui.block_key_output.setPlainText("")
                 self.current_block_generate_key_function = self.aes_generate_key
                 self.current_block_encrypt_function = self.aes_encrypt_image
                 self.current_block_decrypt_function = self.aes_decrypt_image
             elif mode_index == 1:
                 self.ui.block_encrypt_output.clear()
+                self.ui.block_decrypt_output.clear()
                 self.ui.block_generate_key_output.setPlainText("")
+                self.ui.block_key_output.setPlainText("")
                 self.current_block_generate_key_function = self.aes_generate_key
                 self.current_block_encrypt_function = self.aes_encrypt_image_ctr
                 self.current_block_decrypt_function = self.aes_decrypt_image_ctr
             elif mode_index == 2:
                 self.ui.block_encrypt_output.clear()
+                self.ui.block_decrypt_output.clear()
                 self.ui.block_generate_key_output.setPlainText("")
+                self.ui.block_key_output.setPlainText("")
                 self.current_block_generate_key_function = self.aes_generate_key
                 self.current_block_encrypt_function = self.aes_encrypt_image_ecb
                 self.current_block_decrypt_function = self.aes_decrypt_image_ecb
         elif index == 1:
             if mode_index == 0 or mode_index == 3:
                 self.ui.block_encrypt_output.clear()
+                self.ui.block_decrypt_output.clear()
                 self.ui.block_generate_key_output.setPlainText("")
+                self.ui.block_key_output.setPlainText("")
                 self.current_block_generate_key_function = self.sdes_generate_key
                 self.current_block_encrypt_function = self.sdes_encrypt_image
                 self.current_block_decrypt_function = self.sdes_decrypt_image
             elif mode_index == 1:
                 self.ui.block_encrypt_output.clear()
+                self.ui.block_decrypt_output.clear()
                 self.ui.block_generate_key_output.setPlainText("")
-                self.current_block_generate_key_function = self.sdes_generate_key
-                self.current_block_encrypt_function = self.sdes_encrypt_image_ecb
-                self.current_block_decrypt_function = self.sdes_decrypt_image_ecb
-            elif mode_index == 2:
-                self.ui.block_encrypt_output.clear()
-                self.ui.block_generate_key_output.setPlainText("")
+                self.ui.block_key_output.setPlainText("")
                 self.current_block_generate_key_function = self.sdes_generate_key
                 self.current_block_encrypt_function = self.sdes_encrypt_image_ctr
                 self.current_block_decrypt_function = self.sdes_decrypt_image_ctr
+            elif mode_index == 2:
+                self.ui.block_encrypt_output.clear()
+                self.ui.block_decrypt_output.clear()
+                self.ui.block_generate_key_output.setPlainText("")
+                self.ui.block_key_output.setPlainText("")
+                self.current_block_generate_key_function = self.sdes_generate_key
+                self.current_block_encrypt_function = self.sdes_encrypt_image_ecb
+                self.current_block_decrypt_function = self.sdes_decrypt_image_ecb
+        elif index == 2:
+            if mode_index == 0 or mode_index == 3:
+                self.ui.block_encrypt_output.clear()
+                self.ui.block_decrypt_output.clear()
+                self.ui.block_generate_key_output.setPlainText("")
+                self.ui.block_key_output.setPlainText("")
+                self.current_block_generate_key_function = self.tdes_generate_key
+                self.current_block_encrypt_function = self.tdes_encrypt_image
+                self.current_block_decrypt_function = self.tdes_decrypt_image
+            elif mode_index == 1:
+                self.ui.block_encrypt_output.clear()
+                self.ui.block_decrypt_output.clear()
+                self.ui.block_generate_key_output.setPlainText("")
+                self.ui.block_key_output.setPlainText("")
+                self.current_block_generate_key_function = self.tdes_generate_key
+                self.current_block_encrypt_function = self.tdes_encrypt_image_ctr
+                self.current_block_decrypt_function = self.tdes_decrypt_image_ctr
+            elif mode_index == 2:
+                self.ui.block_encrypt_output.clear()
+                self.ui.block_decrypt_output.clear()
+                self.ui.block_generate_key_output.setPlainText("")
+                self.ui.block_key_output.setPlainText("")
+                self.current_block_generate_key_function = self.tdes_generate_key
+                self.current_block_encrypt_function = self.tdes_encrypt_image_ecb
+                self.current_block_decrypt_function = self.tdes_decrypt_image_ecb
         
         self.ui.block_generate_key_btn.clicked.connect(self.current_block_generate_key_function)
         self.ui.block_encrypt_btn.clicked.connect(self.current_block_encrypt_function)

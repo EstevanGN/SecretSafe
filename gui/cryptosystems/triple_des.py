@@ -9,6 +9,9 @@ def imagen_a_bytes(imagen):
 
 def bytes_a_imagen(datos_bytes, modo_imagen, tamaño_imagen):
     return Image.frombytes(modo_imagen, tamaño_imagen, datos_bytes)
+  
+def tdes_generate_key():
+  return list(get_random_bytes(24))
 
 def elegir_modo_cifrado():
     modos = {
@@ -28,8 +31,8 @@ def elegir_modo_cifrado():
 
     eleccion = input("Introduce el número del modo deseado: ")
     return modos.get(eleccion, DES3.MODE_CBC)
-
-def cifrar_imagen(ruta_imagen, clave, modo):
+  
+def cifrar_imagen_ecb(ruta_imagen, clave):
     # Cargar la imagen
     imagen = Image.open(ruta_imagen)
     modo_imagen = imagen.mode
@@ -41,16 +44,7 @@ def cifrar_imagen(ruta_imagen, clave, modo):
         datos_imagen += b'\0'
 
     info = None
-    # Crear un objeto DES3 en modo deseado
-    if(modo == DES3.MODE_ECB):
-      cifrador = DES3.new(clave, DES3.MODE_ECB)
-    if(modo == DES3.MODE_CBC or modo == DES3.MODE_OFB):
-      cifrador = DES3.new(clave, modo)
-      iv = cifrador.iv
-      info = iv
-    if(modo == DES3.MODE_CTR):
-      contador = Counter.new(64)
-      cifrador = DES3.new(clave, DES3.MODE_CTR, counter=contador)
+    cifrador = DES3.new(clave, DES3.MODE_ECB)
 
     # Cifrar los datos de la imagen
     datos_cifrados = cifrador.encrypt(datos_imagen)
@@ -59,25 +53,72 @@ def cifrar_imagen(ruta_imagen, clave, modo):
     imagen_cifrada = bytes_a_imagen(datos_cifrados, modo_imagen, tamaño_imagen)
 
     # Guardar la imagen cifrada
-    ruta_imagen_cifrada = 'img_cifrada.png'
+    ruta_imagen_cifrada = '/home/aeternal/Documents/SecretSafe/gui/testing_images/encrypted/img_cifrada.png'
     imagen_cifrada.save(ruta_imagen_cifrada)
 
-    return ruta_imagen_cifrada, info
+    return ruta_imagen_cifrada
+  
+def cifrar_imagen_ctr(ruta_imagen, clave):
+    # Cargar la imagen
+    imagen = Image.open(ruta_imagen)
+    modo_imagen = imagen.mode
+    tamaño_imagen = imagen.size
+    datos_imagen = imagen_a_bytes(imagen)
 
-def descifrar_imagen(ruta_imagen_cifrada, clave, modo, info):
+    # Asegurarse de que los datos de la imagen sean múltiplos de 8 para 3DES
+    while len(datos_imagen) % 8 != 0:
+        datos_imagen += b'\0'
+
+    info = None
+    contador = Counter.new(64)
+    cifrador = DES3.new(clave, DES3.MODE_CTR, counter=contador)
+
+    # Cifrar los datos de la imagen
+    datos_cifrados = cifrador.encrypt(datos_imagen)
+
+    # Convertir los datos cifrados de nuevo a una imagen
+    imagen_cifrada = bytes_a_imagen(datos_cifrados, modo_imagen, tamaño_imagen)
+
+    # Guardar la imagen cifrada
+    ruta_imagen_cifrada = '/home/aeternal/Documents/SecretSafe/gui/testing_images/encrypted/img_cifrada.png'
+    imagen_cifrada.save(ruta_imagen_cifrada)
+
+    return ruta_imagen_cifrada
+
+def cifrar_imagen(ruta_imagen, clave):
+    # Cargar la imagen
+    imagen = Image.open(ruta_imagen)
+    modo_imagen = imagen.mode
+    tamaño_imagen = imagen.size
+    datos_imagen = imagen_a_bytes(imagen)
+
+    # Asegurarse de que los datos de la imagen sean múltiplos de 8 para 3DES
+    while len(datos_imagen) % 8 != 0:
+        datos_imagen += b'\0'
+
+    info = None
+    cifrador = DES3.new(clave, DES3.MODE_CBC)
+    iv = cifrador.iv
+    info = iv
+
+    # Cifrar los datos de la imagen
+    datos_cifrados = cifrador.encrypt(datos_imagen)
+
+    # Convertir los datos cifrados de nuevo a una imagen
+    imagen_cifrada = bytes_a_imagen(datos_cifrados, modo_imagen, tamaño_imagen)
+
+    # Guardar la imagen cifrada
+    ruta_imagen_cifrada = '/home/aeternal/Documents/SecretSafe/gui/testing_images/encrypted/img_cifrada.png'
+    imagen_cifrada.save(ruta_imagen_cifrada)
+
+    return ruta_imagen_cifrada, list(info)
+
+def descifrar_imagen(ruta_imagen_cifrada, clave, info):
     # Cargar la imagen cifrada
     imagen_cifrada = Image.open(ruta_imagen_cifrada)
     datos_cifrados = imagen_a_bytes(imagen_cifrada)
-
-    # Crear un objeto 3DES en modo deseado
-    if(modo == DES3.MODE_ECB):
-      cifrador = DES3.new(clave, DES3.MODE_ECB)
-    if(modo == DES3.MODE_CBC or modo == DES3.MODE_OFB):
-      iv = info
-      cifrador = DES3.new(clave, modo, iv)
-    if(modo == DES3.MODE_CTR):
-      contador = Counter.new(64)
-      cifrador = DES3.new(clave, DES3.MODE_CTR, counter=contador)
+    iv = info
+    cifrador = DES3.new(clave, DES3.MODE_CBC, iv)
 
     # Descifrar los datos de la imagen
     datos_descifrados = cifrador.decrypt(datos_cifrados)
@@ -90,18 +131,40 @@ def descifrar_imagen(ruta_imagen_cifrada, clave, modo, info):
     imagen_descifrada.save(ruta_imagen_descifrada)
 
     return ruta_imagen_descifrada
+  
+def descifrar_imagen_ecb(ruta_imagen_cifrada, clave):
+    # Cargar la imagen cifrada
+    imagen_cifrada = Image.open(ruta_imagen_cifrada)
+    datos_cifrados = imagen_a_bytes(imagen_cifrada)
+    cifrador = DES3.new(clave, DES3.MODE_ECB)
 
-# Generar una clave
-clave = get_random_bytes(24)  # 3DES requiere una clave de 24 bytes
-modo = elegir_modo_cifrado()
+    # Descifrar los datos de la imagen
+    datos_descifrados = cifrador.decrypt(datos_cifrados)
 
-# Ruta de la imagen a cifrar
-ruta_imagen = 'imagen_grayscale.jpeg'
+    # Convertir los datos descifrados de nuevo a una imagen
+    imagen_descifrada = bytes_a_imagen(datos_descifrados, imagen_cifrada.mode, imagen_cifrada.size)
 
-# Cifrar la imagen
-ruta_imagen_cifrada, info = cifrar_imagen(ruta_imagen, clave, modo)
-print(f"Imagen cifrada guardada en: {ruta_imagen_cifrada}")
+    # Guardar la imagen descifrada
+    ruta_imagen_descifrada = 'img_descifrada.png'
+    imagen_descifrada.save(ruta_imagen_descifrada)
 
-# Descifrar la imagen
-ruta_imagen_descifrada = descifrar_imagen(ruta_imagen_cifrada, clave, modo, info)
-print(f"Imagen descifrada guardada en: {ruta_imagen_descifrada}")
+    return ruta_imagen_descifrada
+  
+def descifrar_imagen_ctr(ruta_imagen_cifrada, clave):
+    # Cargar la imagen cifrada
+    imagen_cifrada = Image.open(ruta_imagen_cifrada)
+    datos_cifrados = imagen_a_bytes(imagen_cifrada)
+    contador = Counter.new(64)
+    cifrador = DES3.new(clave, DES3.MODE_CTR, counter=contador)
+
+    # Descifrar los datos de la imagen
+    datos_descifrados = cifrador.decrypt(datos_cifrados)
+
+    # Convertir los datos descifrados de nuevo a una imagen
+    imagen_descifrada = bytes_a_imagen(datos_descifrados, imagen_cifrada.mode, imagen_cifrada.size)
+
+    # Guardar la imagen descifrada
+    ruta_imagen_descifrada = 'img_descifrada.png'
+    imagen_descifrada.save(ruta_imagen_descifrada)
+
+    return ruta_imagen_descifrada
