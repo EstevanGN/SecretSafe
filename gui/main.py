@@ -287,14 +287,13 @@ class MainWindow(QMainWindow):
     def hill_encrypt_text(self):
         input_text = self.ui.classical_encrypt_input.toPlainText()
         if self.ui.classical_generated_key_output.toPlainText():
-            matrix_key = np.matrix(self.ui.classical_generated_key_output.toPlainText())
+            matrix_key = hill.convert_numbers_to_matrix(self.ui.classical_generated_key_output.toPlainText().split(","))
             output_text = hill.cifrar_hill(input_text, matrix_key)
-            self.ui.classical_generated_key_output.setPlainText(str(matrix_key))
             self.ui.classical_encrypt_output.setPlainText(str(output_text))
         
     def hill_decrypt_text(self):
         input_text = self.ui.classical_decrypt_input.toPlainText()
-        key = np.matrix(self.ui.classical_key_input.toPlainText())
+        key = hill.convert_numbers_to_matrix(self.ui.classical_key_input.toPlainText().split(","))
         output_text = hill.descifrar_hill(input_text, key)
         self.ui.classical_decrypt_output.setPlainText(output_text)
         
