@@ -67,9 +67,7 @@ def encontrar_gen(conjunto,a,P):
                 return elemento
     return None
 
-
-def Encriptar(mensaje):
-    chars=[char for char in mensaje]
+def generarClaves():
     alpha=None
     while(alpha==None):
             P=generate_prime()
@@ -81,45 +79,48 @@ def Encriptar(mensaje):
     beta=alpha
     for i in range(d-1):
         beta=suma_elip(beta,alpha,a,P)
+    
+    return ((P,alpha,beta,k,a),d,a,b)    
+
+
+
+
+
+def Encriptar(clavePub,mensaje):
+    P,alpha,beta,k,a=clavePub
+    chars=[char for char in mensaje]
+    encrypt=[]
     y0=alpha
     for i in range(k-1):
         y0=suma_elip(y0,alpha,a,P)
+    encrypt.append(y0)    
     y=beta
     for i in range(k-1):
         y=suma_elip(y,beta,a,P)
-    encrypt=[]
     for i in chars:
         x=(ord(i),ord(i))
         y1=y[0]*x[0]%P
         y2=y[1]*x[1]%P
-        #e[0] es el encriptado, e[1] es el a de la eliptica, P,alpha y beta son la clave publica, d es la privada
         encrypt.append((y1,y2))
-    e=(a,P,d,y0,encrypt,alpha,beta)
-    return e
+    return encrypt
 
-def Desncriptar(a,P,d,y,encrypt):
+
+
+
+def Desncriptar(clavePub,ClavePriv,encrypt):
+    P=clavePub[0]
+    a=clavePub[4]
+    d=ClavePriv
+    y=encrypt[0]
     c=y
     for i in range(d-1):
         c=suma_elip(c,y,a,P)
     c1=pow(c[0],-1,P)
     c2=pow(c[1],-1,P)
     x=""
-    for i in encrypt:
-        x1=i[0]*c1%P
-        x2=i[1]*c2%P
+    for i in range(1,len(encrypt)):
+        x1=encrypt[i][0]*c1%P
+        x2=encrypt[i][1]*c2%P
         ch=chr(x1)
         x=x+ch
     return x
-
-            
-
-x1=str(input("Ingresa el mensaje"))
-
-e=Encriptar(x1)
-y=Desncriptar(e[0],e[1],e[2],e[3],e[4])
-print("----------------------------------------------------------------------------------------------------------")
-print("La clave publica es: (P=",e[1],", alpha=",e[4],", beta=",e[5],")")
-print("La clave privada es:",e[2])
-print("El texto claro es ",x1)
-print("El mensaje cifrado es ",e[3],e[4])
-print("El mensaje descifrado es ",y)

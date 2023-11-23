@@ -26,7 +26,7 @@ import cryptanalysis
 # ///////////////////////////////////////////////////////////////
 from modules import *
 from widgets import *
-from cryptosystems import rabin,RSA,shift, afin, vigenere, sust_permu, hill, Menezes, aes_image_encryption, SDES, triple_des
+from cryptosystems import gamal,rabin,RSA,shift, afin, vigenere, sust_permu, hill, Menezes, aes_image_encryption, SDES, triple_des
 os.environ["QT_FONT_DPI"] = "96" # FIX Problem for High DPI and Scale above 100%
 
 # SET AS GLOBAL WIDGETS
@@ -391,7 +391,63 @@ class MainWindow(QMainWindow):
             self.ui.public_decrypt_output.setPlainText(str(output_text))            
 
 
+
+
+
+    def gamal_generate_key(self):
+        self.ui.public_encrypt_output.setPlainText("")
+        self.ui.public_decrypt_output.setPlainText("")
+        self.ui.public_key_settings_output.setPlainText("")
+        generated_key = gamal.generar_clave()
+        self.ui.public_key_input.setPlainText(str(generated_key[0]))
+        self.ui.private_key_input.setPlainText(str(generated_key[1]))
+
+
+    def gamal_encrypt_text(self):    
+        input_text = self.ui.public_encrypt_input.toPlainText()
+        if self.ui.public_encrypt_input.toPlainText():
+            generated_key = ast.literal_eval(self.ui.public_key_input.toPlainText())
+            output_text = gamal.encrypt_message(input_text, generated_key)
+            self.ui.public_encrypt_output.setPlainText(str(output_text))
+
+
+    def gamal_decrypt_text(self):
+        input_text = self.ui.public_decrypt_input.toPlainText()
+        if self.ui.public_decrypt_input.toPlainText():
+            generated_key = int(self.ui.private_key_input.toPlainText())
+            output_text = gamal.decrypt_message(eval(input_text),ast.literal_eval(self.ui.public_key_input.toPlainText())[2], generated_key)
+            self.ui.public_decrypt_output.setPlainText(str(output_text))           
     
+
+
+
+
+
+    def Menezes_generate_key(self):
+        self.ui.public_encrypt_output.setPlainText("")
+        self.ui.public_decrypt_output.setPlainText("")
+        self.ui.public_key_settings_output.setPlainText("")
+        generated_key = Menezes.generarClaves()
+        self.ui.public_key_input.setPlainText(str(generated_key[0]))
+        self.ui.private_key_input.setPlainText(str(generated_key[1]))
+        self.ui.public_key_settings_output.setPlainText("Curva elíptica: y^3=x^2+"+str(generated_key[2])+"x+"+str(generated_key[3]))
+
+
+    def Menezes_encrypt_text(self):
+        input_text = self.ui.public_encrypt_input.toPlainText()
+        if self.ui.public_encrypt_input.toPlainText():
+            generated_key = ast.literal_eval(self.ui.public_key_input.toPlainText())
+            output_text = Menezes.Encriptar(generated_key,input_text)
+            self.ui.public_encrypt_output.setPlainText(str(output_text))
+    
+    def Menezes_decrypt_text(self):
+        input_text = self.ui.public_decrypt_input.toPlainText()
+        if self.ui.public_decrypt_input.toPlainText():
+            generated_key = int(self.ui.private_key_input.toPlainText())
+            output_text = Menezes.Desncriptar(ast.literal_eval(self.ui.public_key_input.toPlainText()), generated_key,ast.literal_eval(input_text))
+            self.ui.public_decrypt_output.setPlainText(str(output_text))
+
+
     def public_key_encryption_choice_action(self):
         index = self.ui.public_key_list.currentIndex()
         if self.current_public_encrypt_function is not None:
@@ -413,7 +469,21 @@ class MainWindow(QMainWindow):
             self.ui.public_key_settings_output.setPlainText("")
             self.current_public_generate_key_function = self.rabin_generate_key
             self.current_public_encrypt_function = self.rabin_encrypt_text
-            self.current_public_decrypt_function = self.rabin_decrypt_text        
+            self.current_public_decrypt_function = self.rabin_decrypt_text  
+        elif index == 2:
+            self.ui.public_key_input.setPlainText("")
+            self.ui.private_key_input.setPlainText("")
+            self.ui.public_key_settings_output.setPlainText("")
+            self.current_public_generate_key_function = self.gamal_generate_key
+            self.current_public_encrypt_function = self.gamal_encrypt_text
+            self.current_public_decrypt_function = self.gamal_decrypt_text 
+        elif index == 3:
+            self.ui.public_key_input.setPlainText("")
+            self.ui.private_key_input.setPlainText("")
+            self.ui.public_key_settings_output.setPlainText("")
+            self.current_public_generate_key_function = self.Menezes_generate_key
+            self.current_public_encrypt_function = self.Menezes_encrypt_text
+            self.current_public_decrypt_function = self.Menezes_decrypt_text       
         self.ui.public_key_generate_settings.clicked.connect(self.current_public_generate_key_function)
         self.ui.public_btn_encrypt.clicked.connect(self.current_public_encrypt_function)
         self.ui.public_btn_decrypt.clicked.connect(self.current_public_decrypt_function)

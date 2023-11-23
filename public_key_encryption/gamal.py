@@ -24,7 +24,8 @@ def calculate_beta(alpha, d, p):
     return pow(alpha, d, p)
 
 # Función para encriptar un mensaje
-def encrypt_message(message, p, alpha, beta, k):
+def encrypt_message(message,clavPub k):
+    alpha, beta,p=clavPub
     # Convertir el mensaje a un número entero
     m = int.from_bytes(message.encode(), 'big')
     # Calcular el primer componente del texto cifrado
@@ -48,31 +49,21 @@ def decrypt_message(ciphertext, p, d):
     # Devolver el mensaje original
     return message
 
+def generar_clave():
+    p = generate_prime()
+    k = generate_k(p)
+    alpha = generate_alpha(p)
+    d = generate_d(p)
+    beta = calculate_beta(alpha, d, p)
+    pub=(alpha,beta,p)
+    priv=d
+    return (pub,priv,k)
 # Pedir al usuario que ingrese un mensaje
 message = input("Ingrese un mensaje: ")
 
-# Generar un número primo aleatorio grande
-p = generate_prime()
-print("p =", p)
-
-# Generar un número aleatorio k entre 0 y p-1
-k = generate_k(p)
-print("k =", k)
-
-# Generar un generador alpha en el grupo aditivo de los enteros modulo p
-alpha = generate_alpha(p)
-print("alpha =", alpha)
-
-# Generar una clave privada d
-d = generate_d(p)
-print("d =", d)
-
-# Calcular beta = alpha^d mod p
-beta = calculate_beta(alpha, d, p)
-print("beta =", beta)
-
+claves=generar_clave()
 # Encriptar el mensaje
-ciphertext = encrypt_message(message, p, alpha, beta, k)
+ciphertext = encrypt_message(message,  k)
 print("Texto cifrado:", ciphertext)
 
 # Desencriptar el mensaje

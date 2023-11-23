@@ -1,4 +1,14 @@
 import random
+from Crypto.Util import number
+
+# Función para generar un número primo aleatorio grande
+def generate_prime():
+    p=number.getPrime(8)
+    while(p<126):
+        p=number.getPrime(8)
+    return p
+
+
 def suma_elip(p,q,a,P):
     if (p!=q and q[0]!=p[0]):
         s=(q[1]-p[1])%P*pow(q[0]-p[0],-1,P)
@@ -57,26 +67,61 @@ def encontrar_gen(conjunto,a,P):
                 return elemento
     return None
 
+def generarClaves():
+    alpha=None
+    while(alpha==None):
+            P=generate_prime()
+            a=random.randint(1,P-1)
+            b=random.randint(1,P-1)
+            d=random.randint(0,P-1)
+            k=random.randint(0,P-1)
+            alpha=encontrar_gen(puntos_elipse(a,b,P),a,P)
+    beta=alpha
+    for i in range(d-1):
+        beta=suma_elip(beta,alpha,a,P)
+    
+    return ((P,alpha,beta,k,a),d,a,b)    
 
-def Encriptar(a,P,x,alpha,beta):
-    k=int(input("Ingrese su k"))
+
+
+
+
+def Encriptar(clavePub,mensaje):
+    P,alpha,beta,k,a=clavePub
+    chars=[char for char in mensaje]
+    encrypt=[]
     y0=alpha
     for i in range(k-1):
         y0=suma_elip(y0,alpha,a,P)
+    encrypt.append(y0)    
     y=beta
     for i in range(k-1):
         y=suma_elip(y,beta,a,P)
-    y1=y[0]*x[0]%P
-    y2=y[1]*x[1]%P
-    return ((y0,y1,y2))
+    for i in chars:
+        x=(ord(i),ord(i))
+        y1=y[0]*x[0]%P
+        y2=y[1]*x[1]%P
+        encrypt.append((y1,y2))
+    return encrypt
 
-def Desncriptar(a,P,d,y):
-    c=y[0]
+
+
+
+def Desncriptar(clavePub,ClavePriv,encrypt):
+    P=clavePub[0]
+    a=clavePub[4]
+    d=ClavePriv
+    y=encrypt[0]
+    c=y
     for i in range(d-1):
-        c=suma_elip(c,y[0],a,P)
+        c=suma_elip(c,y,a,P)
     c1=pow(c[0],-1,P)
     c2=pow(c[1],-1,P)
-    x1=y[1]*c1%P
-    x2=y[2]*c2%P
-    x=(x1,x2)
+    x=""
+    for i in range(1,len(encrypt)):
+        x1=encrypt[i][0]*c1%P
+        x2=encrypt[i][1]*c2%P
+        ch=chr(x1)
+        x=x+ch
     return x
+
