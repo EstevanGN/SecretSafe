@@ -1345,9 +1345,9 @@ class Ui_MainWindow(object):
         self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
         self.block_encrypt_filepath = QLineEdit(self.block_encrypt_filesearch_widget)
         self.block_encrypt_filepath.setObjectName(u"block_encrypt_filepath")
-        self.block_encrypt_filepath.setEnabled(False)
+        self.block_encrypt_filepath.setEnabled(True)
         self.block_encrypt_filepath.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-        self.block_encrypt_filepath.setReadOnly(True)
+        self.block_encrypt_filepath.setReadOnly(False)
 
         self.horizontalLayout_18.addWidget(self.block_encrypt_filepath)
 
@@ -1464,9 +1464,9 @@ class Ui_MainWindow(object):
         self.horizontalLayout_19.setObjectName(u"horizontalLayout_19")
         self.block_decrypt_filepath = QLineEdit(self.block_decrypt_search_widget)
         self.block_decrypt_filepath.setObjectName(u"block_decrypt_filepath")
-        self.block_decrypt_filepath.setEnabled(False)
+        self.block_decrypt_filepath.setEnabled(True)
         self.block_decrypt_filepath.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-        self.block_decrypt_filepath.setReadOnly(True)
+        self.block_decrypt_filepath.setReadOnly(False)
 
         self.horizontalLayout_19.addWidget(self.block_decrypt_filepath)
 
@@ -1935,7 +1935,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

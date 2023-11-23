@@ -3,6 +3,8 @@
     <file>images/images/PyDracula.png</file>
     <file>images/images/PyDracula_vertical.png</file>
     <file>images/images/lock.png</file>
+    <file>images/images/kawai.png</file>
+    <file>images/images/logo.png</file>
   </qresource>
   <qresource prefix="icons">
     <file>images/icons/menu.png</file>

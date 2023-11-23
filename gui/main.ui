@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1124</width>
-    <height>686</height>
+    <width>1133</width>
+    <height>694</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -1749,7 +1749,7 @@ p, li { white-space: pre-wrap; }
                   <property name="frameShadow">
                    <enum>QFrame::Raised</enum>
                   </property>
-                  <layout class="QHBoxLayout" name="horizontalLayout_6">
+                  <layout class="QVBoxLayout" name="verticalLayout_26">
                    <property name="spacing">
                     <number>0</number>
                    </property>
@@ -1771,7 +1771,7 @@ p, li { white-space: pre-wrap; }
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>2</number>
+                      <number>0</number>
                      </property>
                      <widget class="QWidget" name="home">
                       <property name="styleSheet">
@@ -1894,7 +1894,7 @@ border-radius: 10px;</string>
                                 </size>
                                </property>
                                <property name="styleSheet">
-                                <string notr="true"/>
+                                <string notr="true">border: 2px solid violet;</string>
                                </property>
                                <property name="text">
                                 <string/>
@@ -1943,7 +1943,7 @@ border-radius: 10px;</string>
                                </property>
                                <property name="styleSheet">
                                 <string notr="true">background-color: rgb(33, 37, 43);
-border: 2px solid violet;
+border: none;
 border-radius: 10px;</string>
                                </property>
                                <property name="text">
@@ -2184,7 +2184,7 @@ p, li { white-space: pre-wrap; }
                                </property>
                                <property name="styleSheet">
                                 <string notr="true">background-color: rgb(33, 37, 43);
-border: 2px solid violet;
+border: none;
 border-radius: 10px;</string>
                                </property>
                                <property name="text">
@@ -2278,53 +2278,157 @@ border-radius: 10px;</string>
                       </layout>
                      </widget>
                      <widget class="QWidget" name="welcome_page">
-                      <widget class="QWidget" name="widget" native="true">
-                       <property name="geometry">
-                        <rect>
-                         <x>91</x>
-                         <y>50</y>
-                         <width>911</width>
-                         <height>501</height>
-                        </rect>
-                       </property>
-                       <layout class="QVBoxLayout" name="verticalLayout_23">
-                        <item>
-                         <widget class="QLineEdit" name="welcome_page_tittle">
-                          <property name="text">
-                           <string>WHAT DOES SECRETSAFE DO FOR YOU?</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QWidget" name="welcome_page_widget" native="true">
-                          <layout class="QHBoxLayout" name="horizontalLayout_9">
-                           <item>
-                            <widget class="QTextEdit" name="welcome_page_image">
-                             <property name="html">
-                              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="layoutDirection">
+                       <enum>Qt::LeftToRight</enum>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_6">
+                       <item>
+                        <widget class="QWidget" name="widget" native="true">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <layout class="QVBoxLayout" name="verticalLayout_23">
+                          <item>
+                           <widget class="QLineEdit" name="welcome_page_tittle">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                             <size>
+                              <width>0</width>
+                              <height>60</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>16777215</width>
+                              <height>60</height>
+                             </size>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <family>Segoe UI</family>
+                              <pointsize>35</pointsize>
+                              <weight>50</weight>
+                              <italic>false</italic>
+                              <bold>false</bold>
+                             </font>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">background-color: transparent;
+border: none;
+font-size: 35pt;
+color: rgb(212, 94, 234);</string>
+                            </property>
+                            <property name="text">
+                             <string>WHAT DOES SECRETSAFE DO FOR YOU?</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QWidget" name="welcome_page_widget" native="true">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <layout class="QHBoxLayout" name="horizontalLayout_9">
+                             <item>
+                              <widget class="QTextEdit" name="welcome_page_description">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>500</width>
+                                 <height>0</height>
+                                </size>
+                               </property>
+                               <property name="font">
+                                <font>
+                                 <family>Segoe UI</family>
+                                 <pointsize>30</pointsize>
+                                 <weight>50</weight>
+                                 <italic>false</italic>
+                                 <bold>false</bold>
+                                 <kerning>true</kerning>
+                                </font>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: transparent;
+border: none;
+border-radius: 10px;
+font-size: 30pt;</string>
+                               </property>
+                               <property name="html">
+                                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;APPLICATION DESCRIPTION&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QTextEdit" name="welcome_page_description">
-                             <property name="html">
-                              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IMAGE&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                             </property>
-                            </widget>
-                           </item>
-                          </layout>
-                         </widget>
-                        </item>
-                       </layout>
-                      </widget>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:30pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;This is an application that addresses the need for privacy and security in a virtual world. Focusing on internet text messaging, Secret Safe allows the encryption of two key forms of information: text and images. Classic, block, and public key encryptions are employed to cater to different user preferences. Lastly, it provides a cryptanalysis tool to playfully demonstrate the vulnerabilities of classic ciphers.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:20pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;We hope that Secret Safe proves valuable in your everyday life.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:20pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Best regards,&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;Development Team:&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;- Santiago Tovar Mosquera&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;- Juliana Nieto Cárdenas&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;- Anderson Andrés Llanos Quintero&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt;&quot;&gt;- Daniel Estevan Garcia Niño&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QPushButton" name="welcome_page_image">
+                               <property name="enabled">
+                                <bool>true</bool>
+                               </property>
+                               <property name="sizePolicy">
+                                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                                 <horstretch>0</horstretch>
+                                 <verstretch>0</verstretch>
+                                </sizepolicy>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">background-color: transparent;
+border: none;
+border-radius: 50px;</string>
+                               </property>
+                               <property name="text">
+                                <string/>
+                               </property>
+                               <property name="icon">
+                                <iconset resource="resources.qrc">
+                                 <normaloff>:/images/images/images/kawai.png</normaloff>:/images/images/images/kawai.png</iconset>
+                               </property>
+                               <property name="iconSize">
+                                <size>
+                                 <width>500</width>
+                                 <height>500</height>
+                                </size>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                      </layout>
                      </widget>
                      <widget class="QWidget" name="widgets">
                       <property name="styleSheet">
@@ -2502,7 +2606,7 @@ border: 2px solid violet;
                              </widget>
                             </item>
                             <item>
-                             <widget class="QWidget" name="block_generate_key_widget" native="true">
+                             <widget class="QWidget" name="block_encrypt_filename_widget" native="true">
                               <property name="minimumSize">
                                <size>
                                 <width>0</width>
@@ -2513,6 +2617,73 @@ border: 2px solid violet;
                                <size>
                                 <width>16777215</width>
                                 <height>33</height>
+                               </size>
+                              </property>
+                              <layout class="QHBoxLayout" name="horizontalLayout_17">
+                               <item>
+                                <widget class="QLineEdit" name="block_encrypt_filename_tittle">
+                                 <property name="sizePolicy">
+                                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                   <horstretch>0</horstretch>
+                                   <verstretch>0</verstretch>
+                                  </sizepolicy>
+                                 </property>
+                                 <property name="minimumSize">
+                                  <size>
+                                   <width>90</width>
+                                   <height>25</height>
+                                  </size>
+                                 </property>
+                                 <property name="maximumSize">
+                                  <size>
+                                   <width>90</width>
+                                   <height>25</height>
+                                  </size>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">background-color: rgb(33, 37, 43);
+border: 2px solid violet;
+</string>
+                                 </property>
+                                 <property name="text">
+                                  <string>Filename</string>
+                                 </property>
+                                </widget>
+                               </item>
+                               <item>
+                                <widget class="QTextEdit" name="block_encrypt_filename">
+                                 <property name="minimumSize">
+                                  <size>
+                                   <width>0</width>
+                                   <height>25</height>
+                                  </size>
+                                 </property>
+                                 <property name="maximumSize">
+                                  <size>
+                                   <width>16777215</width>
+                                   <height>25</height>
+                                  </size>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">background-color: rgb(33, 37, 43);</string>
+                                 </property>
+                                </widget>
+                               </item>
+                              </layout>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QWidget" name="block_generate_key_widget" native="true">
+                              <property name="minimumSize">
+                               <size>
+                                <width>0</width>
+                                <height>60</height>
+                               </size>
+                              </property>
+                              <property name="maximumSize">
+                               <size>
+                                <width>16777215</width>
+                                <height>60</height>
                                </size>
                               </property>
                               <layout class="QHBoxLayout" name="horizontalLayout_14">
@@ -2529,6 +2700,9 @@ border: 2px solid violet;
                                    <width>16777215</width>
                                    <height>25</height>
                                   </size>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">border: 2px solid violet;</string>
                                  </property>
                                  <property name="text">
                                   <string/>
@@ -2558,7 +2732,7 @@ border: 2px solid violet;
                                  </property>
                                  <property name="styleSheet">
                                   <string notr="true">background-color: rgb(33, 37, 43);
-border: 2px solid violet;
+border: nonet;
 border-radius: 10px;</string>
                                  </property>
                                  <property name="text">
@@ -2577,13 +2751,13 @@ border-radius: 10px;</string>
                                  <property name="minimumSize">
                                   <size>
                                    <width>0</width>
-                                   <height>25</height>
+                                   <height>50</height>
                                   </size>
                                  </property>
                                  <property name="maximumSize">
                                   <size>
                                    <width>16777215</width>
-                                   <height>25</height>
+                                   <height>50</height>
                                   </size>
                                  </property>
                                  <property name="styleSheet">
@@ -2643,6 +2817,9 @@ border: 2px solid violet;
                               </property>
                               <property name="text">
                                <string/>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
                               </property>
                              </widget>
                             </item>
@@ -2734,7 +2911,7 @@ border: 2px solid violet;</string>
                              </widget>
                             </item>
                             <item>
-                             <widget class="QWidget" name="block_key_widget" native="true">
+                             <widget class="QWidget" name="block_decrypt_filename_widget" native="true">
                               <property name="minimumSize">
                                <size>
                                 <width>0</width>
@@ -2745,6 +2922,73 @@ border: 2px solid violet;</string>
                                <size>
                                 <width>16777215</width>
                                 <height>33</height>
+                               </size>
+                              </property>
+                              <layout class="QHBoxLayout" name="horizontalLayout_20">
+                               <item>
+                                <widget class="QLineEdit" name="block_decrrypt_filename_tittle">
+                                 <property name="sizePolicy">
+                                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                   <horstretch>0</horstretch>
+                                   <verstretch>0</verstretch>
+                                  </sizepolicy>
+                                 </property>
+                                 <property name="minimumSize">
+                                  <size>
+                                   <width>90</width>
+                                   <height>25</height>
+                                  </size>
+                                 </property>
+                                 <property name="maximumSize">
+                                  <size>
+                                   <width>90</width>
+                                   <height>25</height>
+                                  </size>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">background-color: rgb(33, 37, 43);
+border: 2px solid violet;
+</string>
+                                 </property>
+                                 <property name="text">
+                                  <string>Filename</string>
+                                 </property>
+                                </widget>
+                               </item>
+                               <item>
+                                <widget class="QTextEdit" name="block_decrypt_filename">
+                                 <property name="minimumSize">
+                                  <size>
+                                   <width>0</width>
+                                   <height>25</height>
+                                  </size>
+                                 </property>
+                                 <property name="maximumSize">
+                                  <size>
+                                   <width>16777215</width>
+                                   <height>25</height>
+                                  </size>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">background-color: rgb(33, 37, 43);</string>
+                                 </property>
+                                </widget>
+                               </item>
+                              </layout>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QWidget" name="block_key_widget" native="true">
+                              <property name="minimumSize">
+                               <size>
+                                <width>0</width>
+                                <height>60</height>
+                               </size>
+                              </property>
+                              <property name="maximumSize">
+                               <size>
+                                <width>16777215</width>
+                                <height>60</height>
                                </size>
                               </property>
                               <layout class="QHBoxLayout" name="horizontalLayout_16">
@@ -2796,7 +3040,7 @@ border: 2px solid violet;</string>
                                  </property>
                                  <property name="styleSheet">
                                   <string notr="true">background-color: rgb(33, 37, 43);
-border: 2px solid violet;
+border: none;
 border-radius: 10px;</string>
                                  </property>
                                  <property name="text">
@@ -2812,13 +3056,13 @@ border-radius: 10px;</string>
                                  <property name="minimumSize">
                                   <size>
                                    <width>0</width>
-                                   <height>25</height>
+                                   <height>50</height>
                                   </size>
                                  </property>
                                  <property name="maximumSize">
                                   <size>
                                    <width>16777215</width>
-                                   <height>25</height>
+                                   <height>50</height>
                                   </size>
                                  </property>
                                  <property name="styleSheet">
@@ -2878,6 +3122,114 @@ border: 2px solid violet;
                               </property>
                               <property name="text">
                                <string/>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="cryptoanalysis">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_22">
+                       <item>
+                        <layout class="QHBoxLayout" name="cryptoanalysis_layout">
+                         <item>
+                          <widget class="QWidget" name="crypo_input_widget" native="true">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <layout class="QVBoxLayout" name="verticalLayout_24">
+                            <item>
+                             <widget class="QLineEdit" name="crypto_tittle">
+                              <property name="styleSheet">
+                               <string notr="true">background-color: transparent;
+border: none;</string>
+                              </property>
+                              <property name="text">
+                               <string>CRYPTOANALYSIS</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignCenter</set>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QTextEdit" name="crypto_analysis_input">
+                              <property name="styleSheet">
+                               <string notr="true">background-color: rgb(33, 37, 43);
+border: 2px solid violet;
+border-radius: 10px;</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+                             <widget class="QPushButton" name="crypto_analysis_btn">
+                              <property name="sizePolicy">
+                               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                               </sizepolicy>
+                              </property>
+                              <property name="minimumSize">
+                               <size>
+                                <width>100</width>
+                                <height>40</height>
+                               </size>
+                              </property>
+                              <property name="maximumSize">
+                               <size>
+                                <width>100</width>
+                                <height>40</height>
+                               </size>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">background-color: rgb(33, 37, 43);</string>
+                              </property>
+                              <property name="text">
+                               <string>Analyze</string>
+                              </property>
+                              <property name="icon">
+                               <iconset resource="resources.qrc">
+                                <normaloff>:/icons/images/icons/analysis.png</normaloff>:/icons/images/icons/analysis.png</iconset>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QWidget" name="crypto_output_widget" native="true">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <layout class="QVBoxLayout" name="verticalLayout_25">
+                            <item>
+                             <widget class="QTextEdit" name="crypto_analysis_output">
+                              <property name="styleSheet">
+                               <string notr="true">background-color: rgb(33, 37, 43);
+border: 2px solid violet;
+border-radius: 10px;</string>
+                              </property>
+                              <property name="readOnly">
+                               <bool>true</bool>
                               </property>
                              </widget>
                             </item>
@@ -3111,7 +3463,7 @@ border-radius: 10px;</string>
                                </property>
                                <property name="styleSheet">
                                 <string notr="true">background-color: rgb(33, 37, 43);
-border: 2px solid violet;
+border: nonee;
 border-radius: 10px;</string>
                                </property>
                                <property name="text">
@@ -3315,7 +3667,7 @@ border-radius: 10px;</string>
                                </property>
                                <property name="styleSheet">
                                 <string notr="true">background-color: rgb(33, 37, 43);
-border: 2px solid violet;
+border: none;
 border-radius: 10px;</string>
                                </property>
                                <property name="text">
