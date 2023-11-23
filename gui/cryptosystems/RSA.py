@@ -1,13 +1,19 @@
 
 
 import random
+from sympy import nextprime
 from Crypto.Util import number
+from Crypto.Util.number import bytes_to_long, long_to_bytes
 # Función para verificar si un número es primofrom Crypto.Util import number
 
 # Función para generar un número primo aleatorio grande
-def generar_primo():
-    p=number.getPrime(8)
-    return p
+def generar_primo(bits=1000):
+    lower_bound = 2**(bits - 1)
+    upper_bound = 2**bits - 1
+
+    prime_candidate = random.randint(lower_bound, upper_bound)
+    random_prime = nextprime(prime_candidate)
+    return random_prime
 
 # Función para generar un número primo en el rango de caracteres imprimibles ASCII
 
@@ -22,8 +28,7 @@ def mcd(a, b):
 def generar_claves():
     p = generar_primo()
     q = generar_primo()
-
-    n = p * q
+    n = p * q   
     phi = (p - 1) * (q - 1)
 
     e = random.randint(2, phi - 1)
@@ -36,33 +41,12 @@ def generar_claves():
 
 # Función para cifrar un mensaje usando la clave pública
 def cifrar(mensaje, clave_publica):
+    mensaje_ascii=bytes_to_long(mensaje.encode('ascii'))
     n, e = clave_publica
-    return [pow(ord(char), e, n) for char in mensaje]
+    return pow(mensaje_ascii, e, n)
 
 # Función para descifrar un mensaje cifrado usando la clave privada
 def descifrar(cifrado, clave_privada):
     n, d = clave_privada
-    return ''.join([chr(pow(char, d, n)) for char in cifrado])
-
-# Solicitar al usuario que ingrese un mensaje
-#mensaje_original = input("Ingrese el mensaje que desea cifrar: ")
-
-# Obtener el alfabeto de caracteres imprimibles ASCII
-#alfabeto = ''.join([chr(i) for i in range(33, 128)])
-
-# Generar claves pública y privada
-#clave_publica, clave_privada = generar_claves()
-
-# Mostrar claves generadas
-#print("Clave pública:", clave_publica)
-#print("Clave privada:", clave_privada)
-
-# Cifrar el mensaje original
-#mensaje_cifrado = cifrar(mensaje_original, clave_publica)
-#print("Mensaje cifrado:", mensaje_cifrado)
-
-# Descifrar el mensaje cifrado
-#mensaje_descifrado = descifrar(mensaje_cifrado, clave_privada)
-#print("Mensaje descifrado:", mensaje_descifrado)
-
+    return ''.join(long_to_bytes(pow(cifrado, d, n)).decode('ascii')) 
 
