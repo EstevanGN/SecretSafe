@@ -25,7 +25,7 @@ import struct
 # ///////////////////////////////////////////////////////////////
 from modules import *
 from widgets import *
-from cryptosystems import shift, afin, vigenere, sust_permu, hill, Menezes, aes_image_encryption, SDES, triple_des
+from cryptosystems import RSA,shift, afin, vigenere, sust_permu, hill, Menezes, aes_image_encryption, SDES, triple_des
 os.environ["QT_FONT_DPI"] = "96" # FIX Problem for High DPI and Scale above 100%
 
 # SET AS GLOBAL WIDGETS
@@ -50,7 +50,10 @@ class MainWindow(QMainWindow):
         self.current_block_decrypt_function = None
         global widgets
         widgets = self.ui
-
+        # Classical Global Variables
+        self.current_public_encrypt_function = None
+        self.current_public_encrypt_function = None
+        self.current_public_decrypt_function = None
         # USE CUSTOM TITLE BAR | USE AS "False" FOR MAC OR LINUX
         # ///////////////////////////////////////////////////////////////
         Settings.ENABLE_CUSTOM_TITLE_BAR = True
@@ -334,8 +337,46 @@ class MainWindow(QMainWindow):
     
     ##########################################################################################################################################################################
     
+    
+    def RSA_generate_key(self):
+        generated_key = RSA.generar_claves()
+        self.ui.public_key_input.setPlainText(str(generated_key[0]))
+        self.ui.private_key_input.setPlainText(str(generated_key[1]))
+        self.ui.public_key_settings_output.setPlainText(str(generated_key[2]))
+
+    def RSA_encrypt_text(self):
+        input_text = self.ui.public_encrypt_input.toPlainText()
+        if self.ui.public_encrypt_input.toPlainText():
+            generated_key = eval(self.ui.public_key_input.toPlainText())
+            output_text = RSA.cifrar(input_text, generated_key)
+            self.ui.public_encrypt_output.setPlainText(str(output_text))
+
+    def RSA_decrypt_text(self):
+        input_text = self.ui.public_decrypt_input.toPlainText()
+        if self.ui.public_decrypt_input.toPlainText():
+            generated_key = eval(self.ui.private_key_input.toPlainText())
+            output_text = RSA.descifrar(ast.literal_eval(input_text), generated_key)
+            self.ui.public_decrypt_output.setPlainText(str(output_text))    
+    
+    
     def public_key_encryption_choice_action(self):
-        print("Public key")
+        index = self.ui.public_key_list.currentIndex()
+        if self.current_public_encrypt_function is not None:
+            self.ui.public_btn_encrypt.clicked.disconnect(self.current_public_encrypt_function)
+        if self.current_public_decrypt_function is not None:
+            self.ui.public_btn_encrypt.clicked.disconnect(self.current_public_decrypt_function)
+        if self.current_public_generate_key_function is not None:
+            self.ui.public_btn_encrypt.clicked.disconnect(self.current_generacurrent_public_generate_key_functionte_key_function)
+        if index == 0:
+            self.ui.public_key_settings_output.setPlainText("")
+            self.ui.private_key_input.setPlainText("")
+            self.ui.public_key_input.setPlainText("") 
+            self.current_public_generate_key_function = self.RSA_generate_key
+            self.current_public_encrypt_function = self.RSA_encrypt_text
+            self.current_public_decrypt_function = self.RSA_decrypt_text
+        self.ui.public_key_generate_settings.clicked.connect(self.current_public_generate_key_function)
+        self.ui.public_btn_encrypt.clicked.connect(self.current_public_encrypt_function)
+        self.ui.public_btn_decrypt.clicked.connect(self.current_public_decrypt_function)
         
     ##########################################################################################################################################################################
     
