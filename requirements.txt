@@ -3,10 +3,12 @@ Nuitka==1.8.6
 numpy==1.26.2
 ordered-set==4.1.0
 Pillow==10.1.0
+pycipher==0.5.2
 pycryptodome==3.19.0
 PySide6==6.6.0
 PySide6-Addons==6.6.0
 PySide6-Essentials==6.6.0
+scipy==1.11.4
 shiboken6==6.6.0
 sympy==1.12
 zstandard==0.22.0
