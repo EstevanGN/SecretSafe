@@ -26,7 +26,7 @@ import cryptanalysis
 # ///////////////////////////////////////////////////////////////
 from modules import *
 from widgets import *
-from cryptosystems import gamal,rabin,RSA,shift, afin, vigenere, sust_permu, hill, Menezes, aes_image_encryption, SDES, triple_des
+from cryptosystems import gamal,rabin,RSA,shift, afin, vigenere, sust_permu, hill, hill2, Menezes, aes_image_encryption, SDES, triple_des
 os.environ["QT_FONT_DPI"] = "96" # FIX Problem for High DPI and Scale above 100%
 
 # SET AS GLOBAL WIDGETS
@@ -501,11 +501,11 @@ class MainWindow(QMainWindow):
         generated_key = triple_des.tdes_generate_key()
         self.ui.block_generate_key_output.setPlainText(str(generated_key))
         
-    '''def hill_generate_key_image(self):
+    def hill_generate_key_image(self):
         generated_key = hill2.crear_clave_hill(3)
         key = generated_key[0]
         inv_key = generated_key[1]
-        self.ui.block_generate_key_output.setPlainText("Key : " + str(key) + " - Inv Key : " + str(inv_key))'''
+        self.ui.block_generate_key_output.setPlainText("Key : " + str(key) + " - Inv Key : " + str(inv_key))
         
     def aes_encrypt_image(self):
         image_path = self.ui.block_encrypt_filepath.text()
@@ -702,7 +702,6 @@ class MainWindow(QMainWindow):
         pixmap = QPixmap(decrypted_image_path)
         self.ui.block_decrypt_output.setPixmap(pixmap)
     
-    '''
     def hill_encrypt_image(self):
         image_path = self.ui.block_encrypt_filepath.text()
         if self.ui.block_generate_key_output.toPlainText():
@@ -722,7 +721,6 @@ class MainWindow(QMainWindow):
         hill2.guardar_imagen(imagen_decifrada, '/testing_images/decrypted/decrypted_hill.png')
         pixmap = QPixmap('/testing_images/decrypted/decrypted_hill.png')
         self.ui.block_decrypt_output.setPixmap(pixmap)
-    '''
         
     def block_encryption_choice_action(self):
         index = self.ui.block_list.currentIndex()
@@ -808,14 +806,14 @@ class MainWindow(QMainWindow):
                 self.current_block_generate_key_function = self.tdes_generate_key
                 self.current_block_encrypt_function = self.tdes_encrypt_image_ecb
                 self.current_block_decrypt_function = self.tdes_decrypt_image_ecb
-        '''elif index == 3:
+        elif index == 3:
             self.ui.block_encrypt_output.clear()
             self.ui.block_decrypt_output.clear()
             self.ui.block_generate_key_output.setPlainText("")
             self.ui.block_key_output.setPlainText("")
-            self.current_block_generate_key_function = self.hill_generate_key
+            self.current_block_generate_key_function = self.hill_generate_key_image
             self.current_block_encrypt_function = self.hill_encrypt_image
-            self.current_block_decrypt_function = self.hill_decrypt_image'''
+            self.current_block_decrypt_function = self.hill_decrypt_image
         
         self.ui.block_generate_key_btn.clicked.connect(self.current_block_generate_key_function)
         self.ui.block_encrypt_btn.clicked.connect(self.current_block_encrypt_function)
