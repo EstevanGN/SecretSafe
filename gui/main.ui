@@ -2627,6 +2627,9 @@ border: 2px solid violet;
                               <layout class="QHBoxLayout" name="horizontalLayout_17">
                                <item>
                                 <widget class="QLineEdit" name="block_encrypt_filename_tittle">
+                                 <property name="enabled">
+                                  <bool>false</bool>
+                                 </property>
                                  <property name="sizePolicy">
                                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                                    <horstretch>0</horstretch>
@@ -2652,6 +2655,9 @@ border: 2px solid violet;
                                  </property>
                                  <property name="text">
                                   <string>Filename</string>
+                                 </property>
+                                 <property name="readOnly">
+                                  <bool>true</bool>
                                  </property>
                                 </widget>
                                </item>
@@ -2932,6 +2938,9 @@ border: 2px solid violet;</string>
                               <layout class="QHBoxLayout" name="horizontalLayout_20">
                                <item>
                                 <widget class="QLineEdit" name="block_decrrypt_filename_tittle">
+                                 <property name="enabled">
+                                  <bool>false</bool>
+                                 </property>
                                  <property name="sizePolicy">
                                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                                    <horstretch>0</horstretch>
@@ -2957,6 +2966,9 @@ border: 2px solid violet;
                                  </property>
                                  <property name="text">
                                   <string>Filename</string>
+                                 </property>
+                                 <property name="readOnly">
+                                  <bool>true</bool>
                                  </property>
                                 </widget>
                                </item>

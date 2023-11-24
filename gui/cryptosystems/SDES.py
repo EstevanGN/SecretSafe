@@ -13,7 +13,7 @@ def bytes_a_imagen(datos_bytes, modo_imagen, tamaño_imagen):
 def sdes_generate_key():
     return list(get_random_bytes(8))
   
-def cifrar_imagen_ecb(ruta_imagen, clave):
+def cifrar_imagen_ecb(ruta_imagen, clave, filename):
     # Cargar la imagen
     imagen = Image.open(ruta_imagen)
     modo_imagen = imagen.mode
@@ -34,12 +34,12 @@ def cifrar_imagen_ecb(ruta_imagen, clave):
     imagen_cifrada = bytes_a_imagen(datos_cifrados, modo_imagen, tamaño_imagen)
 
     # Guardar la imagen cifrada
-    ruta_imagen_cifrada = '/home/aeternal/Documents/SecretSafe/gui/testing_images/encrypted/img_cifrada.png'
+    ruta_imagen_cifrada = 'testing_images/' + filename + '.png'
     imagen_cifrada.save(ruta_imagen_cifrada)
 
     return ruta_imagen_cifrada
   
-def cifrar_imagen_ctr(ruta_imagen, clave):
+def cifrar_imagen_ctr(ruta_imagen, clave, filename):
     # Cargar la imagen
     imagen = Image.open(ruta_imagen)
     modo_imagen = imagen.mode
@@ -61,12 +61,12 @@ def cifrar_imagen_ctr(ruta_imagen, clave):
     imagen_cifrada = bytes_a_imagen(datos_cifrados, modo_imagen, tamaño_imagen)
 
     # Guardar la imagen cifrada
-    ruta_imagen_cifrada = '/home/aeternal/Documents/SecretSafe/gui/testing_images/encrypted/img_cifrada.png'
+    ruta_imagen_cifrada = 'testing_images/' + filename + '.png'
     imagen_cifrada.save(ruta_imagen_cifrada)
 
     return ruta_imagen_cifrada
 
-def cifrar_imagen(ruta_imagen, clave):
+def cifrar_imagen(ruta_imagen, clave, filename):
     # Cargar la imagen
     imagen = Image.open(ruta_imagen)
     modo_imagen = imagen.mode
@@ -89,12 +89,12 @@ def cifrar_imagen(ruta_imagen, clave):
     imagen_cifrada = bytes_a_imagen(datos_cifrados, modo_imagen, tamaño_imagen)
 
     # Guardar la imagen cifrada
-    ruta_imagen_cifrada = '/home/aeternal/Documents/SecretSafe/gui/testing_images/encrypted/img_cifrada.png'
+    ruta_imagen_cifrada = 'testing_images/' + filename + '.png'
     imagen_cifrada.save(ruta_imagen_cifrada)
 
     return ruta_imagen_cifrada, list(info)
 
-def descifrar_imagen(ruta_imagen_cifrada, clave, info):
+def descifrar_imagen(ruta_imagen_cifrada, clave, filename, info):
     # Cargar la imagen cifrada
     imagen_cifrada = Image.open(ruta_imagen_cifrada)
     datos_cifrados = imagen_a_bytes(imagen_cifrada)
@@ -108,12 +108,12 @@ def descifrar_imagen(ruta_imagen_cifrada, clave, info):
     imagen_descifrada = bytes_a_imagen(datos_descifrados, imagen_cifrada.mode, imagen_cifrada.size)
 
     # Guardar la imagen descifrada
-    ruta_imagen_descifrada = '/home/aeternal/Documents/SecretSafe/gui/testing_images/decrypted/img_descifrada.png'
+    ruta_imagen_descifrada = 'testing_images/' + filename + '.png'
     imagen_descifrada.save(ruta_imagen_descifrada)
 
     return ruta_imagen_descifrada
   
-def descifrar_imagen_ecb(ruta_imagen_cifrada, clave):
+def descifrar_imagen_ecb(ruta_imagen_cifrada, clave, filename):
     # Cargar la imagen cifrada
     imagen_cifrada = Image.open(ruta_imagen_cifrada)
     datos_cifrados = imagen_a_bytes(imagen_cifrada)
@@ -126,12 +126,12 @@ def descifrar_imagen_ecb(ruta_imagen_cifrada, clave):
     imagen_descifrada = bytes_a_imagen(datos_descifrados, imagen_cifrada.mode, imagen_cifrada.size)
 
     # Guardar la imagen descifrada
-    ruta_imagen_descifrada = '/home/aeternal/Documents/SecretSafe/gui/testing_images/decrypted/img_descifrada.png'
+    ruta_imagen_descifrada = 'testing_images/' + filename + '.png'
     imagen_descifrada.save(ruta_imagen_descifrada)
 
     return ruta_imagen_descifrada
   
-def descifrar_imagen_ctr(ruta_imagen_cifrada, clave):
+def descifrar_imagen_ctr(ruta_imagen_cifrada, clave, filename):
     # Cargar la imagen cifrada
     imagen_cifrada = Image.open(ruta_imagen_cifrada)
     datos_cifrados = imagen_a_bytes(imagen_cifrada)
@@ -145,7 +145,7 @@ def descifrar_imagen_ctr(ruta_imagen_cifrada, clave):
     imagen_descifrada = bytes_a_imagen(datos_descifrados, imagen_cifrada.mode, imagen_cifrada.size)
 
     # Guardar la imagen descifrada
-    ruta_imagen_descifrada = '/home/aeternal/Documents/SecretSafe/gui/testing_images/decrypted/img_descifrada.png'
+    ruta_imagen_descifrada = 'testing_images/' + filename + '.png'
     imagen_descifrada.save(ruta_imagen_descifrada)
 
     return ruta_imagen_descifrada

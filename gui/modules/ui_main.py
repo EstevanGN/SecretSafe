@@ -1424,6 +1424,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
         self.block_encrypt_filename_tittle = QLineEdit(self.block_encrypt_filename_widget)
         self.block_encrypt_filename_tittle.setObjectName(u"block_encrypt_filename_tittle")
+        self.block_encrypt_filename_tittle.setEnabled(False)
         sizePolicy5 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy5.setHorizontalStretch(0)
         sizePolicy5.setVerticalStretch(0)
@@ -1434,6 +1435,7 @@ class Ui_MainWindow(object):
         self.block_encrypt_filename_tittle.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
 "border: 2px solid violet;\n"
 "")
+        self.block_encrypt_filename_tittle.setReadOnly(True)
 
         self.horizontalLayout_17.addWidget(self.block_encrypt_filename_tittle)
 
@@ -1574,6 +1576,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_20.setObjectName(u"horizontalLayout_20")
         self.block_decrrypt_filename_tittle = QLineEdit(self.block_decrypt_filename_widget)
         self.block_decrrypt_filename_tittle.setObjectName(u"block_decrrypt_filename_tittle")
+        self.block_decrrypt_filename_tittle.setEnabled(False)
         sizePolicy5.setHeightForWidth(self.block_decrrypt_filename_tittle.sizePolicy().hasHeightForWidth())
         self.block_decrrypt_filename_tittle.setSizePolicy(sizePolicy5)
         self.block_decrrypt_filename_tittle.setMinimumSize(QSize(90, 25))
@@ -1581,6 +1584,7 @@ class Ui_MainWindow(object):
         self.block_decrrypt_filename_tittle.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
 "border: 2px solid violet;\n"
 "")
+        self.block_decrrypt_filename_tittle.setReadOnly(True)
 
         self.horizontalLayout_20.addWidget(self.block_decrrypt_filename_tittle)
 
