@@ -12,5 +12,5 @@ def cryptoanalyze(text):
     for i in scores:
         breaker = VigenereBreak(i, scorer)
         decryption, score, key = breaker.guess(text)[0]
-        results.append("Key : " + str(i) + "\n" + "Vigenere decryption (key={}, score={}):\n---\n{}---\n".format(key, score, decryption))
+        results.append("Key length : " + str(i) + "\n" + "Vigenere Decryption Key={0} \n\n {1}---\n\n".format(key, decryption))
     return results
