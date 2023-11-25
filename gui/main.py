@@ -373,6 +373,8 @@ class MainWindow(QMainWindow):
         generated_key = rabin.generar_claves()
         self.ui.public_key_input.setPlainText(str(generated_key[0]))
         self.ui.private_key_input.setPlainText(str(generated_key[1]))
+        t="n="+str(generated_key[0][0])+"\n b="+str(generated_key[0][1])+"\n p="+str(generated_key[1][0])+"\n q="+str(generated_key[1][1])
+        self.ui.public_key_settings_output.setPlainText(t)
 
     def rabin_encrypt_text(self):
         input_text = self.ui.public_encrypt_input.toPlainText()
