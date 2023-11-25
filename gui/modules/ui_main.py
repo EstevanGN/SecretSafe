@@ -2132,7 +2132,7 @@ class Ui_MainWindow(object):
         self.titleLeftDescription.setText(QCoreApplication.translate("MainWindow", u"Modern Cryptography APP", None))
         self.toggleButton.setText(QCoreApplication.translate("MainWindow", u"Hide", None))
         self.btn_classical.setText(QCoreApplication.translate("MainWindow", u"Classical Encryption", None))
-        self.btn_block.setText(QCoreApplication.translate("MainWindow", u"Block Encryption", None))
+        self.btn_block.setText(QCoreApplication.translate("MainWindow", u"Image Encryption", None))
         self.btn_public_key.setText(QCoreApplication.translate("MainWindow", u"Public Key Encryption", None))
         self.btn_analysis.setText(QCoreApplication.translate("MainWindow", u"Analysis", None))
         self.extraLabel.setText(QCoreApplication.translate("MainWindow", u"Left Box", None))
