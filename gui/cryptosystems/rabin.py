@@ -22,7 +22,6 @@ def generar_claves():
         q = generar_primo_rabin()
     n = p * q
     b = random.randint(0, n - 1)
-    b=0
     clave_publica = (n, b)
     clave_privada = (p, q)
     return clave_publica, clave_privada
@@ -30,7 +29,7 @@ def generar_claves():
 def cifrar(mensaje, clave):
   n, b = clave
   mensaje_ascii = bytes_to_long(mensaje.encode('ascii'))
-  return (pow(mensaje_ascii,2) + b) % n;
+  return (pow(mensaje_ascii,2) + b*mensaje_ascii) % n;
 
 
 def decodificar_utf(r1,r2,r3,r4):
@@ -86,4 +85,3 @@ def descifrar(mensaje, clave, b):
   r4 = (((-1)*q*m_p*b1 - p*m_q*b2) - h) % n
 
   return decodificar_utf(r1,r2,r3,r4)
-
