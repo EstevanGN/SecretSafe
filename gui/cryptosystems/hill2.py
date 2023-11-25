@@ -1,6 +1,7 @@
 import numpy as np
 from PIL import Image
-from scipy import linalg
+from sympy import Matrix
+import ast
 
 def cargar_imagen(ruta):
     """ Carga una imagen y la convierte en una matriz numpy. """
@@ -14,16 +15,19 @@ def guardar_imagen(datos, ruta):
     img = Image.fromarray(np.uint8(datos), 'RGB')
     img.save(ruta)
 
-def crear_clave_hill(tamano):
-    """ Crea una clave de cifrado de Hill aleatoria y su inversa. """
+def crear_clave_hill():
     while True:
-        clave = np.random.randint(0, 256, (tamano, tamano), dtype=np.uint8)
-        try:
-            clave_inv = np.round(linalg.inv(clave) * np.linalg.det(clave)).astype(np.int64) % 256
-            if np.all(np.dot(clave, clave_inv) % 256 == np.eye(tamano, dtype=np.int64)):
-                return clave, clave_inv
-        except linalg.LinAlgError:
-            pass
+        # Genera una matriz aleatoria de 3x3 con números en el rango [1, 256)
+        matriz = np.random.randint(1, 256, size=(3, 3), dtype=np.uint8)
+        
+        # Verifica que el determinante sea diferente de 0 y primo relativo con 256
+        det = int(round(np.linalg.det(matriz)))
+        if det != 0 and np.gcd(det, 256) == 1:
+            return matriz
+
+def clave_inversa(matriz_clave):
+    inversa = Matrix(matriz_clave).inv_mod(256)
+    return inversa
 
 def aplicar_cifrado_hill(datos, clave):
     """ Aplica el cifrado o descifrado de Hill a la imagen. """
@@ -33,18 +37,21 @@ def aplicar_cifrado_hill(datos, clave):
     return transformados.reshape(forma)
 
 # Cargar imagen
-#ruta_imagen = '../testing_images/original/homero.jpg'
-
+#ruta_imagen = 'imagen_grayscale.jpg'
 #datos_imagen = cargar_imagen(ruta_imagen)
-
 # Crear clave de Hill
-#tamano_clave = 3
-#clave, clave_inv = crear_clave_hill(tamano_clave)
-
+#clave = crear_clave_hill()
 # Cifrar imagen
+#print(clave.tolist())
 #imagen_cifrada = aplicar_cifrado_hill(datos_imagen, clave)
-#guardar_imagen(imagen_cifrada, '../testing_images/encrypted/homero_cifrado_hill.png')
+#guardar_imagen(imagen_cifrada, 'imagen_cifrada.png')
 
 # Descifrar imagen
-#imagen_descifrada = aplicar_cifrado_hill(imagen_cifrada, clave_inv)
-#guardar_imagen(imagen_descifrada, '../testing_images/decrypted/homero_descifrado_hill.png')
+#ruta_imagen_cifrada = 'imagen_cifrada.png'
+#datos_imagen_cifrada = cargar_imagen(ruta_imagen_cifrada)
+#cadena_matriz = input("Cargue la clave en de matriz, por ejemplo: [[2, 3, 4], [5, 6, 7], [8, 9, 10]]")
+#matriz_resultante = ast.literal_eval(cadena_matriz)
+#matriz = [[int(elemento) for elemento in fila] for fila in matriz_resultante]
+#clave_inv = clave_inversa(matriz)
+#imagen_descifrada = aplicar_cifrado_hill(datos_imagen_cifrada, clave_inv)
+#guardar_imagen(imagen_descifrada, 'imagen_descifrada.png')

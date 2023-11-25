@@ -504,10 +504,8 @@ class MainWindow(QMainWindow):
         self.ui.block_generate_key_output.setPlainText(str(generated_key))
         
     def hill_generate_key_image(self):
-        generated_key = hill2.crear_clave_hill(3)
-        key = generated_key[0]
-        inv_key = generated_key[1]
-        self.ui.block_generate_key_output.setPlainText("Key : " + str(key) + " - Inv Key : " + str(inv_key))
+        generated_key = hill2.crear_clave_hill()
+        self.ui.block_generate_key_output.setPlainText("Key : " + str(generated_key.tolist()))
         
     def aes_encrypt_image(self):
         image_path = self.ui.block_encrypt_filepath.text()
@@ -706,22 +704,26 @@ class MainWindow(QMainWindow):
     
     def hill_encrypt_image(self):
         image_path = self.ui.block_encrypt_filepath.text()
+        filename = self.ui.block_encrypt_filename.toPlainText()
         if self.ui.block_generate_key_output.toPlainText():
             datos = hill2.cargar_imagen(image_path)
-            lista = np.matrix(self.ui.block_generate_key_output.toPlainText().split(" - ")[0].split(" : ")[1]).flatten()
-            key = hill.convert_numbers_to_matrix(",".join(map(str, lista)))
-            imagen_cifrada = hill2.aplicar_cifrado_hill(datos, key)
-            hill2.guardar_imagen(imagen_cifrada, '/testing_images/encrypted/encrypted_hill.png')
-            pixmap = QPixmap('/testing_images/encrypted/encrypted_hill.png')
+            key = ast.literal_eval(self.ui.block_generate_key_output.toPlainText().split(" : ")[1])
+            key_matrix = [[int(elemento) for elemento in fila] for fila in key]
+            imagen_cifrada = hill2.aplicar_cifrado_hill(datos, key_matrix)
+            hill2.guardar_imagen(imagen_cifrada, 'testing_images/' + filename + '.png')
+            pixmap = QPixmap('testing_images/' + filename + '.png')
             self.ui.block_encrypt_output.setPixmap(pixmap)
         
     def hill_decrypt_image(self):
         image_path = self.ui.block_decrypt_filepath.text()
+        filename = self.ui.block_decrypt_filename.toPlainText()
         datos = hill2.cargar_imagen(image_path)
-        key_inv = np.matrix(self.ui.block_key_output.toPlainText())
+        key = ast.literal_eval(self.ui.block_key_output.toPlainText().split(" : ")[1])
+        key_matrix = [[int(elemento) for elemento in fila] for fila in key]
+        key_inv = hill2.clave_inversa(key_matrix)
         imagen_decifrada = hill2.aplicar_cifrado_hill(datos, key_inv)
-        hill2.guardar_imagen(imagen_decifrada, '/testing_images/decrypted/decrypted_hill.png')
-        pixmap = QPixmap('/testing_images/decrypted/decrypted_hill.png')
+        hill2.guardar_imagen(imagen_decifrada, 'testing_images/' + filename + '.png')
+        pixmap = QPixmap('testing_images/' + filename + '.png')
         self.ui.block_decrypt_output.setPixmap(pixmap)
         
     def block_encryption_choice_action(self):
