@@ -16,7 +16,10 @@ Para instalar SecretSafe:
 ### 1. Descargar repositorio
 Puede hacer esto descargando el archivo `.zip` de este repositorio
 ### 2. Crear ambiente virtual
-Esto se hace para que las dependencias usadas por SecretSafe puedan funcionar correctamente y de manera segura
+Esto se hace para que las dependencias usadas por SecretSafe puedan funcionar correctamente y de manera segura. Primero nos movemos a el folder de gui:
+```
+  cd path/to/folder/gui
+  ```
 - Crear ambiente virtual
   ```
   python -m venv myenv
@@ -28,7 +31,7 @@ Esto se hace para que las dependencias usadas por SecretSafe puedan funcionar co
 ### 3. Instalar dependencias
 En la carpeta del repositorio esta el archivo `requirements.txt` con la lista de todas las dependencias que usa SecretSafe. Estas pueden ser instaladas de esta manera:
 ```
-pip install -r requirements.txt
+pip install -r ../requirements.txt
 ```
 
 ### 4. Ejecutar SecretSafe
